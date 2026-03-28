@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm create:*)",
+      "Read(//c/Users/Dell/OneDrive/_CV/**)",
+      "Bash(cp temp-portfolio/package.json temp-portfolio/vite.config.js temp-portfolio/index.html temp-portfolio/eslint.config.js \"Portfolio Website/\")",
+      "Bash(cp -r temp-portfolio/public \"Portfolio Website/\")",
+      "Bash(mkdir -p \"Portfolio Website/src\")",
+      "Bash(cp temp-portfolio/src/main.jsx \"Portfolio Website/src/\")",
+      "Bash(rm -rf temp-portfolio)",
+      "Bash(npm install:*)",
+      "Bash(npm run:*)"
+    ]
+  }
+}
