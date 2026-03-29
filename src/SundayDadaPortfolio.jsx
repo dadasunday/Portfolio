@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
+import emailjs from "@emailjs/browser";
 
 /* ─────────────────────────────────────────────
    Sunday Dada — Portfolio Website
@@ -495,6 +496,25 @@ function Footer({ navigate, scrollToSection, currentPage }) {
 // ══════════════════════════════════════
 function HomePage({ navigate, scrollToSection, sectionRefs }) {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [formStatus, setFormStatus] = useState("idle"); // idle | sending | sent | error
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!formData.name || !formData.email || !formData.message) return;
+    setFormStatus("sending");
+    emailjs.send("service_u06m3uh", "template_ips86yc", {
+      from_name: formData.name,
+      from_email: formData.email,
+      message: formData.message,
+    }, "DcnhAc28U43BoVUHo")
+      .then(() => {
+        setFormStatus("sent");
+        setFormData({ name: "", email: "", message: "" });
+      })
+      .catch(() => {
+        setFormStatus("error");
+      });
+  };
 
   return (
     <div className="page-enter">
@@ -703,7 +723,7 @@ function HomePage({ navigate, scrollToSection, sectionRefs }) {
             </Reveal>
             {/* Form */}
             <Reveal delay={2}>
-              <form onSubmit={(e) => e.preventDefault()} className="space-y-4">
+              <form onSubmit={handleSubmit} className="space-y-4">
                 <input
                   type="text"
                   placeholder="Your Name"
@@ -727,12 +747,14 @@ function HomePage({ navigate, scrollToSection, sectionRefs }) {
                 />
                 <button
                   type="submit"
-                  className="w-full py-3 rounded font-semibold text-sm transition-all hover:brightness-90"
+                  disabled={formStatus === "sending"}
+                  className="w-full py-3 rounded font-semibold text-sm transition-all hover:brightness-90 disabled:opacity-60 disabled:cursor-not-allowed"
                   style={{ background: "var(--accent)", color: "var(--primary-dark)" }}
                 >
-                  Send Message
+                  {formStatus === "sending" ? "Sending..." : "Send Message"}
                 </button>
-                <p className="text-white/30 text-xs text-center">Form can be connected to Formspree or EmailJS.</p>
+                {formStatus === "sent" && <p className="text-green-400 text-sm text-center">Message sent successfully!</p>}
+                {formStatus === "error" && <p className="text-red-400 text-sm text-center">Something went wrong. Please try again.</p>}
               </form>
             </Reveal>
           </div>
