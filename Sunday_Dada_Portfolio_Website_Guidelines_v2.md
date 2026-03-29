@@ -2,6 +2,7 @@
 
 > **Instructions for Claude:** Use these guidelines to build a multi-page React portfolio website (.jsx artifact) for Sunday Dada, a Senior Power BI Developer seeking data roles. The site must feel corporate, polished, and story-driven — designed to convince a hiring manager within minutes that Sunday solves real problems with data. Follow every section precisely.
 
+
 ---
 
 ## 1. DESIGN DIRECTION
