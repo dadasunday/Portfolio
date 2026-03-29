@@ -9,7 +9,8 @@
       "Bash(cp temp-portfolio/src/main.jsx \"Portfolio Website/src/\")",
       "Bash(rm -rf temp-portfolio)",
       "Bash(npm install:*)",
-      "Bash(npm run:*)"
+      "Bash(npm run:*)",
+      "Bash(ls \"c:/Users/Dell/OneDrive/_CV/Portfolio Website/public/headshot\"*)"
     ],
     "additionalDirectories": [
       "c:\\Users\\Dell\\OneDrive\\_CV\\Portfolio Website\\.github"
