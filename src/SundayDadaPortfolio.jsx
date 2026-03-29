@@ -471,8 +471,8 @@ function Footer({ navigate, scrollToSection, currentPage }) {
         <div>
           <h4 className="text-sm font-semibold mb-3 text-white/40 uppercase tracking-wider">Get In Touch</h4>
           <div className="flex flex-col gap-3">
-            <a href="mailto:sunday.dada@email.com" className="flex items-center gap-2 text-sm text-white/70 hover:text-white transition-colors">
-              <span style={{ color: "var(--accent)" }}>{Icons.mail}</span> sunday.dada@email.com
+            <a href="mailto:sundaydadag@gmail.com" className="flex items-center gap-2 text-sm text-white/70 hover:text-white transition-colors">
+              <span style={{ color: "var(--accent)" }}>{Icons.mail}</span> sundaydadag@gmail.com
             </a>
             <a href="tel:+1234567890" className="flex items-center gap-2 text-sm text-white/70 hover:text-white transition-colors">
               <span style={{ color: "var(--accent)" }}>{Icons.phone}</span> +1 (234) 567-890
@@ -685,9 +685,9 @@ function HomePage({ navigate, scrollToSection, sectionRefs }) {
             {/* Contact Info */}
             <Reveal delay={1}>
               <div className="space-y-6">
-                <a href="mailto:sunday.dada@email.com" className="flex items-center gap-3 text-white/80 hover:text-white transition-colors">
+                <a href="mailto:sundaydadag@gmail.com" className="flex items-center gap-3 text-white/80 hover:text-white transition-colors">
                   <span style={{ color: "var(--accent)" }}>{Icons.mail}</span>
-                  <span>sunday.dada@email.com</span>
+                  <span>sundaydadag@gmail.com</span>
                 </a>
                 <a href="tel:+1234567890" className="flex items-center gap-3 text-white/80 hover:text-white transition-colors">
                   <span style={{ color: "var(--accent)" }}>{Icons.phone}</span>
