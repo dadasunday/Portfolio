@@ -572,9 +572,11 @@ function HomePage({ navigate, scrollToSection, sectionRefs }) {
             </Reveal>
             <Reveal delay={2}>
               <div className="flex justify-center">
-                <div className="w-64 h-64 md:w-72 md:h-72 rounded-2xl bg-gray-200 flex items-center justify-center" role="img" aria-label="Professional headshot of Sunday Dada">
-                  <span className="text-gray-500 text-sm text-center px-4">Your Photo Here</span>
-                </div>
+                <img
+                  src={`${import.meta.env.BASE_URL}headshot.jpg`}
+                  alt="Professional headshot of Sunday Dada"
+                  className="w-64 h-64 md:w-72 md:h-72 rounded-2xl object-cover shadow-lg"
+                />
               </div>
             </Reveal>
           </div>
