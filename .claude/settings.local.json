@@ -10,6 +10,9 @@
       "Bash(rm -rf temp-portfolio)",
       "Bash(npm install:*)",
       "Bash(npm run:*)"
+    ],
+    "additionalDirectories": [
+      "c:\\Users\\Dell\\OneDrive\\_CV\\Portfolio Website\\.github"
     ]
   }
 }
