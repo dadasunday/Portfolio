@@ -474,8 +474,8 @@ function Footer({ navigate, scrollToSection, currentPage }) {
             <a href="mailto:sundaydadag@gmail.com" className="flex items-center gap-2 text-sm text-white/70 hover:text-white transition-colors">
               <span style={{ color: "var(--accent)" }}>{Icons.mail}</span> sundaydadag@gmail.com
             </a>
-            <a href="tel:+1234567890" className="flex items-center gap-2 text-sm text-white/70 hover:text-white transition-colors">
-              <span style={{ color: "var(--accent)" }}>{Icons.phone}</span> +1 (234) 567-890
+            <a href="tel:+14698385748" className="flex items-center gap-2 text-sm text-white/70 hover:text-white transition-colors">
+              <span style={{ color: "var(--accent)" }}>{Icons.phone}</span> +1 (469) 838-5748
             </a>
             <a href="https://linkedin.com/in/sundaydada" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-white/70 hover:text-white transition-colors">
               <span style={{ color: "var(--accent)" }}>{Icons.linkedin}</span> LinkedIn Profile
@@ -680,7 +680,7 @@ function HomePage({ navigate, scrollToSection, sectionRefs }) {
             <h2 className="text-3xl md:text-4xl text-center text-white mb-2" style={{ fontFamily: "'DM Serif Display', serif" }}>Let's Connect</h2>
             <div className="w-16 h-0.5 mx-auto my-2" style={{ background: "var(--accent)" }} />
             <p className="text-center text-white/60 mt-4 max-w-xl mx-auto">
-              I'm actively looking for my next opportunity. Whether you have a role in mind or just want to talk data — I'd love to hear from you.
+              Whether you have a role in mind or just want to talk data — I'd love to hear from you.
             </p>
           </Reveal>
           <div className="grid md:grid-cols-2 gap-12 mt-12">
@@ -691,9 +691,9 @@ function HomePage({ navigate, scrollToSection, sectionRefs }) {
                   <span style={{ color: "var(--accent)" }}>{Icons.mail}</span>
                   <span>sundaydadag@gmail.com</span>
                 </a>
-                <a href="tel:+1234567890" className="flex items-center gap-3 text-white/80 hover:text-white transition-colors">
+                <a href="tel:+14698385748" className="flex items-center gap-3 text-white/80 hover:text-white transition-colors">
                   <span style={{ color: "var(--accent)" }}>{Icons.phone}</span>
-                  <span>+1 (234) 567-890</span>
+                  <span>+1 (469) 838-5748</span>
                 </a>
                 <a href="https://linkedin.com/in/sundaydada" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-white/80 hover:text-white transition-colors">
                   <span style={{ color: "var(--accent)" }}>{Icons.linkedin}</span>
