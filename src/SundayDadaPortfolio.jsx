@@ -356,7 +356,7 @@ const projects = [
     title: "Meridian Executive Reporting & Fabric Migration",
     industry: "Travel & Hospitality",
     hook: "Leadership had top-line numbers but no profit visibility, no forecasting, and no drill-down by brand.",
-    metrics: "35+ DAX measures · 9-table star schema · 4 dashboard pages · 7-phase migration",
+    metrics: "35+ DAX measures · 9-table star schema · 4 dashboard pages · 3 Direct Lake models",
     overview: `Meridian — The Voyager Group operates a portfolio of six travel brands spanning luxury tours, private cruises, villas, jets, and corporate travel. Leadership had basic revenue dashboards, but no way to see profitability, no forecasting capability, and no ability to drill down by brand or compare performance across the portfolio. The existing BI environment ran on fragmented Power BI Desktop files connected directly to SQL Server — no single semantic model, no governance, and no scalability. I was brought in to do two things: first, redesign the executive reporting experience with a consolidated semantic model, 35+ DAX measures covering profitability and forecasting, and a 4-page drill-through dashboard. Second, migrate the entire data platform from SQL Server to Microsoft Fabric — standing up a Bronze/Silver/Gold medallion Lakehouse architecture with Dataflow Gen2, Direct Lake semantic models, deployment pipelines, and full governance. The result was an enterprise-grade analytics environment that gave leadership real-time profit visibility across all six brands for the first time.`,
     tools: ["Power BI (Desktop & Service)", "Microsoft Fabric", "Lakehouse (Bronze/Silver/Gold)", "Dataflow Gen2", "Direct Lake", "DAX (Advanced)", "Star Schema Design", "Row-Level Security", "Tabular Editor", "Deployment Pipelines", "SQL Server", "T-SQL"],
     dataContext: "Nine datasets totaling 6,800+ rows across three fact tables (Bookings at 4,625 rows, Operating Expenses at 1,008 rows, Forecast Targets at 72 rows), a Financial Assumptions reference table, four dimension tables (Date, Brand, Region, Sales Channel), and a KPI Definitions reference table. Data originated from SQL Server databases and Excel workbooks maintained by the finance team. The migration path ran SQL Server → Fabric Lakehouse (Bronze for raw landing, Silver for cleansed/conformed data, Gold for business-ready tables) → Direct Lake semantic models → Power BI reports.",
@@ -397,7 +397,7 @@ const projects = [
       { value: "35+", label: "DAX Measures" },
       { value: "9", label: "Table Star Schema" },
       { value: "4", label: "Dashboard Pages" },
-      { value: "7", label: "Migration Phases" }
+      { value: "3", label: "Direct Lake Models" }
     ]
   }
 ];
