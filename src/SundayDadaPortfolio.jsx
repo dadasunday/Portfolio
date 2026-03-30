@@ -302,7 +302,7 @@ const projects = [
   {
     id: 5,
     title: "Parking Management System",
-    thumbnail: "Canvas App Home Page.png",
+    thumbnail: "Canvas-App Home Page.png",
     industry: "Education",
     hook: "A high school's parking lot was chaos — no one knew who had permission to park and who didn't.",
     metrics: "1,299 inspections · 88% compliance · 15 spaces managed",
