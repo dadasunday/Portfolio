@@ -298,6 +298,55 @@ const projects = [
       { value: "2", label: "Organizations Served" },
       { value: "80%+", label: "AI Accuracy" }
     ]
+  },
+  {
+    id: 5,
+    title: "Parking Management System",
+    industry: "Education",
+    hook: "A high school's parking lot was chaos — no one knew who had permission to park and who didn't.",
+    metrics: "1,299 inspections · 88% compliance · 15 spaces managed",
+    overview: `Contoso High School had a growing parking problem. Teachers complained about unavailable spaces, visitors parked without authorization, and the leadership team had no way to understand who was actually using the lot. Complaints were mounting, but there was no data — just frustration. The school needed a system that would let staff and visitors request parking daily, allow inspectors to verify compliance on the ground, and give administrators a clear picture of parking usage and unauthorized access. Sunday designed and delivered a complete Power Platform solution: a model-driven app for administrative review and parking requests, a tablet-ready canvas app for field inspections, automated email confirmations via Power Automate, and a Power BI report that revealed an 88% compliance rate — meaning nearly 12% of parked vehicles had no valid request on file.`,
+    tools: ["Power Apps (Canvas & Model-Driven)", "Power Automate", "Dataverse", "Power BI", "DAX"],
+    dataContext: "Three Dataverse tables — Vehicles, Parking Requests, and Parking Inspections — formed the data backbone. Vehicle records included make, model, and owner email. Parking requests tracked which vehicle requested access on which date. Inspections logged every vehicle found in the lot during the daily 5 PM sweep. The key analytical challenge was joining inspections to requests to determine which parked vehicles actually had permission — requiring a calculated column and careful relationship management through 36-character GUIDs across tables.",
+    challenges: [
+      {
+        title: "Joining tables via 36-character GUIDs in Power BI",
+        problem: "The Vehicle table connected to Parking Inspections through a unique identifier — a 36-character GUID that Dataverse generates automatically. Getting this relationship to work correctly in Power BI's data model was one of the trickiest parts of the build.",
+        solution: "Sunday carefully mapped the relationships in Power BI using the record unique identifiers, establishing a many-to-one cardinality between Parking Inspections and Vehicles. This enabled cross-table filtering so the report could show inspection details alongside vehicle information.",
+        learning: "Working with Dataverse GUIDs in Power BI is a skill that pays dividends — it comes up constantly when building reports on top of Power Platform data."
+      },
+      {
+        title: "Determining valid vs. unauthorized parking",
+        problem: "An inspection record alone doesn't tell you whether a vehicle had permission to park. That required cross-referencing each inspection against the Parking Requests table to see if a matching request existed for that date.",
+        solution: "Sunday built a calculated column (isRequested) in the Parking Inspections table that flagged whether each inspection had a corresponding valid parking request. This became the foundation for the compliance metrics — 88.07% of inspections had valid requests, meaning 155 out of 1,299 were unauthorized.",
+        learning: "The business value of the entire report hinged on one calculated column. Getting the logic right was essential — a wrong join condition would have made the compliance numbers meaningless."
+      },
+      {
+        title: "Building a field-ready canvas app for inspectors",
+        problem: "The parking inspector needed to walk the lot with a tablet, log every vehicle present, and move quickly — the app had to be fast, intuitive, and default to the right values to minimize tapping.",
+        solution: "Sunday built a 4-screen canvas app with smart defaults: the inspection date auto-set to today, the hour and minute defaulted to now, and a 'Create New Vehicle' flow was accessible directly from the inspection form for unrecognized vehicles. The review screen filtered to today's inspections only.",
+        learning: "Field apps live or die by their defaults. Every tap you save the user is a tap they won't get wrong."
+      }
+    ],
+    walkthrough: [
+      { step: "Dataverse Table Design", desc: "Created three tables in Dataverse — Vehicles (with make, model, owner email, and vehicle image), Parking Requests (with request name, vehicle lookup, and request datetime), and Parking Inspections (with inspection name, vehicle lookup, parking request lookup, and inspection datetime). Configured forms, views, and subgrids to link related records.", screenshot: "Dataverse Table Structure" },
+      { step: "Model-Driven App Development", desc: "Built an administrative model-driven app with site map navigation across all three tables. Admins could review vehicle registrations, create parking requests on behalf of staff and visitors, and monitor inspection records — all from a single unified interface.", screenshot: "Model-Driven App Interface" },
+      { step: "Canvas App for Field Inspections", desc: "Developed a tablet-optimized canvas app with four screens: Home (navigation hub), Review (today's inspections gallery with vehicle details and invalid-parking indicators), New Inspection (form with smart datetime defaults), and New Vehicle (for registering unrecognized vehicles on the spot).", screenshot: "Canvas App Inspection Screen" },
+      { step: "Power Automate Cloud Flow", desc: "Created a cloud flow triggered whenever a new Parking Request was created. The flow automatically sent a confirmation email to the vehicle owner with the request ID and vehicle name, using the school's branded email template.", screenshot: "Power Automate Flow" },
+      { step: "Power BI Data Model & DAX", desc: "Connected Power BI to Dataverse, established relationships via GUIDs, and built a calculated date dimension using DAX (CALENDARAUTO with school year logic). Created measures for Total Inspections, Total Valid Requests, and % Valid Requests. Added a calculated isRequested column to identify unauthorized parking.", screenshot: "Power BI Data Model" },
+      { step: "Power BI Report & Dashboards", desc: "Built a 3-page report: a navigation home page, a filters page (Vehicle Make/Model, Calendar, Day of Week), and the main Parking Review dashboard with KPI cards (1,299 inspections, 88.07% compliance, 155 unauthorized), a matrix table by vehicle, a bar chart of authorized vs. unauthorized inspections over time, and a detail table with drill-through links back to the model-driven app.", screenshot: "Parking Review Dashboard" }
+    ],
+    takeaways: [
+      { title: "One calculated column can unlock the entire story", desc: "The isRequested flag was a simple piece of logic, but it transformed raw inspection data into an actionable compliance metric. Without it, the report would have been a list of vehicles — with it, leadership could see exactly where enforcement was failing." },
+      { title: "The Power Platform is greater than the sum of its parts", desc: "This project used Dataverse, Power Apps (both canvas and model-driven), Power Automate, and Power BI as a unified solution. Each component handled what it does best — and the integration between them was seamless because they share the same data layer." },
+      { title: "Design for the person holding the tablet", desc: "The canvas app's success came from smart defaults and minimal required input. The inspector could log a vehicle in seconds because the date, hour, and minute were pre-filled. Reducing friction in field apps directly improves data quality." }
+    ],
+    metricBoxes: [
+      { value: "1,299", label: "Total Inspections" },
+      { value: "88%", label: "Compliance Rate" },
+      { value: "155", label: "Unauthorized Vehicles" },
+      { value: "15", label: "Parking Spaces Managed" }
+    ]
   }
 ];
 
