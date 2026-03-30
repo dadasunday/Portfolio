@@ -397,7 +397,7 @@ const projects = [
       { value: "35+", label: "DAX Measures" },
       { value: "9", label: "Table Star Schema" },
       { value: "4", label: "Dashboard Pages" },
-      { value: "Direct", label: "Lake Semantic Model" }
+      { value: "Direct Lake", label: "Semantic Model" }
     ]
   }
 ];
