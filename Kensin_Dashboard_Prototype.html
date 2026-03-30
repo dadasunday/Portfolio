@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kensington Executive Reporting Dashboard</title>
+<style>
+:root{--color-background-primary:#ffffff;--color-background-secondary:#f7f7f5;--color-background-tertiary:#f0efe9;--color-text-primary:#1a1a1a;--color-text-secondary:#6b6b6b;--color-border-tertiary:rgba(0,0,0,0.12);--color-border-secondary:rgba(0,0,0,0.2);--border-radius-md:8px;--border-radius-lg:12px;--font-sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
+@media(prefers-color-scheme:dark){:root{--color-background-primary:#1e1e1e;--color-background-secondary:#2a2a2a;--color-background-tertiary:#333;--color-text-primary:#e8e8e8;--color-text-secondary:#999;--color-border-tertiary:rgba(255,255,255,0.12);--color-border-secondary:rgba(255,255,255,0.2)}}
+*{box-sizing:border-box;margin:0}
+body{font-family:var(--font-sans);color:var(--color-text-primary);background:var(--color-background-tertiary);padding:20px;max-width:1100px;margin:0 auto}
+.nav{display:flex;gap:4px;margin-bottom:16px;flex-wrap:wrap}
+.nav button{padding:8px 18px;font-size:13px;border-radius:var(--border-radius-md);cursor:pointer;border:0.5px solid var(--color-border-tertiary);background:var(--color-background-primary);color:var(--color-text-secondary);font-weight:500;transition:all .15s}
+.nav button.active{background:#1a3a5c;color:#fff;border-color:#1a3a5c}
+.nav button:hover:not(.active){background:var(--color-background-secondary)}
+.page{display:none}.page.show{display:block}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:18px}
+.kpi{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:14px 16px}
+.kpi-label{font-size:11px;color:var(--color-text-secondary);margin-bottom:4px;text-transform:uppercase;letter-spacing:0.3px}
+.kpi-val{font-size:24px;font-weight:500}
+.kpi-sub{font-size:11px;margin-top:2px}
+.up{color:#1D9E75}.down{color:#E24B4A}
+.chart-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
+.chart-box{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:16px}
+.chart-title{font-size:13px;font-weight:500;color:var(--color-text-secondary);margin-bottom:10px}
+.chart-wrap{position:relative;width:100%;height:240px}
+.full-chart{grid-column:1/-1}
+.brand-table{width:100%;border-collapse:collapse;font-size:12px}
+.brand-table th{text-align:left;padding:10px 8px;border-bottom:1.5px solid var(--color-border-secondary);color:var(--color-text-secondary);font-weight:500;font-size:11px}
+.brand-table td{padding:8px;border-bottom:0.5px solid var(--color-border-tertiary)}
+.brand-table tr:hover{background:var(--color-background-secondary)}
+.badge{display:inline-block;padding:2px 8px;border-radius:var(--border-radius-md);font-size:10px;font-weight:500}
+.badge-up{background:#E1F5EE;color:#0F6E56}
+.badge-down{background:#FCEBEB;color:#A32D2D}
+.legend{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:8px;font-size:11px;color:var(--color-text-secondary)}
+.legend span{display:flex;align-items:center;gap:4px}
+.dot{width:10px;height:10px;border-radius:2px;display:inline-block}
+.slicer{display:flex;gap:4px;margin-bottom:14px;align-items:center}
+.slicer label{font-size:12px;color:var(--color-text-secondary);margin-right:6px}
+.slicer button{padding:4px 12px;font-size:12px;border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);background:var(--color-background-primary);color:var(--color-text-secondary);cursor:pointer}
+.slicer button.sel{background:#1a3a5c;color:#fff;border-color:#1a3a5c}
+.header{display:flex;align-items:center;gap:12px;margin-bottom:18px;padding-bottom:14px;border-bottom:2px solid #1a3a5c}
+.header-bar{width:6px;height:36px;background:#1a3a5c;border-radius:3px}
+.header-title{font-size:20px;font-weight:500}
+.header-sub{font-size:12px;color:var(--color-text-secondary)}
+.footer{text-align:center;font-size:11px;color:var(--color-text-secondary);margin-top:24px;padding-top:12px;border-top:0.5px solid var(--color-border-tertiary)}
+@media(max-width:700px){.chart-row{grid-template-columns:1fr}.kpi-grid{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+<body>
+
+<div class="header">
+<div class="header-bar"></div>
+<div>
+<div class="header-title">Kensington executive reporting</div>
+<div class="header-sub">Range Group — portfolio performance, profitability & forecasting | Prepared by Sunday Dada</div>
+</div>
+</div>
+
+<div class="nav">
+<button class="active" onclick="showPage('p1',this)">Executive summary</button>
+<button onclick="showPage('p2',this)">Brand deep dive</button>
+<button onclick="showPage('p3',this)">Forecast & assumptions</button>
+<button onclick="showPage('p4',this)">Sales & operations</button>
+</div>
+
+<!-- PAGE 1: EXECUTIVE SUMMARY -->
+<div id="p1" class="page show">
+<div class="slicer">
+<label>Year:</label>
+<button class="sel" onclick="setYear(2025,this)">2025</button>
+<button onclick="setYear(2024,this)">2024</button>
+</div>
+<div id="kpi1" class="kpi-grid"></div>
+<div class="chart-row">
+<div class="chart-box">
+<div class="chart-title">Gross sales vs operating profit by brand</div>
+<div class="legend" id="leg1"></div>
+<div class="chart-wrap"><canvas id="c1"></canvas></div>
+</div>
+<div class="chart-box">
+<div class="chart-title">Monthly performance trend (2025)</div>
+<div class="legend" id="leg2"></div>
+<div class="chart-wrap"><canvas id="c2"></canvas></div>
+</div>
+</div>
+<div class="chart-box full-chart" style="margin-bottom:16px">
+<div class="chart-title">Brand performance matrix — 2025</div>
+<div style="overflow-x:auto"><table class="brand-table" id="brandTable"></table></div>
+</div>
+</div>
+
+<!-- PAGE 2: BRAND DEEP DIVE -->
+<div id="p2" class="page">
+<div class="slicer">
+<label>Select brand:</label>
+<button class="sel" onclick="setBrand('Luxury Tours',this)">Tours</button>
+<button onclick="setBrand('Premium Cruise',this)">Cruise</button>
+<button onclick="setBrand('Private Villas',this)">Villas</button>
+<button onclick="setBrand('Private Jets',this)">Jets</button>
+<button onclick="setBrand('Commercial Air',this)">Air</button>
+<button onclick="setBrand('Corporate Travel',this)">Corporate</button>
+</div>
+<div id="kpi2" class="kpi-grid"></div>
+<div class="chart-row">
+<div class="chart-box">
+<div class="chart-title" id="wfTitle">Profit waterfall — Luxury Tours</div>
+<div class="chart-wrap" style="height:260px"><canvas id="c3"></canvas></div>
+</div>
+<div class="chart-box">
+<div class="chart-title" id="trendTitle">Monthly trend — Luxury Tours</div>
+<div class="legend" id="leg3"></div>
+<div class="chart-wrap"><canvas id="c4"></canvas></div>
+</div>
+</div>
+<div class="chart-row">
+<div class="chart-box">
+<div class="chart-title" id="opexTitle">OpEx breakdown — Luxury Tours</div>
+<div class="chart-wrap"><canvas id="c5"></canvas></div>
+</div>
+<div class="chart-box">
+<div class="chart-title" id="regTitle">Revenue by region — Luxury Tours</div>
+<div class="chart-wrap"><canvas id="c6"></canvas></div>
+</div>
+</div>
+</div>
+
+<!-- PAGE 3: FORECAST -->
+<div id="p3" class="page">
+<div id="kpi3" class="kpi-grid"></div>
+<div class="chart-row">
+<div class="chart-box">
+<div class="chart-title">2026 forecast vs 2025 actual by brand</div>
+<div class="legend" id="leg4"></div>
+<div class="chart-wrap"><canvas id="c7"></canvas></div>
+</div>
+<div class="chart-box">
+<div class="chart-title">Forecast growth targets by brand</div>
+<div class="chart-wrap"><canvas id="c8"></canvas></div>
+</div>
+</div>
+<div class="chart-box full-chart" style="margin-bottom:16px">
+<div class="chart-title">Financial assumptions — 2026 (from Excel input)</div>
+<div style="overflow-x:auto"><table class="brand-table" id="assumTable"></table></div>
+</div>
+</div>
+
+<!-- PAGE 4: SALES & OPS -->
+<div id="p4" class="page">
+<div class="chart-row">
+<div class="chart-box">
+<div class="chart-title">Revenue by sales channel (2025)</div>
+<div class="legend" id="leg5"></div>
+<div class="chart-wrap"><canvas id="c9"></canvas></div>
+</div>
+<div class="chart-box">
+<div class="chart-title">OpEx by category (2025)</div>
+<div class="legend" id="leg6"></div>
+<div class="chart-wrap"><canvas id="c10"></canvas></div>
+</div>
+</div>
+<div class="chart-row">
+<div class="chart-box">
+<div class="chart-title">Bookings by region (2025)</div>
+<div class="chart-wrap" style="height:210px"><canvas id="c11"></canvas></div>
+</div>
+<div class="chart-box">
+<div class="chart-title">Booking status breakdown</div>
+<div class="chart-wrap"><canvas id="c12"></canvas></div>
+</div>
+</div>
+</div>
+
+<div class="footer">Kensington Executive Reporting Prototype — Built by Sunday Dada | March 2026 | Data is synthetic for demonstration purposes</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const D={kpis:{gross_sales:35330082,gross_sales_yoy:17.1,margin_pct:25.2,op_profit:1204160,op_profit_yoy:95.0,op_margin:3.4,bookings:2493,bookings_yoy:16.9},brand_summary:[{Brand:"Commercial Air",Gross_Sales:4768498,Gross_Margin:392498,Commission:196696,Net_Revenue:195801,OpEx:632506,Operating_Profit:-436705,Bookings:803,Margin_Pct:8.2,Op_Margin_Pct:-9.2,Commission_Pct:4.1,Avg_Booking:5939},{Brand:"Corporate Travel",Gross_Sales:1745766,Gross_Margin:268073,Commission:124001,Net_Revenue:144072,OpEx:248649,Operating_Profit:-104577,Bookings:128,Margin_Pct:15.4,Op_Margin_Pct:-6.0,Commission_Pct:7.1,Avg_Booking:13639},{Brand:"Luxury Tours",Gross_Sales:14411474,Gross_Margin:4063430,Commission:1764988,Net_Revenue:2298442,OpEx:2192009,Operating_Profit:106433,Bookings:563,Margin_Pct:28.2,Op_Margin_Pct:0.7,Commission_Pct:12.2,Avg_Booking:25598},{Brand:"Premium Cruise",Gross_Sales:6392878,Gross_Margin:1399982,Commission:654028,Net_Revenue:745954,OpEx:970424,Operating_Profit:-224470,Bookings:360,Margin_Pct:21.9,Op_Margin_Pct:-3.5,Commission_Pct:10.2,Avg_Booking:17758},{Brand:"Private Jets",Gross_Sales:3282870,Gross_Margin:586785,Commission:196832,Net_Revenue:389953,OpEx:244078,Operating_Profit:145876,Bookings:35,Margin_Pct:17.9,Op_Margin_Pct:4.4,Commission_Pct:6.0,Avg_Booking:93796},{Brand:"Private Villas",Gross_Sales:4728596,Gross_Margin:1680613,Commission:393037,Net_Revenue:1287576,OpEx:582838,Operating_Profit:704738,Bookings:148,Margin_Pct:35.5,Op_Margin_Pct:14.9,Commission_Pct:8.3,Avg_Booking:31949}],monthly_trend:[{Year:2024,Month:1,Label:"2024-01",Gross_Sales:1131553,Gross_Margin:281449,Operating_Profit:-84898,Bookings:86},{Year:2024,Month:2,Label:"2024-02",Gross_Sales:969285,Gross_Margin:255163,Operating_Profit:-83534,Bookings:71},{Year:2024,Month:3,Label:"2024-03",Gross_Sales:1131395,Gross_Margin:290038,Operating_Profit:-72850,Bookings:79},{Year:2024,Month:4,Label:"2024-04",Gross_Sales:1269627,Gross_Margin:311048,Operating_Profit:-51003,Bookings:84},{Year:2024,Month:5,Label:"2024-05",Gross_Sales:1460289,Gross_Margin:374099,Operating_Profit:1131,Bookings:100},{Year:2024,Month:6,Label:"2024-06",Gross_Sales:1616662,Gross_Margin:418684,Operating_Profit:30012,Bookings:115},{Year:2024,Month:7,Label:"2024-07",Gross_Sales:1742432,Gross_Margin:429694,Operating_Profit:44789,Bookings:119},{Year:2024,Month:8,Label:"2024-08",Gross_Sales:1665893,Gross_Margin:417765,Operating_Profit:27505,Bookings:114},{Year:2024,Month:9,Label:"2024-09",Gross_Sales:1355427,Gross_Margin:349143,Operating_Profit:-14704,Bookings:95},{Year:2024,Month:10,Label:"2024-10",Gross_Sales:1177660,Gross_Margin:308449,Operating_Profit:-49994,Bookings:84},{Year:2024,Month:11,Label:"2024-11",Gross_Sales:1061574,Gross_Margin:270133,Operating_Profit:-104655,Bookings:76},{Year:2024,Month:12,Label:"2024-12",Gross_Sales:1599606,Gross_Margin:418834,Operating_Profit:-259204,Bookings:109},{Year:2025,Month:1,Label:"2025-01",Gross_Sales:1405181,Gross_Margin:358637,Operating_Profit:-55764,Bookings:100},{Year:2025,Month:2,Label:"2025-02",Gross_Sales:1118371,Gross_Margin:274574,Operating_Profit:-99133,Bookings:78},{Year:2025,Month:3,Label:"2025-03",Gross_Sales:1476024,Gross_Margin:373814,Operating_Profit:-18949,Bookings:104},{Year:2025,Month:4,Label:"2025-04",Gross_Sales:1534020,Gross_Margin:399620,Operating_Profit:4432,Bookings:105},{Year:2025,Month:5,Label:"2025-05",Gross_Sales:1679254,Gross_Margin:428419,Operating_Profit:41693,Bookings:115},{Year:2025,Month:6,Label:"2025-06",Gross_Sales:1833103,Gross_Margin:455975,Operating_Profit:65741,Bookings:120},{Year:2025,Month:7,Label:"2025-07",Gross_Sales:2087095,Gross_Margin:541363,Operating_Profit:125009,Bookings:141},{Year:2025,Month:8,Label:"2025-08",Gross_Sales:1972020,Gross_Margin:488534,Operating_Profit:85729,Bookings:137},{Year:2025,Month:9,Label:"2025-09",Gross_Sales:1498143,Gross_Margin:373618,Operating_Profit:-12025,Bookings:106},{Year:2025,Month:10,Label:"2025-10",Gross_Sales:1323574,Gross_Margin:331974,Operating_Profit:-41023,Bookings:91},{Year:2025,Month:11,Label:"2025-11",Gross_Sales:1255098,Gross_Margin:326389,Operating_Profit:-59653,Bookings:89},{Year:2025,Month:12,Label:"2025-12",Gross_Sales:1818199,Gross_Margin:437461,Operating_Profit:-131898,Bookings:119}],channel:[{Sales_Channel:"Direct Online",Sales:8529012,Pct:24.1},{Sales_Channel:"Travel Advisor",Sales:12384939,Pct:35.0},{Sales_Channel:"Phone Sales",Sales:5330789,Pct:15.1},{Sales_Channel:"Corporate Account",Sales:2254652,Pct:6.4},{Sales_Channel:"Referral",Sales:6831690,Pct:19.3}],opex_cat:[{Expense_Category:"Customer Service",Amount:734218},{Expense_Category:"Insurance & Legal",Amount:416605},{Expense_Category:"Marketing & Advertising",Amount:1746506},{Expense_Category:"Office & Admin",Amount:521978},{Expense_Category:"Staff & Salaries",Amount:2515854},{Expense_Category:"Technology & Platform",Amount:939736},{Expense_Category:"Travel & Training",Amount:313202}],forecast_brand:[{Brand:"Commercial Air",Forecast:5483773,Prior:4768498,Variance_Pct:15.0},{Brand:"Corporate Travel",Forecast:2007631,Prior:1745766,Variance_Pct:15.0},{Brand:"Luxury Tours",Forecast:16573195,Prior:14411474,Variance_Pct:15.0},{Brand:"Premium Cruise",Forecast:7351810,Prior:6392878,Variance_Pct:15.0},{Brand:"Private Jets",Forecast:3775301,Prior:3282870,Variance_Pct:15.0},{Brand:"Private Villas",Forecast:5437886,Prior:4728596,Variance_Pct:15.0}],region:[{Region:"North America",Sales:10540330,Bookings:745},{Region:"Europe",Sales:8866095,Bookings:619},{Region:"Asia Pacific",Sales:6508073,Bookings:457},{Region:"Africa & Middle East",Sales:3514519,Bookings:250},{Region:"Latin America",Sales:3509073,Bookings:249},{Region:"Oceania",Sales:2391992,Bookings:173}]};
+
+const fmt=v=>'$'+Math.round(v).toLocaleString();
+const fmtM=v=>'$'+(v/1e6).toFixed(1)+'M';
+const fmtK=v=>'$'+(v/1e3).toFixed(0)+'K';
+const pct=v=>(v>=0?'+':'')+v.toFixed(1)+'%';
+let charts={};
+
+function showPage(id,btn){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('show'));
+  document.getElementById(id).classList.add('show');
+  document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function destroyChart(id){if(charts[id]){charts[id].destroy();delete charts[id]}}
+
+function kpiCard(label,value,sub,cls){
+  return `<div class="kpi"><div class="kpi-label">${label}</div><div class="kpi-val">${value}</div><div class="kpi-sub ${cls||''}">${sub||''}</div></div>`;
+}
+
+function badge(v){
+  return v>=0?`<span class="badge badge-up">+${v.toFixed(1)}%</span>`:`<span class="badge badge-down">${v.toFixed(1)}%</span>`;
+}
+
+function buildP1(){
+  const k=D.kpis;
+  document.getElementById('kpi1').innerHTML=
+    kpiCard('Gross sales',fmtM(k.gross_sales),pct(k.gross_sales_yoy)+' YoY','up')+
+    kpiCard('Gross margin',k.margin_pct+'%','of gross sales','')+
+    kpiCard('Operating profit',fmtK(k.op_profit),pct(k.op_profit_yoy)+' YoY','up')+
+    kpiCard('Op. margin',k.op_margin+'%','','')+
+    kpiCard('Bookings',k.bookings.toLocaleString(),pct(k.bookings_yoy)+' YoY','up')+
+    kpiCard('Forecast var.','15.0%','2026 growth target','up');
+
+  const bs=D.brand_summary;
+  const labels=bs.map(b=>b.Brand.replace('Premium ','').replace('Private ','').replace('Commercial ','').replace('Corporate ','').replace('Luxury ',''));
+
+  document.getElementById('leg1').innerHTML=`<span><span class="dot" style="background:#378ADD"></span>Gross sales</span><span><span class="dot" style="background:#1D9E75"></span>Operating profit</span>`;
+  destroyChart('c1');
+  charts.c1=new Chart(document.getElementById('c1'),{type:'bar',data:{labels,datasets:[{label:'Gross Sales',data:bs.map(b=>Math.round(b.Gross_Sales)),backgroundColor:'#378ADD',borderRadius:4},{label:'Op Profit',data:bs.map(b=>Math.round(b.Operating_Profit)),backgroundColor:bs.map(b=>b.Operating_Profit>=0?'#1D9E75':'#E24B4A'),borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>ctx.dataset.label+': '+fmtK(ctx.parsed.y)}}},scales:{x:{ticks:{autoSkip:false,font:{size:11}},grid:{display:false}},y:{ticks:{callback:v=>fmtM(v),font:{size:10}},grid:{color:'rgba(0,0,0,0.06)'}}}}});
+
+  const mt=D.monthly_trend.filter(m=>m.Year===2025);
+  document.getElementById('leg2').innerHTML=`<span><span class="dot" style="background:#378ADD"></span>Gross sales</span><span><span class="dot" style="background:#1D9E75"></span>Gross margin</span><span><span class="dot" style="background:#BA7517"></span>Op. profit</span>`;
+  destroyChart('c2');
+  charts.c2=new Chart(document.getElementById('c2'),{type:'line',data:{labels:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],datasets:[{label:'Gross Sales',data:mt.map(m=>Math.round(m.Gross_Sales)),borderColor:'#378ADD',backgroundColor:'rgba(55,138,221,0.08)',fill:true,tension:0.3,pointRadius:3},{label:'Gross Margin',data:mt.map(m=>Math.round(m.Gross_Margin)),borderColor:'#1D9E75',tension:0.3,pointRadius:3},{label:'Op Profit',data:mt.map(m=>Math.round(m.Operating_Profit)),borderColor:'#BA7517',borderDash:[4,3],tension:0.3,pointRadius:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>ctx.dataset.label+': '+fmtK(ctx.parsed.y)}}},scales:{x:{grid:{display:false},ticks:{font:{size:10}}},y:{ticks:{callback:v=>fmtM(v),font:{size:10}},grid:{color:'rgba(0,0,0,0.06)'}}}}});
+
+  let html='<thead><tr><th>Brand</th><th>Gross sales</th><th>Margin %</th><th>Commission %</th><th>OpEx</th><th>Op. profit</th><th>Op. margin %</th><th>Avg booking</th></tr></thead><tbody>';
+  bs.forEach(b=>{html+=`<tr><td style="font-weight:500">${b.Brand}</td><td>${fmtM(b.Gross_Sales)}</td><td>${b.Margin_Pct}%</td><td>${b.Commission_Pct}%</td><td>${fmtK(b.OpEx)}</td><td style="color:${b.Operating_Profit>=0?'#1D9E75':'#E24B4A'}">${fmtK(b.Operating_Profit)}</td><td>${badge(b.Op_Margin_Pct)}</td><td>${fmtK(b.Avg_Booking)}</td></tr>`});
+  html+='</tbody>';
+  document.getElementById('brandTable').innerHTML=html;
+}
+
+let selBrand='Luxury Tours';
+function setBrand(b,btn){selBrand=b;document.querySelectorAll('#p2 .slicer button').forEach(x=>x.classList.remove('sel'));btn.classList.add('sel');buildP2()}
+
+function buildP2(){
+  const b=D.brand_summary.find(x=>x.Brand===selBrand);
+  document.getElementById('wfTitle').textContent='Profit waterfall — '+selBrand;
+  document.getElementById('trendTitle').textContent='Monthly trend — '+selBrand;
+  document.getElementById('opexTitle').textContent='OpEx breakdown — '+selBrand;
+  document.getElementById('regTitle').textContent='Revenue by region — '+selBrand;
+
+  const cogs=b.Gross_Sales-b.Gross_Margin;
+  document.getElementById('kpi2').innerHTML=
+    kpiCard('Gross sales',fmtM(b.Gross_Sales),'Avg booking: '+fmtK(b.Avg_Booking),'')+
+    kpiCard('Gross margin',b.Margin_Pct+'%',fmtK(b.Gross_Margin),'')+
+    kpiCard('Commission',b.Commission_Pct+'%',fmtK(b.Commission),'')+
+    kpiCard('Operating profit',fmtK(b.Operating_Profit),b.Op_Margin_Pct+'% margin',b.Operating_Profit>=0?'up':'down')+
+    kpiCard('Bookings',b.Bookings.toLocaleString(),'','')+
+    kpiCard('OpEx',fmtK(b.OpEx),'total operating cost','');
+
+  const wfLabels=['Gross sales','COGS','Gross margin','Commission','Net revenue','OpEx','Op. profit'];
+  const wfData=[b.Gross_Sales,-cogs,b.Gross_Margin,-b.Commission,b.Net_Revenue,-b.OpEx,b.Operating_Profit];
+  const wfColors=['#378ADD','#E24B4A','#1D9E75','#E24B4A','#378ADD','#E24B4A',b.Operating_Profit>=0?'#1D9E75':'#E24B4A'];
+
+  destroyChart('c3');
+  charts.c3=new Chart(document.getElementById('c3'),{type:'bar',data:{labels:wfLabels,datasets:[{data:wfData.map(Math.abs),backgroundColor:wfColors,borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>(wfData[ctx.dataIndex]<0?'-':'')+fmtK(ctx.parsed.x)}}},scales:{x:{ticks:{callback:v=>fmtM(v),font:{size:10}},grid:{color:'rgba(0,0,0,0.06)'}},y:{ticks:{font:{size:11}},grid:{display:false}}}}});
+
+  document.getElementById('leg3').innerHTML=`<span><span class="dot" style="background:#378ADD"></span>Gross sales</span><span><span class="dot" style="background:#BA7517"></span>Op. profit</span>`;
+  destroyChart('c4');
+  const bm=D.monthly_trend.filter(m=>m.Year===2025);
+  charts.c4=new Chart(document.getElementById('c4'),{type:'line',data:{labels:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],datasets:[{label:'Gross Sales',data:bm.map(m=>Math.round(m.Gross_Sales*(b.Gross_Sales/D.kpis.gross_sales))),borderColor:'#378ADD',tension:0.3,pointRadius:3},{label:'Op Profit',data:bm.map(m=>Math.round(m.Operating_Profit*(Math.abs(b.Operating_Profit)/Math.abs(D.kpis.op_profit)||0.1))),borderColor:'#BA7517',borderDash:[4,3],tension:0.3,pointRadius:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>ctx.dataset.label+': '+fmtK(ctx.parsed.y)}}},scales:{x:{grid:{display:false},ticks:{font:{size:10}}},y:{ticks:{callback:v=>fmtK(v),font:{size:10}},grid:{color:'rgba(0,0,0,0.06)'}}}}});
+
+  const opexCats=D.opex_cat;const ratio=b.OpEx/D.opex_cat.reduce((s,c)=>s+c.Amount,0);
+  const oc=['#378ADD','#1D9E75','#BA7517','#73726c','#D4537E','#534AB7','#D85A30'];
+  destroyChart('c5');
+  charts.c5=new Chart(document.getElementById('c5'),{type:'doughnut',data:{labels:opexCats.map(c=>c.Expense_Category.split(' & ')[0]),datasets:[{data:opexCats.map(c=>Math.round(c.Amount*ratio)),backgroundColor:oc}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,position:'right',labels:{font:{size:10},boxWidth:10}}}}});
+
+  destroyChart('c6');
+  charts.c6=new Chart(document.getElementById('c6'),{type:'bar',data:{labels:D.region.map(r=>r.Region.replace(' & Middle East','').replace(' Pacific','')),datasets:[{data:D.region.map(r=>Math.round(r.Sales*(b.Gross_Sales/D.kpis.gross_sales))),backgroundColor:'#378ADD',borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false},ticks:{font:{size:10}}},y:{ticks:{callback:v=>fmtK(v),font:{size:10}},grid:{color:'rgba(0,0,0,0.06)'}}}}});
+}
+
+function buildP3(){
+  const fb=D.forecast_brand;
+  const totalF=fb.reduce((s,b)=>s+b.Forecast,0);
+  const totalP=fb.reduce((s,b)=>s+b.Prior,0);
+
+  document.getElementById('kpi3').innerHTML=
+    kpiCard('2026 forecast',fmtM(totalF),'total across brands','')+
+    kpiCard('2025 actual',fmtM(totalP),'prior year','')+
+    kpiCard('Growth target','15.0%','YoY revenue growth','up')+
+    kpiCard('Variance',fmtM(totalF-totalP),'forecast uplift','up');
+
+  const labels=fb.map(b=>b.Brand.replace('Premium ','').replace('Private ','').replace('Commercial ','').replace('Corporate ','').replace('Luxury ',''));
+  document.getElementById('leg4').innerHTML=`<span><span class="dot" style="background:#73726c"></span>2025 actual</span><span><span class="dot" style="background:#378ADD"></span>2026 forecast</span>`;
+
+  destroyChart('c7');
+  charts.c7=new Chart(document.getElementById('c7'),{type:'bar',data:{labels,datasets:[{label:'2025 Actual',data:fb.map(b=>Math.round(b.Prior)),backgroundColor:'#73726c',borderRadius:4},{label:'2026 Forecast',data:fb.map(b=>Math.round(b.Forecast)),backgroundColor:'#378ADD',borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>ctx.dataset.label+': '+fmtM(ctx.parsed.y)}}},scales:{x:{ticks:{autoSkip:false,font:{size:11}},grid:{display:false}},y:{ticks:{callback:v=>fmtM(v),font:{size:10}},grid:{color:'rgba(0,0,0,0.06)'}}}}});
+
+  destroyChart('c8');
+  charts.c8=new Chart(document.getElementById('c8'),{type:'bar',data:{labels,datasets:[{label:'Growth %',data:fb.map(b=>b.Variance_Pct),backgroundColor:'#1D9E75',borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{autoSkip:false,font:{size:11}},grid:{display:false}},y:{ticks:{callback:v=>v+'%',font:{size:10}},grid:{color:'rgba(0,0,0,0.06)'}}}}});
+
+  const assumData=[{b:'Luxury Tours',g:'15%',m:'30%',o:'8%',h:45,mk:'$180K'},{b:'Premium Cruise',g:'20%',m:'25%',o:'10%',h:20,mk:'$120K'},{b:'Private Villas',g:'25%',m:'38%',o:'12%',h:12,mk:'$80K'},{b:'Private Jets',g:'10%',m:'20%',o:'5%',h:8,mk:'$60K'},{b:'Commercial Air',g:'8%',m:'10%',o:'6%',h:15,mk:'$50K'},{b:'Corporate Travel',g:'30%',m:'18%',o:'15%',h:10,mk:'$70K'}];
+  let ahtml='<thead><tr><th>Brand</th><th>Revenue growth</th><th>Margin target</th><th>OpEx growth</th><th>Headcount</th><th>Mktg budget/mo</th></tr></thead><tbody>';
+  assumData.forEach(a=>{ahtml+=`<tr><td style="font-weight:500">${a.b}</td><td>${a.g}</td><td>${a.m}</td><td>${a.o}</td><td>${a.h}</td><td>${a.mk}</td></tr>`});
+  ahtml+='</tbody>';
+  document.getElementById('assumTable').innerHTML=ahtml;
+}
+
+function buildP4(){
+  const ch=D.channel;
+  const oc=['#1a3a5c','#378ADD','#1D9E75','#BA7517','#73726c'];
+  document.getElementById('leg5').innerHTML=ch.map((c,i)=>`<span><span class="dot" style="background:${oc[i]}"></span>${c.Sales_Channel} ${c.Pct}%</span>`).join('');
+
+  destroyChart('c9');
+  charts.c9=new Chart(document.getElementById('c9'),{type:'doughnut',data:{labels:ch.map(c=>c.Sales_Channel),datasets:[{data:ch.map(c=>Math.round(c.Sales)),backgroundColor:oc}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}}}});
+
+  const ox=D.opex_cat.sort((a,b)=>b.Amount-a.Amount);
+  const oxc=['#1a3a5c','#378ADD','#BA7517','#1D9E75','#D4537E','#73726c','#534AB7'];
+  document.getElementById('leg6').innerHTML=ox.map((c,i)=>`<span><span class="dot" style="background:${oxc[i]}"></span>${c.Expense_Category.split(' & ')[0]}</span>`).join('');
+
+  destroyChart('c10');
+  charts.c10=new Chart(document.getElementById('c10'),{type:'doughnut',data:{labels:ox.map(c=>c.Expense_Category),datasets:[{data:ox.map(c=>Math.round(c.Amount)),backgroundColor:oxc}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}}}});
+
+  const rg=D.region;
+  destroyChart('c11');
+  charts.c11=new Chart(document.getElementById('c11'),{type:'bar',data:{labels:rg.map(r=>r.Region.replace(' & Middle East','').replace(' Pacific','')),datasets:[{label:'Bookings',data:rg.map(r=>r.Bookings),backgroundColor:'#378ADD',borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false},ticks:{font:{size:10}}},y:{grid:{color:'rgba(0,0,0,0.06)'},ticks:{font:{size:10}}}}}});
+
+  const statuses=[{s:'Completed',v:55,c:'#1D9E75'},{s:'Confirmed',v:30,c:'#378ADD'},{s:'Cancelled',v:8,c:'#E24B4A'},{s:'Pending',v:7,c:'#BA7517'}];
+  destroyChart('c12');
+  charts.c12=new Chart(document.getElementById('c12'),{type:'doughnut',data:{labels:statuses.map(s=>s.s),datasets:[{data:statuses.map(s=>s.v),backgroundColor:statuses.map(s=>s.c)}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,position:'right',labels:{font:{size:11},boxWidth:10}}}}});
+}
+
+function setYear(y,btn){
+  document.querySelectorAll('#p1 .slicer button').forEach(x=>x.classList.remove('sel'));
+  btn.classList.add('sel');
+}
+
+buildP1();buildP2();buildP3();buildP4();
+</script>
+</body>
+</html>
