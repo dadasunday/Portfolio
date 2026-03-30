@@ -350,6 +350,55 @@ const projects = [
       { value: "15", label: "Parking Spaces Managed" }
     ],
     powerBiEmbed: "https://app.powerbi.com/view?r=eyJrIjoiMDZjMzc1ODctNzcyMS00ZTQ3LWFhM2ItN2Q2MTRmYmQ0NjA2IiwidCI6IjRkMTYxZjExLTQ2MzAtNDE1Zi1iMWI0LTg5YWM3MmNlYzk5NyJ9"
+  },
+  {
+    id: 6,
+    title: "Kensington Executive Reporting & Fabric Migration",
+    industry: "Travel & Hospitality",
+    hook: "Leadership had top-line numbers but no profit visibility, no forecasting, and no drill-down by brand.",
+    metrics: "35+ DAX measures · 9-table star schema · 4 dashboard pages · 7-phase migration",
+    overview: `Kensington — The Range Group operates a portfolio of six travel brands spanning luxury tours, private cruises, villas, jets, and corporate travel. Leadership had basic revenue dashboards, but no way to see profitability, no forecasting capability, and no ability to drill down by brand or compare performance across the portfolio. The existing BI environment ran on fragmented Power BI Desktop files connected directly to SQL Server — no single semantic model, no governance, and no scalability. I was brought in to do two things: first, redesign the executive reporting experience with a consolidated semantic model, 35+ DAX measures covering profitability and forecasting, and a 4-page drill-through dashboard. Second, migrate the entire data platform from SQL Server to Microsoft Fabric — standing up a Bronze/Silver/Gold medallion Lakehouse architecture with Dataflow Gen2, Direct Lake semantic models, deployment pipelines, and full governance. The result was an enterprise-grade analytics environment that gave leadership real-time profit visibility across all six brands for the first time.`,
+    tools: ["Power BI (Desktop & Service)", "Microsoft Fabric", "Lakehouse (Bronze/Silver/Gold)", "Dataflow Gen2", "Direct Lake", "DAX (Advanced)", "Star Schema Design", "Row-Level Security", "Tabular Editor", "Deployment Pipelines", "SQL Server", "T-SQL"],
+    dataContext: "Nine datasets totaling 6,800+ rows across three fact tables (Bookings at 4,625 rows, Operating Expenses at 1,008 rows, Forecast Targets at 72 rows), a Financial Assumptions reference table, four dimension tables (Date, Brand, Region, Sales Channel), and a KPI Definitions reference table. Data originated from SQL Server databases and Excel workbooks maintained by the finance team. The migration path ran SQL Server → Fabric Lakehouse (Bronze for raw landing, Silver for cleansed/conformed data, Gold for business-ready tables) → Direct Lake semantic models → Power BI reports.",
+    challenges: [
+      {
+        title: "No profit visibility across the portfolio",
+        problem: "The existing dashboards showed gross sales and margins, but leadership had no way to see operating profit, OpEx breakdown by category, or how each brand actually performed after costs. Every profitability question required a manual spreadsheet exercise.",
+        solution: "I built a comprehensive DAX measure library — 35+ measures organized into folders for Core KPIs, Profitability, Time Intelligence, Forecasting, and Financial Assumptions. Operating Profit, Operating Margin %, and OpEx breakdowns by Staff, Marketing, and Technology gave leadership brand-level P&L visibility for the first time.",
+        learning: "The measures themselves weren't complex individually, but organizing them into a coherent, maintainable library was the real challenge. Display folders and a dedicated _Measures table made all the difference."
+      },
+      {
+        title: "Migrating from SQL Server to Fabric without disrupting reporting",
+        problem: "The existing BI environment had reports pointing directly at SQL Server with no staging layer, no governance, and no version control. Migrating to Fabric meant rebuilding the entire data pipeline while keeping existing reports functional during the transition.",
+        solution: "I designed a 7-phase migration plan: Discovery & Audit, Fabric Environment Setup (6 workspaces with security groups), Data Ingestion to Lakehouse (Bronze/Silver/Gold medallion), Curated Layer Development with Dataflow Gen2, Semantic Model Development with Direct Lake, Report Development, and Governance. The phased approach meant reports could be migrated incrementally with validation at each checkpoint.",
+        learning: "The biggest risk in any migration is doing it all at once. The phased approach with explicit checkpoints meant we could validate at each stage and roll back if needed — which gave leadership confidence to greenlight the project."
+      },
+      {
+        title: "Building a forward-looking executive experience",
+        problem: "Leadership wanted more than historical reporting — they needed dynamic forecasting that blended actuals with projections and integrated financial assumptions from the finance team's Excel models.",
+        solution: "I implemented Month-End Forecast measures that calculated a daily run rate from actuals-to-date and projected the remainder of the month dynamically. A What-If parameter let executives adjust growth rate assumptions (5% to 25%) and instantly see the impact on projected revenue and profit. Financial assumptions from Excel (margin targets, growth targets, marketing budgets) were integrated directly into the semantic model.",
+        learning: "The What-If parameter was the feature that got the most executive engagement — it turned the dashboard from a reporting tool into a decision-making tool."
+      }
+    ],
+    walkthrough: [
+      { step: "Discovery & Data Audit", desc: "Audited the existing SQL Server environment and Power BI Desktop files. Cataloged every database, table, and .pbix file — documenting row counts, data sizes, refresh schedules, and downstream consumers. Built a migration inventory spreadsheet that prioritized every object by business criticality and assigned migration methods.", screenshot: "Migration Inventory" },
+      { step: "Star Schema & Semantic Model Design", desc: "Designed a consolidated 9-table star schema with three fact tables (Bookings, Operating Expenses, Forecast Targets), four dimension tables (Date, Brand, Region, Sales Channel), a Financial Assumptions table, and a KPI Definitions reference table. Established relationships with single-direction cross-filtering and implemented an inactive relationship for Travel Date analysis using USERELATIONSHIP.", screenshot: "Star Schema Diagram" },
+      { step: "Fabric Environment & Lakehouse Architecture", desc: "Provisioned Microsoft Fabric capacity and created a 6-workspace structure: Bronze-DEV/PROD, Silver-DEV/PROD, Gold-Curated (DEV/TEST/PROD), and Reporting-PROD. Set up Entra ID security groups for Data Engineers, BI Developers, Report Consumers, and Self-Service Analysts. Connected DEV workspace to Git for version control and configured deployment pipelines for DEV → TEST → PROD promotion.", screenshot: "Fabric Workspace Structure" },
+      { step: "DAX Measure Development (35+ Measures)", desc: "Built 35+ DAX measures organized into display folders: Core KPIs (Gross Sales, Margins, Commission, Net Revenue), Profitability (Operating Profit, OpEx breakdowns by category), Time Intelligence (YoY Growth, YTD/MTD/QTD), Forecasting (Forecast vs. Actual, Month-End Projection, Variance %), and Financial Assumptions (Target Margin, Revenue Growth Target). Used Tabular Editor for efficient bulk measure creation with IntelliSense and Best Practice Analyzer.", screenshot: "DAX Measures in Tabular Editor" },
+      { step: "Executive Dashboard Design (4 Pages)", desc: "Built a 4-page dashboard: Executive Summary (KPI cards, brand comparison chart, monthly trend with forecast overlay), Brand Deep Dive (drill-through P&L waterfall, OpEx breakdown, regional performance), Forecast & Assumptions (actual vs. forecast matrix, What-If scenario parameter, assumptions panel), and Sales & Operations (channel mix donut, booking funnel, destination heatmap). Applied synced slicers across pages, bookmark toggles for Revenue/Profit views, and custom tooltip pages.", screenshot: "Executive Summary Dashboard" },
+      { step: "RLS, Governance & Deployment", desc: "Implemented Row-Level Security with 7 roles — one per brand manager (filtered by Dim_Brand) plus an Executive role with full access. Configured deployment pipeline dataset rebinding rules so reports auto-connected to the correct semantic model in each environment. Established BI development standards covering naming conventions, Git workflow, DAX standards, and refresh monitoring. Created a Data Quality Dashboard connected to validation logs.", screenshot: "Deployment Pipeline" }
+    ],
+    takeaways: [
+      { title: "Migration is a governance project, not just a technical one", desc: "Standing up Fabric workspaces with proper security groups, deployment pipelines, and Git integration before migrating a single table meant the new environment was production-ready from day one. The medallion architecture (Bronze → Silver → Gold) ensured every layer had clear ownership and validation gates." },
+      { title: "Direct Lake changes the semantic model game", desc: "Connecting semantic models to Gold Lakehouse tables via Direct Lake eliminated the need for scheduled dataset refreshes and Import mode bottlenecks. The data was always current, the model was always fast, and the architecture was inherently scalable — a fundamentally different operating model than Import or DirectQuery." },
+      { title: "The dashboard that executives actually use is the one with a What-If slider", desc: "Historical reporting tells you what happened. Forecasting tells you what might happen. But a What-If parameter that lets leadership adjust growth assumptions and instantly see the profit impact — that's what turns a dashboard into a tool they open every morning." }
+    ],
+    metricBoxes: [
+      { value: "35+", label: "DAX Measures" },
+      { value: "9", label: "Table Star Schema" },
+      { value: "4", label: "Dashboard Pages" },
+      { value: "7", label: "Migration Phases" }
+    ]
   }
 ];
 
