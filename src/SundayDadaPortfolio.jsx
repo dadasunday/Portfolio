@@ -329,7 +329,7 @@ const projects = [
       }
     ],
     walkthrough: [
-      { step: "Dataverse Table Design", desc: "Created three tables in Dataverse — Vehicles (with make, model, owner email, and vehicle image), Parking Requests (with request name, vehicle lookup, and request datetime), and Parking Inspections (with inspection name, vehicle lookup, parking request lookup, and inspection datetime). Configured forms, views, and subgrids to link related records.", screenshot: "Dataverse Table Structure" },
+      { step: "Dataverse Table Design", desc: "Created three tables in Dataverse — Vehicles (with make, model, owner email, and vehicle image), Parking Requests (with request name, vehicle lookup, and request datetime), and Parking Inspections (with inspection name, vehicle lookup, parking request lookup, and inspection datetime). Configured forms, views, and subgrids to link related records.", screenshot: "Dataverse Table Structure", image: "Dataverse Table Structure.png" },
       { step: "Model-Driven App Development", desc: "Built an administrative model-driven app with site map navigation across all three tables. Admins could review vehicle registrations, create parking requests on behalf of staff and visitors, and monitor inspection records — all from a single unified interface.", screenshot: "Model-Driven App Interface" },
       { step: "Canvas App for Field Inspections", desc: "Developed a tablet-optimized canvas app with four screens: Home (navigation hub), Review (today's inspections gallery with vehicle details and invalid-parking indicators), New Inspection (form with smart datetime defaults), and New Vehicle (for registering unrecognized vehicles on the spot).", screenshot: "Canvas App Inspection Screen" },
       { step: "Power Automate Cloud Flow", desc: "Created a cloud flow triggered whenever a new Parking Request was created. The flow automatically sent a confirmation email to the vehicle owner with the request ID and vehicle name, using the school's branded email template.", screenshot: "Power Automate Flow" },
@@ -922,7 +922,11 @@ function ProjectPage({ project, navigate }) {
                     <p className="text-sm leading-relaxed" style={{ color: "var(--text-secondary)" }}>{w.desc}</p>
                   </div>
                   <div className={i % 2 === 1 ? "md:order-1" : ""}>
-                    <Placeholder label={`Screenshot: ${w.screenshot}`} aspect="16/10" />
+                    {w.image ? (
+                      <img src={`${import.meta.env.BASE_URL}${w.image}`} alt={w.screenshot} className="rounded-lg shadow-md w-full" style={{ aspectRatio: "16/10", objectFit: "cover" }} />
+                    ) : (
+                      <Placeholder label={`Screenshot: ${w.screenshot}`} aspect="16/10" />
+                    )}
                   </div>
                 </div>
               </Reveal>
