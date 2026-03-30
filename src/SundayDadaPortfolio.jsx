@@ -346,7 +346,8 @@ const projects = [
       { value: "88%", label: "Compliance Rate" },
       { value: "155", label: "Unauthorized Vehicles" },
       { value: "15", label: "Parking Spaces Managed" }
-    ]
+    ],
+    powerBiEmbed: "https://app.powerbi.com/view?r=eyJrIjoiMDZjMzc1ODctNzcyMS00ZTQ3LWFhM2ItN2Q2MTRmYmQ0NjA2IiwidCI6IjRkMTYxZjExLTQ2MzAtNDE1Zi1iMWI0LTg5YWM3MmNlYzk5NyJ9"
   }
 ];
 
@@ -952,13 +953,23 @@ function ProjectPage({ project, navigate }) {
               </Reveal>
             ))}
           </div>
-          <Reveal delay={4}>
-            <div className="mt-10 text-center">
-              <a href="#" className="text-sm font-semibold inline-flex items-center gap-1 hover:underline" style={{ color: "var(--accent)" }}>
-                View on Power BI Service {Icons.arrowRight}
-              </a>
-            </div>
-          </Reveal>
+          {project.powerBiEmbed && (
+            <Reveal delay={4}>
+              <div className="mt-10">
+                <h3 className="text-lg font-bold mb-4 text-center" style={{ fontFamily: "'DM Serif Display', serif" }}>Live Report</h3>
+                <div className="rounded-lg overflow-hidden shadow-md border" style={{ borderColor: "var(--border)" }}>
+                  <iframe
+                    title="Power BI Report"
+                    src={project.powerBiEmbed}
+                    width="100%"
+                    height="500"
+                    className="border-0"
+                    allowFullScreen={true}
+                  />
+                </div>
+              </div>
+            </Reveal>
+          )}
           <Reveal delay={4}>
             <div className="mt-10 flex flex-wrap items-center justify-between gap-4">
               <button
