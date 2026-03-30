@@ -111,26 +111,26 @@ const projects = [
     industry: "Cross-Industry",
     hook: "How I built a BI environment that 300+ users — including C-suite — actually trust.",
     metrics: "Sub-2s queries · 50% faster · $8M+ impact",
-    overview: `Colaberry needed a unified BI environment that could serve everyone from analysts to C-suite — with trusted data, fast dashboards, and self-service capability. The existing setup was fragmented: teams ran their own reports, numbers didn't match across departments, and executives waited weeks for updates that were often contradictory. Leadership was making multi-million dollar decisions based on spreadsheets that nobody could verify. Sunday was brought in to design and deliver the end-to-end solution — from data modeling to dashboard deployment — that would become the single source of truth for the entire organization.`,
+    overview: `Colaberry needed a unified BI environment that could serve everyone from analysts to C-suite — with trusted data, fast dashboards, and self-service capability. The existing setup was fragmented: teams ran their own reports, numbers didn't match across departments, and executives waited weeks for updates that were often contradictory. Leadership was making multi-million dollar decisions based on spreadsheets that nobody could verify. I was brought in to design and deliver the end-to-end solution — from data modeling to dashboard deployment — that would become the single source of truth for the entire organization.`,
     tools: ["Power BI (Desktop & Service)", "DAX (Advanced — CALCULATE, time intelligence, iterator functions)", "Power Query (M)", "Row-Level Security", "Star & Snowflake Schema Design"],
     dataContext: "Multiple source systems across 4 business units. Mix of SQL Server databases, Excel files, and Salesforce exports. Required heavy transformation and standardization before modeling. Advanced techniques included composite models, incremental refresh, dynamic RLS based on organizational hierarchy, and drill-through pages for executive-to-detail navigation.",
     challenges: [
       {
         title: "Fragmented data across 4 business units",
         problem: "Every team had their own spreadsheets and definitions. The same KPI could mean three different things depending on which department you asked.",
-        solution: "Sunday built a unified semantic model with a shared business logic layer, standardizing KPIs across all units so leadership could compare apples to apples.",
+        solution: "I built a unified semantic model with a shared business logic layer, standardizing KPIs across all units so leadership could compare apples to apples.",
         learning: "Getting stakeholders to agree on definitions upfront saved weeks of rework downstream."
       },
       {
         title: "Query performance at scale",
         problem: "Initial models had 8–10 second load times, making dashboards unusable for the 300+ users who needed them daily.",
-        solution: "By refactoring from snowflake to optimized star schemas, removing unnecessary columns, and implementing aggregation tables, Sunday brought response times under 2 seconds for 300+ concurrent users.",
+        solution: "By refactoring from snowflake to optimized star schemas, removing unnecessary columns, and implementing aggregation tables, I brought response times under 2 seconds for 300+ concurrent users.",
         learning: "The biggest performance gains came from model architecture changes, not DAX optimization."
       },
       {
         title: "Self-service adoption was low",
         problem: "People didn't trust the old reports, so they built their own — creating a vicious cycle of inconsistency.",
-        solution: "Sunday created intuitive drill-through paths, added visual-level filters, and documented everything — reducing ad-hoc requests to IT significantly.",
+        solution: "I created intuitive drill-through paths, added visual-level filters, and documented everything — reducing ad-hoc requests to IT significantly.",
         learning: "Trust isn't a feature you ship — it's earned through consistency, transparency, and making the right path the easy path."
       }
     ],
@@ -160,20 +160,20 @@ const projects = [
     industry: "Financial Services",
     hook: "Reporting took 3–5 days. I got it down to same-day.",
     metrics: "40% faster · $20K saved/yr · 30% less DB load",
-    overview: `The Finance and Sales teams at Colaberry were stuck in a painful reporting cycle — every month-end took 3–5 days of manual data pulls, validation, and formatting before leadership could see the numbers. By the time reports landed, decisions were already delayed. The finance team was working weekends just to hit deadlines, and the sales team couldn't tell whether they were on track until it was too late to course-correct. Sunday embedded with both teams to rebuild the entire reporting workflow from the database up.`,
+    overview: `The Finance and Sales teams at Colaberry were stuck in a painful reporting cycle — every month-end took 3–5 days of manual data pulls, validation, and formatting before leadership could see the numbers. By the time reports landed, decisions were already delayed. The finance team was working weekends just to hit deadlines, and the sales team couldn't tell whether they were on track until it was too late to course-correct. I embedded with both teams to rebuild the entire reporting workflow from the database up.`,
     tools: ["Power BI", "SQL Server", "T-SQL", "Stored Procedures", "SQL Views", "SQL Server Agent"],
     dataContext: "Transactional data from ERP and CRM systems. Finance data required multi-currency support and fiscal calendar alignment. Sales pipeline data needed deduplication and stage-mapping logic. Advanced techniques included indexed views for pre-aggregation, parameterized stored procedures, and automated data quality triggers.",
     challenges: [
       {
         title: "Slow, unoptimized queries",
         problem: "The existing 35+ reporting queries were written ad-hoc over years, with no indexing strategy and redundant joins that consumed excessive database resources.",
-        solution: "Sunday rewrote them with proper indexing, CTEs, and set-based logic — reducing DB resource consumption by 30%.",
+        solution: "I rewrote them with proper indexing, CTEs, and set-based logic — reducing DB resource consumption by 30%.",
         learning: "A systematic audit of execution plans revealed that 80% of the slowness came from just 5 queries."
       },
       {
         title: "Data quality issues eroding trust",
         problem: "Finance and Sales had different numbers for the same metrics. Leadership couldn't tell which team's report was correct.",
-        solution: "Sunday built validation triggers and automated checks directly in the database layer, catching errors at the source before they propagated to reports.",
+        solution: "I built validation triggers and automated checks directly in the database layer, catching errors at the source before they propagated to reports.",
         learning: "Fixing data quality at the source layer is always more effective than trying to clean it in the presentation layer."
       },
       {
@@ -208,20 +208,20 @@ const projects = [
     industry: "IT Services",
     hook: "The nightly batch job ran for 6 hours. Teams couldn't start their day with fresh data.",
     metrics: "25% faster ETL · 35% faster reports · 40% fewer errors",
-    overview: `Fastwire Tech's reporting ran on a patchwork of direct queries, flat files, and manually maintained spreadsheets. No single source of truth existed — and when two department heads showed up to the same meeting with different revenue numbers, it was clear something had to change. Sunday was tasked with designing the data warehouse architecture and ETL infrastructure that every department would rely on — from scratch. The goal was simple: give every team in the organization one place to get their numbers, and make sure those numbers were always fresh and always right.`,
+    overview: `Fastwire Tech's reporting ran on a patchwork of direct queries, flat files, and manually maintained spreadsheets. No single source of truth existed — and when two department heads showed up to the same meeting with different revenue numbers, it was clear something had to change. I was tasked with designing the data warehouse architecture and ETL infrastructure that every department would rely on — from scratch. The goal was simple: give every team in the organization one place to get their numbers, and make sure those numbers were always fresh and always right.`,
     tools: ["SSIS", "SSAS (Tabular)", "SSRS", "SQL Server", "T-SQL"],
     dataContext: "Operational databases across IT service management, HR, and finance. Mix of structured SQL data and semi-structured exports. Required SCD Type 2 handling for slowly changing dimensions. Advanced techniques included SSIS package orchestration with SQL Server Agent, SSAS tabular cubes with partitioned processing, and SSRS parameterized reports with subscription delivery.",
     challenges: [
       {
         title: "No existing warehouse architecture",
         problem: "There was no dimensional model, no staging area, and no ETL process — just direct queries hitting production databases during business hours.",
-        solution: "Sunday designed the star schema from scratch — fact tables for service tickets, revenue, and HR metrics with shared dimension tables for time, geography, and department.",
+        solution: "I designed the star schema from scratch — fact tables for service tickets, revenue, and HR metrics with shared dimension tables for time, geography, and department.",
         learning: "Starting from zero is actually easier than migrating a bad architecture — you can make the right choices without legacy constraints."
       },
       {
         title: "6-hour nightly batch processing",
         problem: "The initial ETL ran sequentially, processing each source one at a time. Teams couldn't start their day with fresh data because the job was still running.",
-        solution: "Sunday restructured it with parallel execution paths and incremental loads, cutting it to 4.5 hours so teams had fresh data by start of business.",
+        solution: "I restructured it with parallel execution paths and incremental loads, cutting it to 4.5 hours so teams had fresh data by start of business.",
         learning: "Parallelism and incremental loading delivered bigger gains than any code-level optimization ever could."
       },
       {
@@ -256,20 +256,20 @@ const projects = [
     industry: "Education & Public Sector",
     hook: "Two organizations needed to replace paper and spreadsheets with real operational systems.",
     metrics: "55% less manual entry · 33% fewer tickets",
-    overview: `Two organizations — one in education and one managing an animal shelter — were running critical operations on paper forms, spreadsheets, and email chains. In education, parking permit management was a nightmare of lost forms and manual data entry. At the animal shelter, intake records were handwritten and support requests overwhelmed a small team. Both needed a real system: something their staff could use on a tablet in the field, with automated workflows, document generation, and eventually AI-assisted data entry. Sunday designed and delivered both as enterprise Power Apps integrated with the Microsoft ecosystem.`,
+    overview: `Two organizations — one in education and one managing an animal shelter — were running critical operations on paper forms, spreadsheets, and email chains. In education, parking permit management was a nightmare of lost forms and manual data entry. At the animal shelter, intake records were handwritten and support requests overwhelmed a small team. Both needed a real system: something their staff could use on a tablet in the field, with automated workflows, document generation, and eventually AI-assisted data entry. I designed and delivered both as enterprise Power Apps integrated with the Microsoft ecosystem.`,
     tools: ["Power Apps (Canvas & Model-Driven)", "Power Automate", "Dataverse", "AI Builder", "Copilot Studio", "Microsoft 365", "Salesforce", "DocuSign"],
     dataContext: "Operational records (parking permits, animal intake forms, inspection records), document attachments, and integration data from Salesforce and DocuSign. Advanced techniques included AI Builder for intelligent document processing (form extraction), Copilot Studio for conversational AI agents, Dataverse role-based security, and Power Automate approval flows with conditional branching.",
     challenges: [
       {
         title: "Replacing deeply embedded manual processes",
         problem: "Staff had been using paper and email for years. Previous attempts to introduce digital tools failed because they forced completely new workflows.",
-        solution: "Sunday designed the apps around their existing workflows first, then gradually introduced automation — rather than forcing a completely new process on day one.",
+        solution: "I designed the apps around their existing workflows first, then gradually introduced automation — rather than forcing a completely new process on day one.",
         learning: "The best technology adoption strategy is to make the new way feel like the old way, but faster."
       },
       {
         title: "Document processing bottleneck",
         problem: "One organization had staff manually re-typing data from scanned forms into spreadsheets — a process that was slow, error-prone, and deeply frustrating.",
-        solution: "Sunday implemented AI Builder's form processing model, cutting manual data entry by 55% and dramatically reducing transcription errors.",
+        solution: "I implemented AI Builder's form processing model, cutting manual data entry by 55% and dramatically reducing transcription errors.",
         learning: "AI doesn't need to be perfect to be transformative — even 80% accuracy saves hours of manual work."
       },
       {
@@ -305,26 +305,26 @@ const projects = [
     industry: "Education",
     hook: "A high school's parking lot was chaos — no one knew who had permission to park and who didn't.",
     metrics: "1,299 inspections · 88% compliance · 15 spaces managed",
-    overview: `Belson School had a growing parking problem. Teachers complained about unavailable spaces, visitors parked without authorization, and the leadership team had no way to understand who was actually using the lot. Complaints were mounting, but there was no data — just frustration. The school needed a system that would let staff and visitors request parking daily, allow inspectors to verify compliance on the ground, and give administrators a clear picture of parking usage and unauthorized access. Sunday designed and delivered a complete Power Platform solution: a model-driven app for administrative review and parking requests, a tablet-ready canvas app for field inspections, automated email confirmations via Power Automate, and a Power BI report that revealed an 88% compliance rate — meaning nearly 12% of parked vehicles had no valid request on file.`,
+    overview: `Belson School had a growing parking problem. Teachers complained about unavailable spaces, visitors parked without authorization, and the leadership team had no way to understand who was actually using the lot. Complaints were mounting, but there was no data — just frustration. The school needed a system that would let staff and visitors request parking daily, allow inspectors to verify compliance on the ground, and give administrators a clear picture of parking usage and unauthorized access. I designed and delivered a complete Power Platform solution: a model-driven app for administrative review and parking requests, a tablet-ready canvas app for field inspections, automated email confirmations via Power Automate, and a Power BI report that revealed an 88% compliance rate — meaning nearly 12% of parked vehicles had no valid request on file.`,
     tools: ["Power Apps (Canvas & Model-Driven)", "Power Automate", "Dataverse", "Power BI", "DAX"],
     dataContext: "Three Dataverse tables — Vehicles, Parking Requests, and Parking Inspections — formed the data backbone. Vehicle records included make, model, and owner email. Parking requests tracked which vehicle requested access on which date. Inspections logged every vehicle found in the lot during the daily 5 PM sweep. The key analytical challenge was joining inspections to requests to determine which parked vehicles actually had permission — requiring a calculated column and careful relationship management through 36-character GUIDs across tables.",
     challenges: [
       {
         title: "Joining tables via 36-character GUIDs in Power BI",
         problem: "The Vehicle table connected to Parking Inspections through a unique identifier — a 36-character GUID that Dataverse generates automatically. Getting this relationship to work correctly in Power BI's data model was one of the trickiest parts of the build.",
-        solution: "Sunday carefully mapped the relationships in Power BI using the record unique identifiers, establishing a many-to-one cardinality between Parking Inspections and Vehicles. This enabled cross-table filtering so the report could show inspection details alongside vehicle information.",
+        solution: "I carefully mapped the relationships in Power BI using the record unique identifiers, establishing a many-to-one cardinality between Parking Inspections and Vehicles. This enabled cross-table filtering so the report could show inspection details alongside vehicle information.",
         learning: "Working with Dataverse GUIDs in Power BI is a skill that pays dividends — it comes up constantly when building reports on top of Power Platform data."
       },
       {
         title: "Determining valid vs. unauthorized parking",
         problem: "An inspection record alone doesn't tell you whether a vehicle had permission to park. That required cross-referencing each inspection against the Parking Requests table to see if a matching request existed for that date.",
-        solution: "Sunday built a calculated column (isRequested) in the Parking Inspections table that flagged whether each inspection had a corresponding valid parking request. This became the foundation for the compliance metrics — 88.07% of inspections had valid requests, meaning 155 out of 1,299 were unauthorized.",
+        solution: "I built a calculated column (isRequested) in the Parking Inspections table that flagged whether each inspection had a corresponding valid parking request. This became the foundation for the compliance metrics — 88.07% of inspections had valid requests, meaning 155 out of 1,299 were unauthorized.",
         learning: "The business value of the entire report hinged on one calculated column. Getting the logic right was essential — a wrong join condition would have made the compliance numbers meaningless."
       },
       {
         title: "Building a field-ready canvas app for inspectors",
         problem: "The parking inspector needed to walk the lot with a tablet, log every vehicle present, and move quickly — the app had to be fast, intuitive, and default to the right values to minimize tapping.",
-        solution: "Sunday built a 4-screen canvas app with smart defaults: the inspection date auto-set to today, the hour and minute defaulted to now, and a 'Create New Vehicle' flow was accessible directly from the inspection form for unrecognized vehicles. The review screen filtered to today's inspections only.",
+        solution: "I built a 4-screen canvas app with smart defaults: the inspection date auto-set to today, the hour and minute defaulted to now, and a 'Create New Vehicle' flow was accessible directly from the inspection form for unrecognized vehicles. The review screen filtered to today's inspections only.",
         learning: "Field apps live or die by their defaults. Every tap you save the user is a tap they won't get wrong."
       }
     ],
