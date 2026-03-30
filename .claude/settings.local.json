@@ -10,7 +10,8 @@
       "Bash(rm -rf temp-portfolio)",
       "Bash(npm install:*)",
       "Bash(npm run:*)",
-      "Bash(ls \"c:/Users/Dell/OneDrive/_CV/Portfolio Website/public/headshot\"*)"
+      "Bash(ls \"c:/Users/Dell/OneDrive/_CV/Portfolio Website/public/headshot\"*)",
+      "Bash(ls \"c:/Users/Dell/OneDrive/_CV/Portfolio Website/public/parking-dataverse\"*)"
     ],
     "additionalDirectories": [
       "c:\\Users\\Dell\\OneDrive\\_CV\\Portfolio Website\\.github"
