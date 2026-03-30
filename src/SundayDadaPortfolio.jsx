@@ -302,6 +302,7 @@ const projects = [
   {
     id: 5,
     title: "Parking Management System",
+    thumbnail: "Canvas App Home Page.png",
     industry: "Education",
     hook: "A high school's parking lot was chaos — no one knew who had permission to park and who didn't.",
     metrics: "1,299 inspections · 88% compliance · 15 spaces managed",
@@ -685,7 +686,11 @@ function HomePage({ navigate, scrollToSection, sectionRefs }) {
                   onKeyDown={(e) => e.key === "Enter" && navigate(`project/${p.id}`)}
                   aria-label={`Read case study: ${p.title}`}
                 >
-                  <Placeholder label="Dashboard Screenshot" aspect="16/10" />
+                  {p.thumbnail ? (
+                    <img src={`${import.meta.env.BASE_URL}${p.thumbnail}`} alt={`${p.title} screenshot`} className="w-full card-img" style={{ aspectRatio: "16/10", objectFit: "cover" }} />
+                  ) : (
+                    <Placeholder label="Dashboard Screenshot" aspect="16/10" />
+                  )}
                   <div className="p-6">
                     <span className="inline-block text-xs font-semibold px-3 py-1 rounded-full mb-3" style={{ background: "rgba(201,168,76,0.15)", color: "var(--accent)" }}>
                       {p.industry}
