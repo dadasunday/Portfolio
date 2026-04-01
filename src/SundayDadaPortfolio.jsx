@@ -383,6 +383,7 @@ const projects = [
     walkthrough: [
       { step: "Discovery & Data Audit", desc: "Audited the existing SQL Server environment and Power BI Desktop files. Cataloged every database, table, and .pbix file — documenting row counts, data sizes, refresh schedules, and downstream consumers. Built a migration inventory spreadsheet that prioritized every object by business criticality and assigned migration methods.", screenshot: "Migration Inventory", image: "Migration Inventory.png" },
       { step: "Star Schema & Semantic Model Design", desc: "Designed a consolidated 9-table star schema with three fact tables (Bookings, Operating Expenses, Forecast Targets), four dimension tables (Date, Brand, Region, Sales Channel), a Financial Assumptions table, and a KPI Definitions reference table. Established relationships with single-direction cross-filtering and implemented an inactive relationship for Travel Date analysis using USERELATIONSHIP.", screenshot: "Star Schema Diagram", image: "Star Schema Diagram.png" },
+      { step: "Fabric Architecture Decisions (20 Q&A)", desc: "Documented 20 critical architecture decisions covering capacity planning, workspace design, security groups, data ingestion strategy, medallion architecture, Direct Lake vs. Import mode, Row-Level Security, and data quality monitoring. Each decision was mapped to Meridian's specific requirements — from separating ETL and reporting capacities to choosing Dataflow Gen2 over Spark notebooks for the curated layer.", screenshot: "Fabric Architecture Document", download: { file: "Meridian_Fabric_Architecture_QA.docx", label: "Download Architecture Document" } },
       { step: "Fabric Environment & Lakehouse Architecture", desc: "Provisioned Microsoft Fabric capacity and created a 6-workspace structure: Bronze-DEV/PROD, Silver-DEV/PROD, Gold-Curated (DEV/TEST/PROD), and Reporting-PROD. Set up Entra ID security groups for Data Engineers, BI Developers, Report Consumers, and Self-Service Analysts. Connected DEV workspace to Git for version control and configured deployment pipelines for DEV → TEST → PROD promotion.", screenshot: "Fabric Workspace Structure", image: "Fabric Workspace Structure.png" },
       { step: "DAX Measure Development (35+ Measures)", desc: "Built 35+ DAX measures organized into display folders: Core KPIs (Gross Sales, Margins, Commission, Net Revenue), Profitability (Operating Profit, OpEx breakdowns by category), Time Intelligence (YoY Growth, YTD/MTD/QTD), Forecasting (Forecast vs. Actual, Month-End Projection, Variance %), and Financial Assumptions (Target Margin, Revenue Growth Target). Used Tabular Editor for efficient bulk measure creation with IntelliSense and Best Practice Analyzer.", screenshot: "DAX Measures in Tabular Editor", image: "DAX Measures in Tabular Editor.png" },
       { step: "Executive Dashboard Design (4 Pages)", desc: "Built a 4-page dashboard: Executive Summary (KPI cards, brand comparison chart, monthly trend with forecast overlay), Brand Deep Dive (drill-through P&L waterfall, OpEx breakdown, regional performance), Forecast & Assumptions (actual vs. forecast matrix, What-If scenario parameter, assumptions panel), and Sales & Operations (channel mix donut, booking funnel, destination heatmap). Applied synced slicers across pages, bookmark toggles for Revenue/Profit views, and custom tooltip pages.", screenshot: "Executive Summary Dashboard", image: "Executive Summary Dashboard.png" },
@@ -977,6 +978,17 @@ function ProjectPage({ project, navigate }) {
                       <h3 className="text-lg font-bold" style={{ fontFamily: "'DM Serif Display', serif" }}>{w.step}</h3>
                     </div>
                     <p className="text-sm leading-relaxed" style={{ color: "var(--text-secondary)" }}>{w.desc}</p>
+                    {w.download && (
+                      <a
+                        href={`${import.meta.env.BASE_URL}${w.download.file}`}
+                        download
+                        className="inline-flex items-center gap-2 mt-3 px-4 py-2 rounded text-sm font-semibold transition-all hover:brightness-110"
+                        style={{ background: "var(--accent)", color: "var(--primary-dark)" }}
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                        {w.download.label}
+                      </a>
+                    )}
                   </div>
                   <div className={i % 2 === 1 ? "md:order-1" : ""}>
                     {w.image ? (
