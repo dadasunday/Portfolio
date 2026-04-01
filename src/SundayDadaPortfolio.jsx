@@ -354,6 +354,7 @@ const projects = [
   {
     id: 6,
     title: "Meridian Executive Reporting & Fabric Migration",
+    thumbnail: "Dashboard Screenshot.png",
     industry: "Travel & Hospitality",
     hook: "Leadership had top-line numbers but no profit visibility, no forecasting, and no drill-down by brand.",
     metrics: "$35.3M revenue · 6 brands unified · 95% profit growth · Direct Lake",
