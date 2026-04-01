@@ -402,6 +402,57 @@ const projects = [
       { value: "35+", label: "DAX Measures" },
       { value: "Direct Lake", label: "Semantic Model" }
     ]
+  },
+  {
+    id: 7,
+    title: "Hospital Length of Stay — Performance Analytics & ROI Modeling",
+    thumbnail: "LOS Dashboard Screenshot.png",
+    industry: "Healthcare",
+    hook: "Average LOS rose 7.8% over three years with no organic efficiency gains — leadership needed data to act.",
+    metrics: "$9.59M billing · 1,000 admissions · 16-day avg LOS · $1.11M projected savings",
+    overview: `A hospital system was struggling with rising patient Length of Stay (LOS) and no analytical framework to understand what was driving it or where to intervene. Average LOS had climbed from 14.9 days in 2021 to 16.0 days by 2023 — a 7.8% increase — while total bed-days grew 6.6% against only a 6.2% rise in admissions, meaning the hospital was consuming more capacity per patient over time with no organic efficiency improvement. Leadership had basic operational dashboards but no way to analyze LOS by medical condition, gender, treatment type, or cost drivers — and no framework for quantifying the financial impact of potential interventions. I was brought in to build the full analytics layer: a multi-page interactive Power BI dashboard with year/quarter slicers, QoQ trend analysis across 5 KPIs, condition-gender breakdowns, treatment cost distribution, and two fully modeled ROI business cases for executive presentation — one for hospital-wide predictive discharge planning ($1.11M annual benefit, 146% ROI) and one for condition-gender pathway standardization ($523K annual benefit, 109% ROI).`,
+    tools: ["Power BI (Desktop & Service)", "DAX (Advanced — time intelligence, QoQ calculations, iterator functions)", "Power Query (M)", "Star Schema Design", "Python (data profiling)", "Excel (ROI modeling)"],
+    dataContext: "Single CSV dataset of 1,000 patient records spanning July 2021 to July 2024, containing Patient ID, demographics (DOB, Gender), Medical Condition (29 unique conditions), Treatment type (35 unique treatments), Admit/Discharge dates, and Bill Amount. Required calculated columns for LOS (date difference), Year-Quarter extraction, and Avg Bill per LOS Day. Analysis revealed high-cost treatments (Chemotherapy, Radiation Therapy, Surgery, Dialysis, Antiviral Drugs, Ventilation) representing just 11.7% of admissions yet generating 38.6% of total billing at $1,932/bed-day — 215.4% higher than the $612 hospital-wide average.",
+    challenges: [
+      {
+        title: "No analytical framework for LOS optimization",
+        problem: "The hospital had basic admission and discharge tracking but no way to segment LOS by condition, gender, treatment, or cost — and no framework for identifying where excess bed-days were being consumed.",
+        solution: "I built a multi-dimensional analytical model with calculated measures for Avg LOS, Total Bill, Avg Bill/LOS Day, Total Admissions, and Total Bed-Days — each with QoQ trend calculations. A year slicer (2021–2024) enabled period-over-period comparison across all dimensions.",
+        learning: "The most impactful insight came from the simplest calculation: Avg Bill per LOS Day revealed that 11.7% of admissions generated 38.6% of billing, immediately identifying the highest-value intervention targets."
+      },
+      {
+        title: "Gender-based LOS disparities hidden in aggregate numbers",
+        problem: "Hospital-wide Avg LOS masked significant variation at the condition-gender level. Aggregate metrics showed a stable 16-day average, but drilling down revealed male Fracture patients staying 37.9% longer than females (21.6 vs 15.6 days) and male Skin Infection patients staying 34.5% longer (19.3 vs 15.1 days).",
+        solution: "I built a condition-by-gender bar chart with dual-axis overlay showing both Avg LOS bars and QoQ percentage trend lines for each sub-KPI. This visualization immediately surfaced the 14 condition-gender combinations where disparity exceeded 2 days.",
+        learning: "Aggregation hides the story. The hospital-wide average was stable and unremarkable — the condition-gender drill-down revealed actionable disparities that nobody had seen before."
+      },
+      {
+        title: "Translating analytics into executive-ready ROI cases",
+        problem: "Leadership needed more than charts — they needed financially modeled business cases with implementation costs, projected savings, and ROI percentages to justify investment in discharge planning and clinical pathway standardization.",
+        solution: "I developed two fully modeled ROI cases: Case 1 (Predictive Discharge Planning) projected freeing 610 bed-days/year through a 2-day hospital-wide LOS reduction, yielding $1.11M annual benefit against $450K implementation cost (146% ROI). Case 2 (Condition-Gender Pathway Standardization) targeted 292 freed bed-days from the top disparity conditions, yielding $523K against $250K implementation (109% ROI).",
+        learning: "The ROI model was more persuasive than any dashboard page. Executives don't fund insights — they fund projected returns with clear payback timelines."
+      }
+    ],
+    walkthrough: [
+      { step: "Data Profiling & Preparation", desc: "Profiled the 1,000-record patient dataset for completeness, outliers, and distribution patterns. Calculated LOS as the date difference between Admit and Discharge dates, extracted Year-Quarter from admission dates, and computed Avg Bill per LOS Day. Identified 29 unique medical conditions and 35 treatment types across the 3-year study period.", screenshot: "Data Profiling Summary" },
+      { step: "Semantic Model & DAX Development", desc: "Built a star schema with a patient fact table and date dimension. Developed DAX measures for all 5 KPIs (Avg LOS, Total Bill, Avg Bill/LOS Day, Total Admissions, Total Bed-Days) plus QoQ percentage change calculations for each. Created conditional formatting rules to show green/red arrows based on QoQ direction.", screenshot: "DAX Measure Library" },
+      { step: "Interactive Dashboard Design", desc: "Designed a single-page dashboard with 6 visual zones: KPI header row with QoQ indicators, Avg Bill and Avg LOS Over Time (bar-line combo chart by Year-Quarter), Avg LOS vs Medical Condition By Gender (clustered bar with QoQ trend overlay), LOS Distribution (scatter plot of Avg LOS vs Avg Bill/LOS Day by treatment), QoQ % Breakdown by Sub KPIs (stacked bar), and a Year slicer (2021–2024) for dynamic filtering.", screenshot: "LOS Performance Dashboard" },
+      { step: "Treatment Cost Analysis", desc: "Segmented all 35 treatment types by Avg LOS and Avg Bill per LOS Day in a scatter plot. Identified that high-cost treatments (Chemotherapy at $6K/day, Radiation Therapy at $4K/day, Dialysis, Surgery, Ventilation, Antiviral Drugs) clustered in the upper-right quadrant — representing 11.7% of volume but 38.6% of total billing.", screenshot: "LOS Distribution Analysis" },
+      { step: "Condition-Gender Disparity Analysis", desc: "Built a condition-by-gender matrix comparing Avg LOS for male vs female patients across all 29 conditions. Identified 14 condition-gender combinations where disparity exceeded 2 days, with the top 5 highest-LOS conditions (Fracture, Skin Infection, Influenza, Depression, Alzheimer's) averaging 17.5 days — 11.9% above the hospital mean.", screenshot: "Gender Disparity Analysis" },
+      { step: "ROI Business Case Development", desc: "Developed two financially modeled business cases using dashboard-derived metrics. Case 1: Hospital-wide predictive discharge planning targeting a 2-day LOS reduction across all 305 annual admissions — $1.11M annual benefit, $450K implementation, 146% ROI. Case 2: Condition-gender pathway standardization recovering 292 excess bed-days — $523K annual benefit, $250K implementation, 109% ROI. Both cases included implementation cost breakdowns and payback period analysis.", screenshot: "ROI Comparison Chart" }
+    ],
+    takeaways: [
+      { title: "Aggregation hides the story — always drill down", desc: "The hospital-wide 16-day average LOS looked stable and unremarkable. But drilling into condition-gender combinations revealed that male Fracture patients stayed 37.9% longer than females and the top 5 conditions consumed 22% of total bed-days. The actionable insights were two levels below the headline number." },
+      { title: "Cost per bed-day is the metric that moves executives", desc: "Avg Bill per LOS Day ($612 hospital-wide vs $1,932 for high-cost treatments) was the single metric that shifted the conversation from 'we have a length of stay problem' to 'we have a $373K cost avoidance opportunity.' Translating clinical metrics into financial language is what gets projects funded." },
+      { title: "Two business cases are stronger than one", desc: "Presenting both a high-investment/high-return option (Case 1: $1.11M, 146% ROI) and a lower-cost entry point (Case 2: $523K, 109% ROI) gave leadership flexibility. They could start with Case 2 to build confidence, then scale to Case 1 — rather than facing an all-or-nothing decision." }
+    ],
+    metricBoxes: [
+      { value: "$9.59M", label: "Total Billing Analyzed" },
+      { value: "1,000", label: "Patient Admissions" },
+      { value: "16 days", label: "Avg Length of Stay" },
+      { value: "$1.11M", label: "Projected Annual Savings" },
+      { value: "146%", label: "ROI (Case 1)" }
+    ]
   }
 ];
 
