@@ -452,7 +452,8 @@ const projects = [
       { value: "16 days", label: "Avg Length of Stay" },
       { value: "$1.11M", label: "Projected Annual Savings" },
       { value: "146%", label: "ROI (Case 1)" }
-    ]
+    ],
+    powerBiEmbed: "https://app.fabric.microsoft.com/view?r=eyJrIjoiMGJjNGZmOTEtMGY4MS00MzA2LWI5MmQtMDMzODkzOTkzNTI2IiwidCI6IjRkMTYxZjExLTQ2MzAtNDE1Zi1iMWI0LTg5YWM3MmNlYzk5NyJ9"
   }
 ];
 
