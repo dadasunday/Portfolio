@@ -791,7 +791,7 @@ function HomePage({ navigate, scrollToSection, sectionRefs }) {
               <div className="space-y-4">
                 {certifications.map((c) => (
                   <div key={c} className="flex items-start gap-4 p-4 rounded-lg bg-white border" style={{ borderColor: "var(--border)" }}>
-                    <div className="flex-shrink-0 mt-0.5">{Icons.cert}</div>
+                    <img src={`${import.meta.env.BASE_URL}Microsoft Certified Associate.png`} alt="Microsoft Certified Associate badge" className="flex-shrink-0 w-12 h-12 object-contain" />
                     <p className="text-sm font-medium" style={{ color: "var(--text-primary)" }}>{c}</p>
                   </div>
                 ))}
