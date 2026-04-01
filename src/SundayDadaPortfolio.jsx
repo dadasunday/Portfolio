@@ -414,9 +414,10 @@ const skillGroups = [
 ];
 
 const certifications = [
-  "Microsoft Certified: Fabric Analytics Engineer Associate (DP-600)",
-  "Microsoft Certified: Power BI Data Analyst Associate (PL-300)",
-  "Microsoft Certified: Power Platform Functional Consultant Associate (PL-200)"
+  { name: "Microsoft Certified: Fabric Analytics Engineer Associate (DP-600)", badge: "Microsoft Certified Associate.png" },
+  { name: "Microsoft Certified: Power BI Data Analyst Associate (PL-300)", badge: "Microsoft Certified Associate.png" },
+  { name: "Microsoft Certified: Power Platform Functional Consultant Associate (PL-200)", badge: "Microsoft Certified Associate.png" },
+  { name: "Microsoft Applied Skills: Implement a Data Warehouse in Microsoft Fabric", badge: "Microsoft Applied Skills-Implement a data warehouse in Microsoft Fabric.png" }
 ];
 
 // ── Stat Card ──
@@ -790,9 +791,9 @@ function HomePage({ navigate, scrollToSection, sectionRefs }) {
             <Reveal delay={2}>
               <div className="space-y-4">
                 {certifications.map((c) => (
-                  <div key={c} className="flex items-start gap-4 p-4 rounded-lg bg-white border" style={{ borderColor: "var(--border)" }}>
-                    <img src={`${import.meta.env.BASE_URL}Microsoft Certified Associate.png`} alt="Microsoft Certified Associate badge" className="flex-shrink-0 w-12 h-12 object-contain" />
-                    <p className="text-sm font-medium" style={{ color: "var(--text-primary)" }}>{c}</p>
+                  <div key={c.name} className="flex items-center gap-4 p-4 rounded-lg bg-white border" style={{ borderColor: "var(--border)" }}>
+                    <img src={`${import.meta.env.BASE_URL}${c.badge}`} alt={c.name} className="flex-shrink-0 w-12 h-12 object-contain" />
+                    <p className="text-sm font-medium" style={{ color: "var(--text-primary)" }}>{c.name}</p>
                   </div>
                 ))}
               </div>
