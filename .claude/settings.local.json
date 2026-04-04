@@ -23,7 +23,11 @@
       "Bash(\"c:/Users/Dell/AppData/Local/Programs/Python/Python313/python.exe\")",
       "Bash(timeout 5 cat \"C:\\\\Users\\\\Dell\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-Dell-OneDrive--CV-Portfolio-Website\\\\54be6c11-10b2-4491-a7d0-cb06b150ead3\\\\tasks\\\\b2k3a5j5t.output\")",
       "Bash(npx vite:*)",
-      "Bash(grep -n '&' wireframe-*.svg)"
+      "Bash(grep -n '&' wireframe-*.svg)",
+      "Bash(ls \"c:/Users/Dell/OneDrive/_CV/Portfolio Website/public/\"*.pdf)",
+      "Bash(ls \"c:/Users/Dell/OneDrive/_CV/Portfolio Website/public/\"*resume*)",
+      "Bash(ls \"c:/Users/Dell/OneDrive/_CV/Portfolio Website/public/\"*Resume*)",
+      "Bash(ls \"c:/Users/Dell/OneDrive/_CV/Portfolio Website/public/\"*CV*)"
     ],
     "additionalDirectories": [
       "c:\\Users\\Dell\\OneDrive\\_CV\\Portfolio Website\\.github"
