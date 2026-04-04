@@ -594,7 +594,7 @@ function HomePage({ navigate, scrollToSection, sectionRefs }) {
                 Get In Touch
               </button>
               <a
-                href={`${import.meta.env.BASE_URL}Sunday_Dada_Resume.pdf`}
+                href={`${import.meta.env.BASE_URL}Sunday Dada — Resume.pdf`}
                 download
                 className="px-7 py-3 rounded font-semibold text-sm border-2 transition-colors inline-flex items-center gap-2"
                 style={{ borderColor: "var(--accent)", color: "var(--accent)" }}

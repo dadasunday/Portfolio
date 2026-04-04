@@ -27,7 +27,8 @@
       "Bash(ls \"c:/Users/Dell/OneDrive/_CV/Portfolio Website/public/\"*.pdf)",
       "Bash(ls \"c:/Users/Dell/OneDrive/_CV/Portfolio Website/public/\"*resume*)",
       "Bash(ls \"c:/Users/Dell/OneDrive/_CV/Portfolio Website/public/\"*Resume*)",
-      "Bash(ls \"c:/Users/Dell/OneDrive/_CV/Portfolio Website/public/\"*CV*)"
+      "Bash(ls \"c:/Users/Dell/OneDrive/_CV/Portfolio Website/public/\"*CV*)",
+      "Bash(ls -la \"c:/Users/Dell/OneDrive/_CV/Portfolio Website/public/\"*Resume*.pdf)"
     ],
     "additionalDirectories": [
       "c:\\Users\\Dell\\OneDrive\\_CV\\Portfolio Website\\.github"
