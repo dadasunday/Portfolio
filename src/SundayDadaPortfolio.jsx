@@ -626,7 +626,7 @@ function HomePage({ navigate, scrollToSection, sectionRefs }) {
           <Reveal delay={3}>
             <div className="mt-14 grid grid-cols-2 md:grid-cols-4 bg-white rounded-xl shadow-md divide-x divide-y md:divide-y-0" style={{ borderColor: "var(--border)" }}>
               <StatCard value="7+" label="Years of Experience" />
-              <StatCard value="6" label="Industries Served" />
+              <StatCard value="6+" label="Industries Served" />
               <StatCard value="$70M+" label="Data Modeled & Analyzed" />
               <StatCard value="300+" label="Dashboard Users Served" />
             </div>
