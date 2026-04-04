@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" font-family="Segoe UI, Arial, sans-serif">
+  <!-- Background -->
+  <rect width="1200" height="700" fill="#1a1a2e" rx="8"/>
+
+  <!-- Title -->
+  <text x="600" y="35" fill="#e0e0e0" font-size="18" font-weight="bold" text-anchor="middle">DAX Development & Optimization</text>
+  <text x="600" y="55" fill="#8892b0" font-size="12" text-anchor="middle">35+ measures organized in display folders | Best practices applied</text>
+
+  <!-- Measure Library - Left Panel (Folder Tree) -->
+  <rect x="30" y="80" width="320" height="580" fill="#16213e" rx="8"/>
+  <text x="50" y="108" fill="#e0e0e0" font-size="14" font-weight="bold">_Measures Table</text>
+  <text x="50" y="125" fill="#8892b0" font-size="11">Organized by display folder</text>
+
+  <!-- Folder: Core KPIs -->
+  <rect x="45" y="140" width="290" height="25" fill="#64ffda" rx="4" opacity="0.1"/>
+  <text x="60" y="157" fill="#64ffda" font-size="12" font-weight="bold">📁 Core KPIs</text>
+  <text x="75" y="178" fill="#e0e0e0" font-size="10">Total Revenue</text>
+  <text x="75" y="195" fill="#e0e0e0" font-size="10">Total Cost</text>
+  <text x="75" y="212" fill="#e0e0e0" font-size="10">Gross Margin</text>
+  <text x="75" y="229" fill="#e0e0e0" font-size="10">Gross Margin %</text>
+  <text x="75" y="246" fill="#e0e0e0" font-size="10">Transaction Count</text>
+
+  <!-- Folder: Time Intelligence -->
+  <rect x="45" y="262" width="290" height="25" fill="#bb86fc" rx="4" opacity="0.1"/>
+  <text x="60" y="279" fill="#bb86fc" font-size="12" font-weight="bold">📁 Time Intelligence</text>
+  <text x="75" y="300" fill="#e0e0e0" font-size="10">Revenue YTD</text>
+  <text x="75" y="317" fill="#e0e0e0" font-size="10">Revenue QTD</text>
+  <text x="75" y="334" fill="#e0e0e0" font-size="10">Revenue MTD</text>
+  <text x="75" y="351" fill="#e0e0e0" font-size="10">Revenue PY (Prior Year)</text>
+  <text x="75" y="368" fill="#e0e0e0" font-size="10">YoY Growth %</text>
+  <text x="75" y="385" fill="#e0e0e0" font-size="10">MoM Growth %</text>
+
+  <!-- Folder: Pipeline Analytics -->
+  <rect x="45" y="401" width="290" height="25" fill="#ff7043" rx="4" opacity="0.1"/>
+  <text x="60" y="418" fill="#ff7043" font-size="12" font-weight="bold">📁 Pipeline Analytics</text>
+  <text x="75" y="439" fill="#e0e0e0" font-size="10">Pipeline Value (Weighted)</text>
+  <text x="75" y="456" fill="#e0e0e0" font-size="10">Win Rate %</text>
+  <text x="75" y="473" fill="#e0e0e0" font-size="10">Avg Deal Size</text>
+  <text x="75" y="490" fill="#e0e0e0" font-size="10">Days in Stage</text>
+
+  <!-- Folder: Variance -->
+  <rect x="45" y="506" width="290" height="25" fill="#ffd54f" rx="4" opacity="0.1"/>
+  <text x="60" y="523" fill="#ffd54f" font-size="12" font-weight="bold">📁 Variance Analysis</text>
+  <text x="75" y="544" fill="#e0e0e0" font-size="10">Budget vs Actual</text>
+  <text x="75" y="561" fill="#e0e0e0" font-size="10">Forecast vs Actual</text>
+  <text x="75" y="578" fill="#e0e0e0" font-size="10">Variance %</text>
+  <text x="75" y="595" fill="#e0e0e0" font-size="10">Target Achievement %</text>
+
+  <text x="50" y="640" fill="#64ffda" font-size="11" font-weight="bold">35+ measures total</text>
+
+  <!-- Code Examples - Right Panel -->
+  <rect x="370" y="80" width="800" height="200" fill="#16213e" rx="8"/>
+  <text x="390" y="108" fill="#e0e0e0" font-size="14" font-weight="bold">Pattern: CALCULATE with Time Intelligence</text>
+  <rect x="385" y="118" width="55" height="18" fill="#4caf50" rx="3" opacity="0.3"/>
+  <text x="393" y="131" fill="#4caf50" font-size="10">Best Practice</text>
+
+  <rect x="385" y="145" width="770" height="120" fill="#0a192f" rx="6"/>
+  <text x="400" y="168" fill="#bb86fc" font-size="12" font-family="Consolas, monospace">Revenue YTD =</text>
+  <text x="400" y="188" fill="#e0e0e0" font-size="12" font-family="Consolas, monospace">VAR _CurrentRev = [Total Revenue]</text>
+  <text x="400" y="208" fill="#e0e0e0" font-size="12" font-family="Consolas, monospace">RETURN</text>
+  <text x="400" y="228" fill="#e0e0e0" font-size="12" font-family="Consolas, monospace">    CALCULATE( _CurrentRev, DATESYTD( Dim_Date[Date] ) )</text>
+  <text x="400" y="252" fill="#8892b0" font-size="10">✓ Uses VAR for clarity   ✓ References shared date table   ✓ Storage Engine compatible</text>
+
+  <!-- Anti-pattern -->
+  <rect x="370" y="295" width="800" height="190" fill="#16213e" rx="8"/>
+  <text x="390" y="323" fill="#e0e0e0" font-size="14" font-weight="bold">Anti-Pattern: FILTER + EARLIER (What We Replaced)</text>
+  <rect x="700" y="310" width="55" height="18" fill="#ff7043" rx="3" opacity="0.3"/>
+  <text x="708" y="323" fill="#ff7043" font-size="10">Avoid This</text>
+
+  <rect x="385" y="340" width="370" height="90" fill="#0a192f" rx="6" stroke="#ff7043" stroke-width="1"/>
+  <text x="395" y="355" fill="#ff7043" font-size="9" font-weight="bold">❌ SLOW — Forces Formula Engine</text>
+  <text x="400" y="375" fill="#ff7043" font-size="11" font-family="Consolas, monospace">CALCULATE(</text>
+  <text x="400" y="393" fill="#ff7043" font-size="11" font-family="Consolas, monospace">  SUM( Table[Amount] ),</text>
+  <text x="400" y="411" fill="#ff7043" font-size="11" font-family="Consolas, monospace">  FILTER( ALL(Table), ... EARLIER() )</text>
+  <text x="400" y="425" fill="#ff7043" font-size="11" font-family="Consolas, monospace">)</text>
+
+  <text x="775" y="390" fill="#64ffda" font-size="20">→</text>
+
+  <rect x="800" y="340" width="355" height="90" fill="#0a192f" rx="6" stroke="#4caf50" stroke-width="1"/>
+  <text x="810" y="355" fill="#4caf50" font-size="9" font-weight="bold">✓ FAST — Storage Engine</text>
+  <text x="815" y="375" fill="#4caf50" font-size="11" font-family="Consolas, monospace">CALCULATE(</text>
+  <text x="815" y="393" fill="#4caf50" font-size="11" font-family="Consolas, monospace">  SUM( Table[Amount] ),</text>
+  <text x="815" y="411" fill="#4caf50" font-size="11" font-family="Consolas, monospace">  Table[Category] = "Value"</text>
+  <text x="815" y="425" fill="#4caf50" font-size="11" font-family="Consolas, monospace">)</text>
+
+  <text x="390" y="470" fill="#8892b0" font-size="10">Row-by-row FILTER + EARLIER on 2M rows → simple predicate. Same result, 50%+ faster.</text>
+
+  <!-- DAX Studio / Performance Analyzer -->
+  <rect x="370" y="500" width="390" height="160" fill="#16213e" rx="8"/>
+  <text x="390" y="528" fill="#e0e0e0" font-size="14" font-weight="bold">DAX Studio — Query Plan</text>
+  <text x="390" y="545" fill="#8892b0" font-size="11">Server Timings for optimized measure</text>
+
+  <rect x="385" y="555" width="360" height="90" fill="#0a192f" rx="6"/>
+  <text x="400" y="575" fill="#8892b0" font-size="10">Storage Engine queries:  </text>
+  <text x="560" y="575" fill="#4caf50" font-size="10" font-weight="bold">3</text>
+  <text x="400" y="595" fill="#8892b0" font-size="10">Formula Engine:  </text>
+  <text x="560" y="595" fill="#4caf50" font-size="10" font-weight="bold">0 ms</text>
+  <text x="400" y="615" fill="#8892b0" font-size="10">Total Duration:  </text>
+  <text x="560" y="615" fill="#4caf50" font-size="10" font-weight="bold">45 ms</text>
+  <text x="400" y="635" fill="#8892b0" font-size="10">SE/FE Ratio:  </text>
+  <text x="560" y="635" fill="#4caf50" font-size="10" font-weight="bold">100% SE ✓</text>
+
+  <!-- Best Practices Checklist -->
+  <rect x="780" y="500" width="390" height="160" fill="#16213e" rx="8"/>
+  <text x="800" y="528" fill="#e0e0e0" font-size="14" font-weight="bold">DAX Best Practices Applied</text>
+
+  <text x="800" y="555" fill="#4caf50" font-size="11">✓ Variables (VAR/RETURN) for readability</text>
+  <text x="800" y="578" fill="#4caf50" font-size="11">✓ CALCULATE over nested iterators</text>
+  <text x="800" y="601" fill="#4caf50" font-size="11">✓ Shared date table for time intelligence</text>
+  <text x="800" y="624" fill="#4caf50" font-size="11">✓ Display folders for organization</text>
+  <text x="800" y="647" fill="#4caf50" font-size="11">✓ No circular dependencies</text>
+
+  <!-- Wireframe label -->
+  <rect x="0" y="688" width="1200" height="12" fill="#0a192f"/>
+  <text x="600" y="698" fill="#8892b0" font-size="9" text-anchor="middle">WIREFRAME MOCKUP — DAX Development &amp; Optimization | Measure library &amp; patterns (data redacted under NDA)</text>
+</svg>
