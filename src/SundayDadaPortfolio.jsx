@@ -610,7 +610,7 @@ function HomePage({ navigate, scrollToSection, sectionRefs }) {
                 I'm a BI Consultant at Colaberry with over seven years of experience building analytics solutions that people actually use. My specialty is Power BI — from semantic modeling with star and snowflake schemas to advanced DAX and performance optimization that keeps dashboards snappy at scale. I've built environments serving 300+ users, including C-suite executives, with sub-2-second response times on complex reports.
               </p>
               <p className="leading-relaxed mt-4" style={{ color: "var(--text-secondary)" }}>
-                Beyond dashboards, I design enterprise Power Apps and AI-powered automations that replace manual processes with intelligent workflows. My experience spans various industries, including healthcare, financial services, government, travel & hospitality, real estate, and education — industries where getting the data right isn't optional. I hold four Microsoft certifications across Fabric, Power BI, and Power Platform, and my background in Physics (B.Tech) gives me the analytical rigor to approach every problem systematically.              </p>
+                Beyond dashboards, I design enterprise Power Apps and AI-powered automations that replace manual processes with intelligent workflows. My experience spans various industries, including healthcare, financial services, government, travel & hospitality, real estate, and education — industries where getting the data right isn't optional. I hold three Microsoft certifications and a Microsoft Applied Skills credential across Fabric, Power BI, and Power Platform, and my background in Physics (B.Tech) gives me the analytical rigor to approach every problem systematically.              </p>
             </Reveal>
             <Reveal delay={2}>
               <div className="flex justify-center">
@@ -628,7 +628,7 @@ function HomePage({ navigate, scrollToSection, sectionRefs }) {
               <StatCard value="7+" label="Years of Experience" />
               <StatCard value="6" label="Industries Served" />
               <StatCard value="$70M+" label="Data Modeled & Analyzed" />
-              <StatCard value="4" label="Microsoft Certifications" />
+              <StatCard value="4" label="Microsoft Credentials" />
             </div>
           </Reveal>
         </div>
