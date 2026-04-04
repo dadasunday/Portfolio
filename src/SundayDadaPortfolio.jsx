@@ -328,7 +328,7 @@ const skillGroups = [
 const certifications = [
   { name: "Microsoft Certified: Fabric Analytics Engineer Associate (DP-600)", badge: "Microsoft Certified Associate.png" },
   { name: "Microsoft Certified: Power BI Data Analyst Associate (PL-300)", badge: "Microsoft Certified Associate.png" },
-  { name: "Microsoft Certified: Power Platform Functional Consultant Associate (PL-200)", badge: "Microsoft Certified Associate.png" },
+  { name: "Microsoft Certified: Power Platform Functional Consultant Associate (PL-200)", badge: "Microsoft Certified Associate.png", link: "https://learn.microsoft.com/api/credentials/share/en-us/SundayTemitopeDada-5410/96DD8939B1C22699?sharingId=CE161EE0DA777E04" },
   { name: "Microsoft Applied Skills: Implement a Data Warehouse in Microsoft Fabric", badge: "Microsoft Applied Skills-Implement a data warehouse in Microsoft Fabric.png" }
 ];
 
@@ -721,12 +721,19 @@ function HomePage({ navigate, scrollToSection, sectionRefs }) {
             {/* Certifications */}
             <Reveal delay={2}>
               <div className="space-y-4">
-                {certifications.map((c) => (
-                  <div key={c.name} className="flex items-center gap-4 p-4 rounded-lg bg-white border" style={{ borderColor: "var(--border)" }}>
-                    <img src={`${import.meta.env.BASE_URL}${c.badge}`} alt={c.name} className="flex-shrink-0 w-12 h-12 object-contain" />
-                    <p className="text-sm font-medium" style={{ color: "var(--text-primary)" }}>{c.name}</p>
-                  </div>
-                ))}
+                {certifications.map((c) => {
+                  const Wrapper = c.link ? "a" : "div";
+                  const wrapperProps = c.link ? { href: c.link, target: "_blank", rel: "noopener noreferrer" } : {};
+                  return (
+                    <Wrapper key={c.name} {...wrapperProps} className="flex items-center gap-4 p-4 rounded-lg bg-white border transition-colors hover:border-amber-400" style={{ borderColor: "var(--border)", textDecoration: "none" }}>
+                      <img src={`${import.meta.env.BASE_URL}${c.badge}`} alt={c.name} className="flex-shrink-0 w-12 h-12 object-contain" />
+                      <div>
+                        <p className="text-sm font-medium" style={{ color: "var(--text-primary)" }}>{c.name}</p>
+                        {c.link && <p className="text-xs mt-1" style={{ color: "var(--accent)" }}>Verify credential →</p>}
+                      </div>
+                    </Wrapper>
+                  );
+                })}
               </div>
             </Reveal>
           </div>
