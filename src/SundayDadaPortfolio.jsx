@@ -626,8 +626,8 @@ function HomePage({ navigate, scrollToSection, sectionRefs }) {
             <Reveal delay={2}>
               <div className="flex justify-center">
                 <img
-                  src={`${import.meta.env.BASE_URL}headshot.jpg`}
-                  alt="Professional headshot of Sunday Dada"
+                  src={`${import.meta.env.BASE_URL}Profile image.png`}
+                  alt="Profile image of Sunday Dada"
                   className="w-64 h-64 md:w-72 md:h-72 rounded-2xl object-cover shadow-lg"
                 />
               </div>
