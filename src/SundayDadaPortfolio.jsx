@@ -573,6 +573,10 @@ function HomePage({ navigate, scrollToSection, sectionRefs }) {
             <p className="text-white/70 mt-6 max-w-2xl text-lg leading-relaxed">
               7+ years building production BI environments across healthcare, finance, government, travel & hospitality, real estate, and education. From semantic modeling to AI automation — I own the full lifecycle.
             </p>
+            <p className="text-white/50 mt-2 text-sm flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              Canada — Open to remote, hybrid & relocation opportunities
+            </p>
           </Reveal>
           <Reveal delay={3}>
             <div className="flex flex-wrap gap-4 mt-8">
@@ -613,10 +617,10 @@ function HomePage({ navigate, scrollToSection, sectionRefs }) {
           <div className="grid md:grid-cols-2 gap-12 mt-12 items-center">
             <Reveal delay={1}>
               <p className="leading-relaxed" style={{ color: "var(--text-secondary)" }}>
-                I'm a BI Consultant at Colaberry with over seven years of experience building analytics solutions that people actually use. My specialty is Power BI — from semantic modeling with star and snowflake schemas to advanced DAX and performance optimization that keeps dashboards snappy at scale. I've built environments serving 300+ users, including C-suite executives, with sub-2-second response times on complex reports.
+                I'm a Senior BI Consultant based in Canada with over seven years of experience building analytics solutions that people actually use. My career spans ETL development, data warehousing, and enterprise BI — from Fastwire Tech in Lagos to Colaberry where I now partner with C-suite leadership across multiple industries. My specialty is Power BI — from semantic modeling with star and snowflake schemas to advanced DAX and performance optimization that keeps dashboards snappy at scale. I've built environments serving 300+ users with sub-2-second response times on complex reports.
               </p>
               <p className="leading-relaxed mt-4" style={{ color: "var(--text-secondary)" }}>
-                Beyond dashboards, I design enterprise Power Apps and AI-powered automations that replace manual processes with intelligent workflows. My experience spans various industries, including healthcare, financial services, government, travel & hospitality, real estate, and education — industries where getting the data right isn't optional. I hold three Microsoft certifications and a Microsoft Applied Skills credential across Fabric, Power BI, and Power Platform, and my background in Physics (B.Tech) gives me the analytical rigor to approach every problem systematically.              </p>
+                Beyond dashboards, I design enterprise Power Apps and AI-powered automations that replace manual processes with intelligent workflows. My experience spans various industries, including healthcare, financial services, government, travel & hospitality, real estate, and education — industries where getting the data right isn't optional. I hold three Microsoft certifications and a Microsoft Applied Skills credential across Fabric, Power BI, and Power Platform, and my background in Physics (B.Tech, Federal University of Technology Akure) gives me the analytical rigor to approach every problem systematically.              </p>
             </Reveal>
             <Reveal delay={2}>
               <div className="flex justify-center">
