@@ -112,6 +112,7 @@ const projects = [
     industry: "Cross-Industry",
     hook: "How I built a BI environment that 300+ users — including C-suite — actually trust.",
     metrics: "Sub-2s queries · 50% faster · $8M+ impact",
+    disclaimer: "Built under NDA — wireframes shown in place of live dashboards to protect client data.",
     overview: `A mid-size enterprise client needed a unified BI environment that could serve everyone from analysts to C-suite — with trusted data, fast dashboards, and self-service capability. The existing setup was fragmented: teams ran their own reports, numbers didn't match across departments, and executives waited weeks for updates that were often contradictory. Leadership was making multi-million dollar decisions based on spreadsheets that nobody could verify. I was brought in to design and deliver the end-to-end solution — from data modeling to dashboard deployment — that would become the single source of truth for the entire organization.`,
     tools: ["Power BI (Desktop & Service)", "DAX (Advanced — CALCULATE, time intelligence, iterator functions)", "Power Query (M)", "Row-Level Security", "Star & Snowflake Schema Design"],
     dataContext: "Multiple source systems across 4 business units. Mix of SQL Server databases, Excel files, and Salesforce exports. Required heavy transformation and standardization before modeling. Advanced techniques included composite models, incremental refresh, dynamic RLS based on organizational hierarchy, and drill-through pages for executive-to-detail navigation.",
@@ -953,6 +954,11 @@ function ProjectPage({ project, navigate }) {
           </Reveal>
           <Reveal delay={2}>
             <p className="text-white/70 mt-6 text-lg leading-relaxed max-w-3xl">{project.overview}</p>
+            {project.disclaimer && (
+              <p className="mt-3 text-sm italic px-4 py-2 rounded-lg inline-block" style={{ background: "rgba(201,168,76,0.1)", color: "var(--accent)", border: "1px solid rgba(201,168,76,0.25)" }}>
+                {project.disclaimer}
+              </p>
+            )}
           </Reveal>
           <Reveal delay={3}>
             <div className={`grid grid-cols-2 gap-4 mt-10 ${project.metricBoxes.length === 5 ? "md:grid-cols-5" : "md:grid-cols-4"}`}>
