@@ -1,0 +1,154 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" font-family="Segoe UI, Arial, sans-serif">
+  <!-- Background -->
+  <rect width="1200" height="700" fill="#1a1a2e" rx="8"/>
+
+  <!-- Title -->
+  <text x="600" y="35" fill="#e0e0e0" font-size="18" font-weight="bold" text-anchor="middle">Requirements & Data Profiling</text>
+  <text x="600" y="55" fill="#8892b0" font-size="12" text-anchor="middle">Stakeholder interviews across 4 business units + source system audit</text>
+
+  <!-- Stakeholder Requirements Matrix -->
+  <rect x="30" y="80" width="720" height="290" fill="#16213e" rx="8"/>
+  <text x="50" y="108" fill="#e0e0e0" font-size="14" font-weight="bold">Stakeholder Requirements Matrix</text>
+  <text x="50" y="125" fill="#8892b0" font-size="11">Key decisions each role needs to make, mapped to data requirements</text>
+
+  <!-- Table Header -->
+  <rect x="45" y="140" width="690" height="28" fill="#0a192f" rx="4"/>
+  <text x="60" y="159" fill="#64ffda" font-size="11" font-weight="bold">STAKEHOLDER</text>
+  <text x="200" y="159" fill="#64ffda" font-size="11" font-weight="bold">KEY DECISIONS</text>
+  <text x="430" y="159" fill="#64ffda" font-size="11" font-weight="bold">DATA NEEDED</text>
+  <text x="630" y="159" fill="#64ffda" font-size="11" font-weight="bold">PRIORITY</text>
+
+  <!-- Row 1 -->
+  <line x1="45" y1="175" x2="735" y2="175" stroke="#2a3a5e" stroke-width="0.5"/>
+  <text x="60" y="193" fill="#e0e0e0" font-size="11">C-Suite / CEO</text>
+  <text x="200" y="193" fill="#8892b0" font-size="10">Portfolio performance, growth targets</text>
+  <text x="430" y="193" fill="#8892b0" font-size="10">Revenue, pipeline, YoY trends</text>
+  <rect x="630" y="181" width="55" height="18" fill="#ff7043" rx="9" opacity="0.3"/>
+  <text x="642" y="194" fill="#ff7043" font-size="10">Critical</text>
+
+  <!-- Row 2 -->
+  <line x1="45" y1="208" x2="735" y2="208" stroke="#2a3a5e" stroke-width="0.5"/>
+  <text x="60" y="226" fill="#e0e0e0" font-size="11">VP Sales</text>
+  <text x="200" y="226" fill="#8892b0" font-size="10">Pipeline health, rep performance</text>
+  <text x="430" y="226" fill="#8892b0" font-size="10">Pipeline stages, close rates, quotas</text>
+  <rect x="630" y="214" width="55" height="18" fill="#ff7043" rx="9" opacity="0.3"/>
+  <text x="642" y="227" fill="#ff7043" font-size="10">Critical</text>
+
+  <!-- Row 3 -->
+  <line x1="45" y1="241" x2="735" y2="241" stroke="#2a3a5e" stroke-width="0.5"/>
+  <text x="60" y="259" fill="#e0e0e0" font-size="11">Finance Director</text>
+  <text x="200" y="259" fill="#8892b0" font-size="10">Budget vs actuals, margin analysis</text>
+  <text x="430" y="259" fill="#8892b0" font-size="10">Cost data, department spend, forecasts</text>
+  <rect x="630" y="247" width="40" height="18" fill="#ffd54f" rx="9" opacity="0.3"/>
+  <text x="638" y="260" fill="#ffd54f" font-size="10">High</text>
+
+  <!-- Row 4 -->
+  <line x1="45" y1="274" x2="735" y2="274" stroke="#2a3a5e" stroke-width="0.5"/>
+  <text x="60" y="292" fill="#e0e0e0" font-size="11">Ops Manager</text>
+  <text x="200" y="292" fill="#8892b0" font-size="10">Resource utilization, SLA compliance</text>
+  <text x="430" y="292" fill="#8892b0" font-size="10">Operational metrics, headcount</text>
+  <rect x="630" y="280" width="40" height="18" fill="#ffd54f" rx="9" opacity="0.3"/>
+  <text x="638" y="293" fill="#ffd54f" font-size="10">High</text>
+
+  <!-- Row 5 -->
+  <line x1="45" y1="307" x2="735" y2="307" stroke="#2a3a5e" stroke-width="0.5"/>
+  <text x="60" y="325" fill="#e0e0e0" font-size="11">Analysts</text>
+  <text x="200" y="325" fill="#8892b0" font-size="10">Ad-hoc deep dives, self-service</text>
+  <text x="430" y="325" fill="#8892b0" font-size="10">Granular transactional data, exports</text>
+  <rect x="630" y="313" width="50" height="18" fill="#4caf50" rx="9" opacity="0.3"/>
+  <text x="638" y="326" fill="#4caf50" font-size="10">Medium</text>
+
+  <!-- Source Systems Audit -->
+  <rect x="770" y="80" width="400" height="290" fill="#16213e" rx="8"/>
+  <text x="790" y="108" fill="#e0e0e0" font-size="14" font-weight="bold">Source Systems Inventory</text>
+  <text x="790" y="125" fill="#8892b0" font-size="11">4 business units, multiple source types</text>
+
+  <!-- Source cards -->
+  <rect x="785" y="140" width="175" height="65" fill="#0a192f" rx="6"/>
+  <text x="800" y="160" fill="#64ffda" font-size="11" font-weight="bold">SQL Server</text>
+  <text x="800" y="177" fill="#8892b0" font-size="10">Transactional data</text>
+  <text x="800" y="192" fill="#8892b0" font-size="10">2 databases, ~2M rows</text>
+
+  <rect x="975" y="140" width="180" height="65" fill="#0a192f" rx="6"/>
+  <text x="990" y="160" fill="#bb86fc" font-size="11" font-weight="bold">Salesforce</text>
+  <text x="990" y="177" fill="#8892b0" font-size="10">CRM / Pipeline data</text>
+  <text x="990" y="192" fill="#8892b0" font-size="10">Exports via API</text>
+
+  <rect x="785" y="215" width="175" height="65" fill="#0a192f" rx="6"/>
+  <text x="800" y="235" fill="#ffd54f" font-size="11" font-weight="bold">Excel Workbooks</text>
+  <text x="800" y="252" fill="#8892b0" font-size="10">Finance budgets, targets</text>
+  <text x="800" y="267" fill="#8892b0" font-size="10">12 files, manual updates</text>
+
+  <rect x="975" y="215" width="180" height="65" fill="#0a192f" rx="6"/>
+  <text x="990" y="235" fill="#ff7043" font-size="11" font-weight="bold">ERP System</text>
+  <text x="990" y="252" fill="#8892b0" font-size="10">Operations, HR data</text>
+  <text x="990" y="267" fill="#8892b0" font-size="10">Views + stored procs</text>
+
+  <rect x="785" y="295" width="370" height="25" fill="#64ffda" rx="4" opacity="0.1"/>
+  <text x="800" y="312" fill="#64ffda" font-size="10">⚠ Key finding: No shared keys across systems — ETL mapping required</text>
+
+  <!-- Data Profiling Results -->
+  <rect x="30" y="390" width="560" height="280" fill="#16213e" rx="8"/>
+  <text x="50" y="418" fill="#e0e0e0" font-size="14" font-weight="bold">Data Profiling Summary</text>
+  <text x="50" y="435" fill="#8892b0" font-size="11">Quality assessment per source</text>
+
+  <!-- Profiling bars -->
+  <text x="50" y="465" fill="#e0e0e0" font-size="11">SQL Server — Completeness</text>
+  <rect x="250" y="452" width="320" height="18" fill="#0a192f" rx="3"/>
+  <rect x="250" y="452" width="296" height="18" fill="#4caf50" rx="3" opacity="0.6"/>
+  <text x="555" y="465" fill="#4caf50" font-size="10">92%</text>
+
+  <text x="50" y="495" fill="#e0e0e0" font-size="11">SQL Server — Consistency</text>
+  <rect x="250" y="482" width="320" height="18" fill="#0a192f" rx="3"/>
+  <rect x="250" y="482" width="272" height="18" fill="#ffd54f" rx="3" opacity="0.6"/>
+  <text x="555" y="495" fill="#ffd54f" font-size="10">85%</text>
+
+  <text x="50" y="525" fill="#e0e0e0" font-size="11">Salesforce — Completeness</text>
+  <rect x="250" y="512" width="320" height="18" fill="#0a192f" rx="3"/>
+  <rect x="250" y="512" width="278" height="18" fill="#ffd54f" rx="3" opacity="0.6"/>
+  <text x="555" y="525" fill="#ffd54f" font-size="10">87%</text>
+
+  <text x="50" y="555" fill="#e0e0e0" font-size="11">Salesforce — Consistency</text>
+  <rect x="250" y="542" width="320" height="18" fill="#0a192f" rx="3"/>
+  <rect x="250" y="542" width="250" height="18" fill="#ffd54f" rx="3" opacity="0.6"/>
+  <text x="555" y="555" fill="#ffd54f" font-size="10">78%</text>
+
+  <text x="50" y="585" fill="#e0e0e0" font-size="11">Excel — Completeness</text>
+  <rect x="250" y="572" width="320" height="18" fill="#0a192f" rx="3"/>
+  <rect x="250" y="572" width="214" height="18" fill="#ff7043" rx="3" opacity="0.6"/>
+  <text x="555" y="585" fill="#ff7043" font-size="10">67%</text>
+
+  <text x="50" y="615" fill="#e0e0e0" font-size="11">Excel — Consistency</text>
+  <rect x="250" y="602" width="320" height="18" fill="#0a192f" rx="3"/>
+  <rect x="250" y="602" width="176" height="18" fill="#ff7043" rx="3" opacity="0.6"/>
+  <text x="555" y="615" fill="#ff7043" font-size="10">55%</text>
+
+  <text x="50" y="650" fill="#8892b0" font-size="10" font-style="italic">Excel sources required the most transformation — inconsistent naming, missing dates, duplicate entries</text>
+
+  <!-- KPI Definition Conflicts -->
+  <rect x="610" y="390" width="560" height="280" fill="#16213e" rx="8"/>
+  <text x="630" y="418" fill="#e0e0e0" font-size="14" font-weight="bold">KPI Definition Conflicts Found</text>
+  <text x="630" y="435" fill="#8892b0" font-size="11">Same metric, different definitions across departments</text>
+
+  <rect x="625" y="450" width="530" height="55" fill="#0a192f" rx="6"/>
+  <text x="640" y="470" fill="#ff7043" font-size="11" font-weight="bold">"Revenue"</text>
+  <text x="640" y="490" fill="#8892b0" font-size="10">Sales: Gross bookings | Finance: Net after refunds | Ops: Billed amount</text>
+  <text x="1100" y="475" fill="#ff7043" font-size="10">⚠ 3 definitions</text>
+
+  <rect x="625" y="515" width="530" height="55" fill="#0a192f" rx="6"/>
+  <text x="640" y="535" fill="#ff7043" font-size="11" font-weight="bold">"Active Customer"</text>
+  <text x="640" y="555" fill="#8892b0" font-size="10">Sales: Any contact in 90 days | Marketing: Engaged in 30 days | Finance: Paying</text>
+  <text x="1100" y="540" fill="#ff7043" font-size="10">⚠ 3 definitions</text>
+
+  <rect x="625" y="580" width="530" height="55" fill="#0a192f" rx="6"/>
+  <text x="640" y="600" fill="#ffd54f" font-size="11" font-weight="bold">"Pipeline Value"</text>
+  <text x="640" y="620" fill="#8892b0" font-size="10">Sales: Weighted by stage | Finance: Full unweighted amount</text>
+  <text x="1100" y="605" fill="#ffd54f" font-size="10">⚠ 2 definitions</text>
+
+  <rect x="625" y="645" width="530" height="18" fill="#64ffda" rx="4" opacity="0.1"/>
+  <text x="640" y="658" fill="#64ffda" font-size="10">✓ All resolved through stakeholder alignment sessions before modeling began</text>
+
+  <!-- Wireframe label -->
+  <rect x="0" y="688" width="1200" height="12" fill="#0a192f"/>
+  <text x="600" y="698" fill="#8892b0" font-size="9" text-anchor="middle">WIREFRAME MOCKUP — Requirements &amp; Data Profiling | Discovery phase (data redacted under NDA)</text>
+</svg>
