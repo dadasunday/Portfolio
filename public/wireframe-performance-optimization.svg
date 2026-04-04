@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" font-family="Segoe UI, Arial, sans-serif">
+  <!-- Background -->
+  <rect width="1200" height="750" fill="#1a1a2e" rx="8"/>
+
+  <!-- Title -->
+  <text x="600" y="35" fill="#e0e0e0" font-size="18" font-weight="bold" text-anchor="middle">Performance Optimization — 6-Step Framework</text>
+  <text x="600" y="55" fill="#8892b0" font-size="12" text-anchor="middle">From 10-second load time to sub-2 seconds</text>
+
+  <!-- Before/After Hero -->
+  <rect x="350" y="75" width="200" height="80" fill="#16213e" rx="8" stroke="#ff7043" stroke-width="2"/>
+  <text x="450" y="100" fill="#ff7043" font-size="11" text-anchor="middle" font-weight="bold">BEFORE</text>
+  <text x="450" y="135" fill="#ff7043" font-size="32" font-weight="bold" text-anchor="middle">10s</text>
+
+  <text x="580" y="120" fill="#64ffda" font-size="24">→</text>
+
+  <rect x="620" y="75" width="200" height="80" fill="#16213e" rx="8" stroke="#4caf50" stroke-width="2"/>
+  <text x="720" y="100" fill="#4caf50" font-size="11" text-anchor="middle" font-weight="bold">AFTER</text>
+  <text x="720" y="135" fill="#4caf50" font-size="32" font-weight="bold" text-anchor="middle">&lt;2s</text>
+
+  <rect x="860" y="90" width="120" height="50" fill="#64ffda" rx="25" opacity="0.15"/>
+  <text x="920" y="120" fill="#64ffda" font-size="16" font-weight="bold" text-anchor="middle">50% faster</text>
+
+  <!-- Step 1: DAX Studio + Performance Analyzer -->
+  <rect x="30" y="185" width="370" height="155" fill="#16213e" rx="8"/>
+  <rect x="30" y="185" width="370" height="30" fill="#64ffda" rx="8" opacity="0.1"/>
+  <rect x="30" y="208" width="370" height="7" fill="#16213e"/>
+  <text x="50" y="205" fill="#64ffda" font-size="12" font-weight="bold">STEP 1</text>
+  <text x="110" y="205" fill="#e0e0e0" font-size="12">DAX Studio + Performance Analyzer</text>
+  <text x="45" y="235" fill="#8892b0" font-size="11">Identified the bottleneck:</text>
+  <rect x="45" y="245" width="340" height="40" fill="#0a192f" rx="4"/>
+  <text x="55" y="262" fill="#ff7043" font-size="10" font-family="Consolas, monospace">FILTER( ALL(Table), </text>
+  <text x="55" y="278" fill="#ff7043" font-size="10" font-family="Consolas, monospace">  Table[Col] = EARLIER(Table[Col]) )</text>
+  <text x="45" y="305" fill="#8892b0" font-size="10">→ Full table scan on 2M rows every refresh</text>
+  <text x="45" y="322" fill="#8892b0" font-size="10">→ Forced Formula Engine (single-threaded)</text>
+
+  <!-- Step 2: VertiPaq Analyzer -->
+  <rect x="415" y="185" width="370" height="155" fill="#16213e" rx="8"/>
+  <rect x="415" y="185" width="370" height="30" fill="#64ffda" rx="8" opacity="0.1"/>
+  <rect x="415" y="208" width="370" height="7" fill="#16213e"/>
+  <text x="435" y="205" fill="#64ffda" font-size="12" font-weight="bold">STEP 2</text>
+  <text x="495" y="205" fill="#e0e0e0" font-size="12">VertiPaq Analyzer — Memory Audit</text>
+  <text x="430" y="235" fill="#8892b0" font-size="11">Found high-cardinality column:</text>
+  <rect x="430" y="248" width="340" height="65" fill="#0a192f" rx="4"/>
+  <text x="445" y="268" fill="#e0e0e0" font-size="10">Column: "Notes"</text>
+  <text x="445" y="288" fill="#ff7043" font-size="10">Unique values: 500,000</text>
+  <text x="445" y="308" fill="#ff7043" font-size="10">Memory: 200MB ← removed</text>
+  <text x="430" y="330" fill="#4caf50" font-size="10">✓ Removed — immediate memory savings</text>
+
+  <!-- Step 3: Replace Iterators -->
+  <rect x="800" y="185" width="370" height="155" fill="#16213e" rx="8"/>
+  <rect x="800" y="185" width="370" height="30" fill="#64ffda" rx="8" opacity="0.1"/>
+  <rect x="800" y="208" width="370" height="7" fill="#16213e"/>
+  <text x="820" y="205" fill="#64ffda" font-size="12" font-weight="bold">STEP 3</text>
+  <text x="880" y="205" fill="#e0e0e0" font-size="12">Replace Iterators with Aggregators</text>
+  <rect x="815" y="232" width="155" height="50" fill="#0a192f" rx="4" stroke="#ff7043" stroke-width="1"/>
+  <text x="825" y="250" fill="#ff7043" font-size="10" font-weight="bold">BEFORE</text>
+  <text x="825" y="270" fill="#ff7043" font-size="10" font-family="Consolas, monospace">SUMX( Table, ... )</text>
+  <text x="980" y="260" fill="#64ffda" font-size="14">→</text>
+  <rect x="1000" y="232" width="155" height="50" fill="#0a192f" rx="4" stroke="#4caf50" stroke-width="1"/>
+  <text x="1010" y="250" fill="#4caf50" font-size="10" font-weight="bold">AFTER</text>
+  <text x="1010" y="270" fill="#4caf50" font-size="10" font-family="Consolas, monospace">SUM( Table[Col] )</text>
+  <text x="815" y="305" fill="#8892b0" font-size="10">Rule: If you don't NEED row context,</text>
+  <text x="815" y="320" fill="#8892b0" font-size="10">don't pay for it.</text>
+
+  <!-- Step 4: VAR Caching -->
+  <rect x="30" y="360" width="370" height="155" fill="#16213e" rx="8"/>
+  <rect x="30" y="360" width="370" height="30" fill="#64ffda" rx="8" opacity="0.1"/>
+  <rect x="30" y="383" width="370" height="7" fill="#16213e"/>
+  <text x="50" y="380" fill="#64ffda" font-size="12" font-weight="bold">STEP 4</text>
+  <text x="110" y="380" fill="#e0e0e0" font-size="12">VAR Caching — Eliminate Redundancy</text>
+  <text x="45" y="410" fill="#8892b0" font-size="11">One measure calculated the same value 4×</text>
+  <rect x="45" y="420" width="340" height="70" fill="#0a192f" rx="4"/>
+  <text x="55" y="440" fill="#4caf50" font-size="10" font-family="Consolas, monospace">VAR _TotalRev = SUM( [Revenue] )</text>
+  <text x="55" y="458" fill="#4caf50" font-size="10" font-family="Consolas, monospace">RETURN</text>
+  <text x="55" y="476" fill="#4caf50" font-size="10" font-family="Consolas, monospace">  DIVIDE( _TotalRev, [Target] )</text>
+  <text x="45" y="505" fill="#4caf50" font-size="10">✓ Calculated once, referenced many times</text>
+
+  <!-- Step 5: Cardinality Reduction -->
+  <rect x="415" y="360" width="370" height="155" fill="#16213e" rx="8"/>
+  <rect x="415" y="360" width="370" height="30" fill="#64ffda" rx="8" opacity="0.1"/>
+  <rect x="415" y="383" width="370" height="7" fill="#16213e"/>
+  <text x="435" y="380" fill="#64ffda" font-size="12" font-weight="bold">STEP 5</text>
+  <text x="495" y="380" fill="#e0e0e0" font-size="12">Cardinality Reduction</text>
+  <text x="430" y="410" fill="#8892b0" font-size="11">Datetime column with timestamps:</text>
+  <!-- Before bar -->
+  <text x="430" y="435" fill="#ff7043" font-size="10">Before: 1,400,000 unique values</text>
+  <rect x="430" y="442" width="340" height="14" fill="#ff7043" rx="3" opacity="0.3"/>
+  <rect x="430" y="442" width="340" height="14" fill="#ff7043" rx="3" opacity="0.5"/>
+  <!-- After bar -->
+  <text x="430" y="478" fill="#4caf50" font-size="10">After: 365 unique values (date only)</text>
+  <rect x="430" y="485" width="340" height="14" fill="#0a192f" rx="3"/>
+  <rect x="430" y="485" width="3" height="14" fill="#4caf50" rx="3"/>
+  <text x="430" y="510" fill="#4caf50" font-size="10" font-weight="bold">✓ 80% compression improvement</text>
+
+  <!-- Step 6: Model Cleanup -->
+  <rect x="800" y="360" width="370" height="155" fill="#16213e" rx="8"/>
+  <rect x="800" y="360" width="370" height="30" fill="#64ffda" rx="8" opacity="0.1"/>
+  <rect x="800" y="383" width="370" height="7" fill="#16213e"/>
+  <text x="820" y="380" fill="#64ffda" font-size="12" font-weight="bold">STEP 6</text>
+  <text x="880" y="380" fill="#e0e0e0" font-size="12">Model Cleanup</text>
+  <text x="815" y="412" fill="#4caf50" font-size="11">✓ Removed bidirectional relationships</text>
+  <text x="815" y="435" fill="#4caf50" font-size="11">✓ Collapsed snowflake → star schema</text>
+  <text x="815" y="458" fill="#4caf50" font-size="11">✓ Hid 30+ unused columns</text>
+  <text x="815" y="481" fill="#4caf50" font-size="11">✓ Single-direction filtering only</text>
+  <text x="815" y="504" fill="#8892b0" font-size="10">Cleaner model = faster queries + easier</text>
+  <text x="815" y="518" fill="#8892b0" font-size="10">maintenance for the team</text>
+
+  <!-- DAX Engine Diagram -->
+  <rect x="30" y="540" width="1140" height="170" fill="#16213e" rx="8"/>
+  <text x="600" y="570" fill="#e0e0e0" font-size="14" font-weight="bold" text-anchor="middle">The Two DAX Engines — Why This Matters</text>
+
+  <!-- Storage Engine -->
+  <rect x="60" y="590" width="500" height="100" fill="#0a192f" rx="8" stroke="#4caf50" stroke-width="1.5"/>
+  <text x="310" y="615" fill="#4caf50" font-size="14" font-weight="bold" text-anchor="middle">⚡ Storage Engine (VertiPaq)</text>
+  <text x="310" y="640" fill="#e0e0e0" font-size="11" text-anchor="middle">Fast • Parallel • Compressed columnar scans</text>
+  <text x="310" y="660" fill="#8892b0" font-size="11" text-anchor="middle">Handles: SUM, COUNT, MIN, MAX, DISTINCTCOUNT</text>
+  <text x="310" y="680" fill="#4caf50" font-size="11" text-anchor="middle" font-weight="bold">→ TARGET: Keep measures here</text>
+
+  <!-- Formula Engine -->
+  <rect x="610" y="590" width="530" height="100" fill="#0a192f" rx="8" stroke="#ff7043" stroke-width="1.5"/>
+  <text x="875" y="615" fill="#ff7043" font-size="14" font-weight="bold" text-anchor="middle">🐌 Formula Engine</text>
+  <text x="875" y="640" fill="#e0e0e0" font-size="11" text-anchor="middle">Slow • Single-threaded • Row-by-row evaluation</text>
+  <text x="875" y="660" fill="#8892b0" font-size="11" text-anchor="middle">Triggered by: FILTER() + EARLIER(), nested iterators</text>
+  <text x="875" y="680" fill="#ff7043" font-size="11" text-anchor="middle" font-weight="bold">→ AVOID: Refactor measures out of here</text>
+
+  <!-- Wireframe label -->
+  <rect x="0" y="738" width="1200" height="12" fill="#0a192f"/>
+  <text x="600" y="748" fill="#8892b0" font-size="9" text-anchor="middle">WIREFRAME MOCKUP — Performance Optimization Framework | Techniques applied (data redacted under NDA)</text>
+</svg>
