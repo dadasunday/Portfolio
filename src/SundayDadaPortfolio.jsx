@@ -156,203 +156,6 @@ const projects = [
   },
   {
     id: 2,
-    title: "Finance & Sales Reporting Overhaul",
-    industry: "Financial Services",
-    hook: "Reporting took 3–5 days. I got it down to same-day.",
-    metrics: "40% faster · $20K saved/yr · 30% less DB load",
-    overview: `The Finance and Sales teams at Colaberry were stuck in a painful reporting cycle — every month-end took 3–5 days of manual data pulls, validation, and formatting before leadership could see the numbers. By the time reports landed, decisions were already delayed. The finance team was working weekends just to hit deadlines, and the sales team couldn't tell whether they were on track until it was too late to course-correct. I embedded with both teams to rebuild the entire reporting workflow from the database up.`,
-    tools: ["Power BI", "SQL Server", "T-SQL", "Stored Procedures", "SQL Views", "SQL Server Agent"],
-    dataContext: "Transactional data from ERP and CRM systems. Finance data required multi-currency support and fiscal calendar alignment. Sales pipeline data needed deduplication and stage-mapping logic. Advanced techniques included indexed views for pre-aggregation, parameterized stored procedures, and automated data quality triggers.",
-    challenges: [
-      {
-        title: "Slow, unoptimized queries",
-        problem: "The existing 35+ reporting queries were written ad-hoc over years, with no indexing strategy and redundant joins that consumed excessive database resources.",
-        solution: "I rewrote them with proper indexing, CTEs, and set-based logic — reducing DB resource consumption by 30%.",
-        learning: "A systematic audit of execution plans revealed that 80% of the slowness came from just 5 queries."
-      },
-      {
-        title: "Data quality issues eroding trust",
-        problem: "Finance and Sales had different numbers for the same metrics. Leadership couldn't tell which team's report was correct.",
-        solution: "I built validation triggers and automated checks directly in the database layer, catching errors at the source before they propagated to reports.",
-        learning: "Fixing data quality at the source layer is always more effective than trying to clean it in the presentation layer."
-      },
-      {
-        title: "Leadership wouldn't act on the data",
-        problem: "Even with dashboards, leaders second-guessed the numbers because they'd been burned by inaccurate reports too many times.",
-        solution: "The data cleansing initiative improved accuracy by 20%, which was the tipping point for adoption — leadership started using the dashboards in weekly meetings.",
-        learning: "Trust in data is fragile: it takes months to build and one bad number to destroy."
-      }
-    ],
-    walkthrough: [
-      { step: "Audit & Baseline", desc: "Cataloged all 35+ production queries, documented execution plans, and identified the worst performers. Created a priority matrix based on frequency of use and resource consumption.", screenshot: "Query Audit Spreadsheet" },
-      { step: "SQL Optimization", desc: "Rewrote queries using CTEs, proper indexing, and set-based patterns. Created reusable views and stored procedures that standardized data access patterns across both teams.", screenshot: "Optimized Query Plans" },
-      { step: "Data Quality Framework", desc: "Built SQL triggers and constraints to enforce business rules at the database level. Automated validation checks via SQL Server Agent jobs that ran before every reporting cycle.", screenshot: "Data Quality Dashboard" },
-      { step: "Dashboard Rebuild", desc: "Designed Power BI dashboards connected to the optimized views. Focused on Finance month-end and Sales pipeline reporting with drill-through to transaction-level detail.", screenshot: "Finance Dashboard" },
-      { step: "Validation & Handoff", desc: "Ran parallel reports (old vs. new) for one full cycle to validate accuracy, then trained both teams on the new workflow. Documented everything for maintainability.", screenshot: "Parallel Validation Results" }
-    ],
-    takeaways: [
-      { title: "Fix the query before you fix the dashboard", desc: "Most reporting slowness was a database problem, not a BI problem. The 40% speed improvement came entirely from SQL optimization — the Power BI layer was already fast enough." },
-      { title: "Automated validation beats manual checking every time", desc: "SQL triggers caught issues the team had been missing for months. Once the data quality framework was in place, the team spent zero time on manual reconciliation." },
-      { title: "Trust is earned through accuracy, not aesthetics", desc: "The 20% accuracy improvement changed leadership behavior more than any visual redesign. A plain table with correct numbers beats a beautiful chart with wrong ones." }
-    ],
-    metricBoxes: [
-      { value: "40%", label: "Faster Reporting" },
-      { value: "$20K", label: "Saved Per Year" },
-      { value: "30%", label: "Less DB Load" },
-      { value: "20%", label: "Accuracy Improvement" }
-    ]
-  },
-  {
-    id: 3,
-    title: "Enterprise Data Warehouse & ETL Platform",
-    industry: "IT Services",
-    hook: "The nightly batch job ran for 6 hours. Teams couldn't start their day with fresh data.",
-    metrics: "25% faster ETL · 35% faster reports · 40% fewer errors",
-    overview: `Fastwire Tech's reporting ran on a patchwork of direct queries, flat files, and manually maintained spreadsheets. No single source of truth existed — and when two department heads showed up to the same meeting with different revenue numbers, it was clear something had to change. I was tasked with designing the data warehouse architecture and ETL infrastructure that every department would rely on — from scratch. The goal was simple: give every team in the organization one place to get their numbers, and make sure those numbers were always fresh and always right.`,
-    tools: ["SSIS", "SSAS (Tabular)", "SSRS", "SQL Server", "T-SQL"],
-    dataContext: "Operational databases across IT service management, HR, and finance. Mix of structured SQL data and semi-structured exports. Required SCD Type 2 handling for slowly changing dimensions. Advanced techniques included SSIS package orchestration with SQL Server Agent, SSAS tabular cubes with partitioned processing, and SSRS parameterized reports with subscription delivery.",
-    challenges: [
-      {
-        title: "No existing warehouse architecture",
-        problem: "There was no dimensional model, no staging area, and no ETL process — just direct queries hitting production databases during business hours.",
-        solution: "I designed the star schema from scratch — fact tables for service tickets, revenue, and HR metrics with shared dimension tables for time, geography, and department.",
-        learning: "Starting from zero is actually easier than migrating a bad architecture — you can make the right choices without legacy constraints."
-      },
-      {
-        title: "6-hour nightly batch processing",
-        problem: "The initial ETL ran sequentially, processing each source one at a time. Teams couldn't start their day with fresh data because the job was still running.",
-        solution: "I restructured it with parallel execution paths and incremental loads, cutting it to 4.5 hours so teams had fresh data by start of business.",
-        learning: "Parallelism and incremental loading delivered bigger gains than any code-level optimization ever could."
-      },
-      {
-        title: "Inconsistent reporting across departments",
-        problem: "Each team pulled from different sources with different logic, leading to contradictory numbers and endless debate about whose data was correct.",
-        solution: "The SSAS cubes and SSRS reports gave everyone a single version of the truth with consistent calculations and definitions.",
-        learning: "The hardest part wasn't building the warehouse — it was getting four departments to agree on what 'revenue' means."
-      }
-    ],
-    walkthrough: [
-      { step: "Requirements & Source Analysis", desc: "Mapped all departmental reporting needs and profiled source systems for data quality and structure. Built a data dictionary documenting every field, transformation, and business rule.", screenshot: "Source System Map" },
-      { step: "Warehouse Schema Design", desc: "Designed a dimensional model with clearly separated fact and dimension tables. Implemented SCD Type 2 for historical tracking of slowly changing dimensions like employee roles and department structures.", screenshot: "Dimensional Model Diagram" },
-      { step: "ETL Pipeline Development", desc: "Built SSIS packages for extraction, transformation, and loading. Used SQL Server Agent for orchestration with error handling, logging, and automatic retry logic for transient failures.", screenshot: "SSIS Package Flow" },
-      { step: "SSAS Cube Development", desc: "Created tabular models with calculated measures, hierarchies, and KPIs. Partitioned processing for performance so that only changed data gets reprocessed each night.", screenshot: "SSAS Tabular Model" },
-      { step: "SSRS Reporting Layer", desc: "Designed parameterized reports with scheduled subscriptions for automated delivery to department leads. Reports rendered in under 3 seconds thanks to the pre-aggregated cube layer.", screenshot: "SSRS Report Gallery" }
-    ],
-    takeaways: [
-      { title: "Build the warehouse right the first time", desc: "Investing extra time in schema design saved months of rework later. The dimensional model has been extended twice since launch without requiring a redesign — because the foundation was solid." },
-      { title: "ETL performance is an architecture problem", desc: "Parallel execution and incremental loading were the biggest wins, not code-level optimization. Restructuring the job flow cut processing time by 25% with minimal code changes." },
-      { title: "A single source of truth changes the conversation", desc: "Once departments stopped arguing about whose numbers were right, they started talking about what to do about them. That shift — from 'is this data correct?' to 'what should we do?' — was the real win." }
-    ],
-    metricBoxes: [
-      { value: "25%", label: "Faster ETL" },
-      { value: "35%", label: "Faster Reports" },
-      { value: "40%", label: "Fewer Errors" },
-      { value: "4.5h", label: "Batch Runtime" }
-    ]
-  },
-  {
-    id: 4,
-    title: "AI-Powered Operations Platforms",
-    industry: "Education & Public Sector",
-    hook: "Two organizations needed to replace paper and spreadsheets with real operational systems.",
-    metrics: "55% less manual entry · 33% fewer tickets",
-    overview: `Two organizations — one in education and one managing an animal shelter — were running critical operations on paper forms, spreadsheets, and email chains. In education, parking permit management was a nightmare of lost forms and manual data entry. At the animal shelter, intake records were handwritten and support requests overwhelmed a small team. Both needed a real system: something their staff could use on a tablet in the field, with automated workflows, document generation, and eventually AI-assisted data entry. I designed and delivered both as enterprise Power Apps integrated with the Microsoft ecosystem.`,
-    tools: ["Power Apps (Canvas & Model-Driven)", "Power Automate", "Dataverse", "AI Builder", "Copilot Studio", "Microsoft 365", "Salesforce", "DocuSign"],
-    dataContext: "Operational records (parking permits, animal intake forms, inspection records), document attachments, and integration data from Salesforce and DocuSign. Advanced techniques included AI Builder for intelligent document processing (form extraction), Copilot Studio for conversational AI agents, Dataverse role-based security, and Power Automate approval flows with conditional branching.",
-    challenges: [
-      {
-        title: "Replacing deeply embedded manual processes",
-        problem: "Staff had been using paper and email for years. Previous attempts to introduce digital tools failed because they forced completely new workflows.",
-        solution: "I designed the apps around their existing workflows first, then gradually introduced automation — rather than forcing a completely new process on day one.",
-        learning: "The best technology adoption strategy is to make the new way feel like the old way, but faster."
-      },
-      {
-        title: "Document processing bottleneck",
-        problem: "One organization had staff manually re-typing data from scanned forms into spreadsheets — a process that was slow, error-prone, and deeply frustrating.",
-        solution: "I implemented AI Builder's form processing model, cutting manual data entry by 55% and dramatically reducing transcription errors.",
-        learning: "AI doesn't need to be perfect to be transformative — even 80% accuracy saves hours of manual work."
-      },
-      {
-        title: "High support ticket volume",
-        problem: "Staff had questions about processes, policies, and the new system. The small support team was overwhelmed with repetitive queries.",
-        solution: "A Copilot Studio conversational agent handled common queries automatically, reducing support tickets by roughly a third.",
-        learning: "Most support questions are the same 20 questions asked 100 different ways — a well-trained bot handles that perfectly."
-      }
-    ],
-    walkthrough: [
-      { step: "Process Mapping", desc: "Shadowed staff to understand existing paper-based workflows, pain points, and decision logic. Documented every form, approval chain, and exception case before writing a single line of code.", screenshot: "Process Flow Diagram" },
-      { step: "App Architecture", desc: "Designed the data model in Dataverse with proper relationships, security roles, and business rules. Built a schema that could support both organizations' needs with shared components.", screenshot: "Dataverse Schema" },
-      { step: "Canvas App Development", desc: "Built mobile-first Canvas Apps for field staff (parking inspectors, shelter workers) with offline capability and barcode scanning. Optimized for tablet use with large touch targets.", screenshot: "Canvas App Interface" },
-      { step: "Workflow Automation", desc: "Created Power Automate flows for approvals, document generation (DocuSign), notifications, and data sync with Salesforce. Built conditional branching for different approval paths.", screenshot: "Power Automate Flows" },
-      { step: "AI Integration", desc: "Trained AI Builder models on historical forms for automated extraction. Deployed Copilot Studio agents for self-service support with escalation paths for complex queries.", screenshot: "AI Builder Model Results" },
-      { step: "Rollout & Adoption", desc: "Ran pilot programs with small teams, incorporated feedback, then rolled out organization-wide. Both apps are now the primary operational systems used daily by all staff.", screenshot: "Adoption Metrics" }
-    ],
-    takeaways: [
-      { title: "Adopt workflows first, then automate", desc: "The apps succeeded because they mirrored how people already worked, not because they forced a new process. Change management is 80% psychology and 20% technology." },
-      { title: "AI doesn't need to be perfect to be valuable", desc: "The form processing model wasn't 100% accurate, but it still cut manual entry by more than half. Waiting for perfection would have meant waiting forever — and the staff needed relief now." },
-      { title: "Build for the person in the field, not the person in the office", desc: "Mobile-first design with offline support was non-negotiable for these use cases. The best features in the world don't matter if the app doesn't work where the work actually happens." }
-    ],
-    metricBoxes: [
-      { value: "55%", label: "Less Manual Entry" },
-      { value: "33%", label: "Fewer Tickets" },
-      { value: "2", label: "Organizations Served" },
-      { value: "80%+", label: "AI Accuracy" }
-    ]
-  },
-  {
-    id: 5,
-    title: "Parking Management System",
-    thumbnail: "Canvas-App Home Page.png",
-    industry: "Education",
-    hook: "A high school's parking lot was chaos — no one knew who had permission to park and who didn't.",
-    metrics: "1,299 inspections · 88% compliance · 15 spaces managed",
-    overview: `Belson School had a growing parking problem. Teachers complained about unavailable spaces, visitors parked without authorization, and the leadership team had no way to understand who was actually using the lot. Complaints were mounting, but there was no data — just frustration. The school needed a system that would let staff and visitors request parking daily, allow inspectors to verify compliance on the ground, and give administrators a clear picture of parking usage and unauthorized access. I designed and delivered a complete Power Platform solution: a model-driven app for administrative review and parking requests, a tablet-ready canvas app for field inspections, automated email confirmations via Power Automate, and a Power BI report that revealed an 88% compliance rate — meaning nearly 12% of parked vehicles had no valid request on file.`,
-    tools: ["Power Apps (Canvas & Model-Driven)", "Power Automate", "Dataverse", "Power BI", "DAX"],
-    dataContext: "Three Dataverse tables — Vehicles, Parking Requests, and Parking Inspections — formed the data backbone. Vehicle records included make, model, and owner email. Parking requests tracked which vehicle requested access on which date. Inspections logged every vehicle found in the lot during the daily 5 PM sweep. The key analytical challenge was joining inspections to requests to determine which parked vehicles actually had permission — requiring a calculated column and careful relationship management through 36-character GUIDs across tables.",
-    challenges: [
-      {
-        title: "Joining tables via 36-character GUIDs in Power BI",
-        problem: "The Vehicle table connected to Parking Inspections through a unique identifier — a 36-character GUID that Dataverse generates automatically. Getting this relationship to work correctly in Power BI's data model was one of the trickiest parts of the build.",
-        solution: "I carefully mapped the relationships in Power BI using the record unique identifiers, establishing a many-to-one cardinality between Parking Inspections and Vehicles. This enabled cross-table filtering so the report could show inspection details alongside vehicle information.",
-        learning: "Working with Dataverse GUIDs in Power BI is a skill that pays dividends — it comes up constantly when building reports on top of Power Platform data."
-      },
-      {
-        title: "Determining valid vs. unauthorized parking",
-        problem: "An inspection record alone doesn't tell you whether a vehicle had permission to park. That required cross-referencing each inspection against the Parking Requests table to see if a matching request existed for that date.",
-        solution: "I built a calculated column (isRequested) in the Parking Inspections table that flagged whether each inspection had a corresponding valid parking request. This became the foundation for the compliance metrics — 88.07% of inspections had valid requests, meaning 155 out of 1,299 were unauthorized.",
-        learning: "The business value of the entire report hinged on one calculated column. Getting the logic right was essential — a wrong join condition would have made the compliance numbers meaningless."
-      },
-      {
-        title: "Building a field-ready canvas app for inspectors",
-        problem: "The parking inspector needed to walk the lot with a tablet, log every vehicle present, and move quickly — the app had to be fast, intuitive, and default to the right values to minimize tapping.",
-        solution: "I built a 4-screen canvas app with smart defaults: the inspection date auto-set to today, the hour and minute defaulted to now, and a 'Create New Vehicle' flow was accessible directly from the inspection form for unrecognized vehicles. The review screen filtered to today's inspections only.",
-        learning: "Field apps live or die by their defaults. Every tap you save the user is a tap they won't get wrong."
-      }
-    ],
-    walkthrough: [
-      { step: "Dataverse Table Design", desc: "Created three tables in Dataverse — Vehicles (with make, model, owner email, and vehicle image), Parking Requests (with request name, vehicle lookup, and request datetime), and Parking Inspections (with inspection name, vehicle lookup, parking request lookup, and inspection datetime). Configured forms, views, and subgrids to link related records.", screenshot: "Dataverse Table Structure", image: "Dataverse Table Structure.png" },
-      { step: "Model-Driven App Development", desc: "Built an administrative model-driven app with site map navigation across all three tables. Admins could review vehicle registrations, create parking requests on behalf of staff and visitors, and monitor inspection records — all from a single unified interface.", screenshot: "Model-Driven App Interface", image: "Model-Driven App Interface.png" },
-      { step: "Canvas App for Field Inspections", desc: "Developed a tablet-optimized canvas app with four screens: Home (navigation hub), Review (today's inspections gallery with vehicle details and invalid-parking indicators), New Inspection (form with smart datetime defaults), and New Vehicle (for registering unrecognized vehicles on the spot).", screenshot: "Canvas App Inspection Screen", image: "Canvas App Inspection Screen.png" },
-      { step: "Power Automate Cloud Flow", desc: "Created a cloud flow triggered whenever a new Parking Request was created. The flow automatically sent a confirmation email to the vehicle owner with the request ID and vehicle name, using the school's branded email template.", screenshot: "Power Automate Flow", image: "Power Automate Flow.png" },
-      { step: "Power BI Data Model & DAX", desc: "Connected Power BI to Dataverse, established relationships via GUIDs, and built a calculated date dimension using DAX (CALENDARAUTO with school year logic). Created measures for Total Inspections, Total Valid Requests, and % Valid Requests. Added a calculated isRequested column to identify unauthorized parking.", screenshot: "Power BI Data Model", image: "PowerBI Data Model.png" },
-      { step: "Power BI Report & Dashboards", desc: "Built a 3-page report: a navigation home page, a filters page (Vehicle Make/Model, Calendar, Day of Week), and the main Parking Review dashboard with KPI cards (1,299 inspections, 88.07% compliance, 155 unauthorized), a matrix table by vehicle, a bar chart of authorized vs. unauthorized inspections over time, and a detail table with drill-through links back to the model-driven app.", screenshot: "Parking Review Dashboard", image: "Packing Review Dashboard.png" },
-      { step: "Drill-Through for Vehicle Detail", desc: "Added a drill-through page that activates when a user clicks on a specific vehicle in the matrix. The drill-through displays the vehicle's total inspections, valid request percentage, a full history of every inspection record with timestamps, and a direct link back to the model-driven app record — giving administrators complete visibility into any vehicle's parking compliance at a glance.", screenshot: "Parking Drillthrough", image: "Parking Drillthrough.png" }
-    ],
-    takeaways: [
-      { title: "One calculated column can unlock the entire story", desc: "The isRequested flag was a simple piece of logic, but it transformed raw inspection data into an actionable compliance metric. Without it, the report would have been a list of vehicles — with it, leadership could see exactly where enforcement was failing." },
-      { title: "The Power Platform is greater than the sum of its parts", desc: "This project used Dataverse, Power Apps (both canvas and model-driven), Power Automate, and Power BI as a unified solution. Each component handled what it does best — and the integration between them was seamless because they share the same data layer." },
-      { title: "Design for the person holding the tablet", desc: "The canvas app's success came from smart defaults and minimal required input. The inspector could log a vehicle in seconds because the date, hour, and minute were pre-filled. Reducing friction in field apps directly improves data quality." }
-    ],
-    metricBoxes: [
-      { value: "1,299", label: "Total Inspections" },
-      { value: "88%", label: "Compliance Rate" },
-      { value: "155", label: "Unauthorized Vehicles" },
-      { value: "15", label: "Parking Spaces Managed" }
-    ],
-    powerBiEmbed: "https://app.powerbi.com/view?r=eyJrIjoiMDZjMzc1ODctNzcyMS00ZTQ3LWFhM2ItN2Q2MTRmYmQ0NjA2IiwidCI6IjRkMTYxZjExLTQ2MzAtNDE1Zi1iMWI0LTg5YWM3MmNlYzk5NyJ9"
-  },
-  {
-    id: 6,
     title: "Meridian Executive Reporting & Fabric Migration",
     thumbnail: "Dashboard Screenshot.png",
     industry: "Travel & Hospitality",
@@ -404,7 +207,7 @@ const projects = [
     ]
   },
   {
-    id: 7,
+    id: 3,
     title: "Hospital Length of Stay — Performance Analytics & ROI Modeling",
     thumbnail: "LOS Performance Dashboard.gif",
     industry: "Healthcare",
@@ -454,8 +257,205 @@ const projects = [
       { value: "146%", label: "ROI (Case 1)" }
     ],
     powerBiEmbed: "https://app.fabric.microsoft.com/view?r=eyJrIjoiMGJjNGZmOTEtMGY4MS00MzA2LWI5MmQtMDMzODkzOTkzNTI2IiwidCI6IjRkMTYxZjExLTQ2MzAtNDE1Zi1iMWI0LTg5YWM3MmNlYzk5NyJ9"
+  },
+  {
+    id: 4,
+    title: "Parking Management System",
+    thumbnail: "Canvas-App Home Page.png",
+    industry: "Education",
+    hook: "A high school's parking lot was chaos — no one knew who had permission to park and who didn't.",
+    metrics: "1,299 inspections · 88% compliance · 15 spaces managed",
+    overview: `Belson School had a growing parking problem. Teachers complained about unavailable spaces, visitors parked without authorization, and the leadership team had no way to understand who was actually using the lot. Complaints were mounting, but there was no data — just frustration. The school needed a system that would let staff and visitors request parking daily, allow inspectors to verify compliance on the ground, and give administrators a clear picture of parking usage and unauthorized access. I designed and delivered a complete Power Platform solution: a model-driven app for administrative review and parking requests, a tablet-ready canvas app for field inspections, automated email confirmations via Power Automate, and a Power BI report that revealed an 88% compliance rate — meaning nearly 12% of parked vehicles had no valid request on file.`,
+    tools: ["Power Apps (Canvas & Model-Driven)", "Power Automate", "Dataverse", "Power BI", "DAX"],
+    dataContext: "Three Dataverse tables — Vehicles, Parking Requests, and Parking Inspections — formed the data backbone. Vehicle records included make, model, and owner email. Parking requests tracked which vehicle requested access on which date. Inspections logged every vehicle found in the lot during the daily 5 PM sweep. The key analytical challenge was joining inspections to requests to determine which parked vehicles actually had permission — requiring a calculated column and careful relationship management through 36-character GUIDs across tables.",
+    challenges: [
+      {
+        title: "Joining tables via 36-character GUIDs in Power BI",
+        problem: "The Vehicle table connected to Parking Inspections through a unique identifier — a 36-character GUID that Dataverse generates automatically. Getting this relationship to work correctly in Power BI's data model was one of the trickiest parts of the build.",
+        solution: "I carefully mapped the relationships in Power BI using the record unique identifiers, establishing a many-to-one cardinality between Parking Inspections and Vehicles. This enabled cross-table filtering so the report could show inspection details alongside vehicle information.",
+        learning: "Working with Dataverse GUIDs in Power BI is a skill that pays dividends — it comes up constantly when building reports on top of Power Platform data."
+      },
+      {
+        title: "Determining valid vs. unauthorized parking",
+        problem: "An inspection record alone doesn't tell you whether a vehicle had permission to park. That required cross-referencing each inspection against the Parking Requests table to see if a matching request existed for that date.",
+        solution: "I built a calculated column (isRequested) in the Parking Inspections table that flagged whether each inspection had a corresponding valid parking request. This became the foundation for the compliance metrics — 88.07% of inspections had valid requests, meaning 155 out of 1,299 were unauthorized.",
+        learning: "The business value of the entire report hinged on one calculated column. Getting the logic right was essential — a wrong join condition would have made the compliance numbers meaningless."
+      },
+      {
+        title: "Building a field-ready canvas app for inspectors",
+        problem: "The parking inspector needed to walk the lot with a tablet, log every vehicle present, and move quickly — the app had to be fast, intuitive, and default to the right values to minimize tapping.",
+        solution: "I built a 4-screen canvas app with smart defaults: the inspection date auto-set to today, the hour and minute defaulted to now, and a 'Create New Vehicle' flow was accessible directly from the inspection form for unrecognized vehicles. The review screen filtered to today's inspections only.",
+        learning: "Field apps live or die by their defaults. Every tap you save the user is a tap they won't get wrong."
+      }
+    ],
+    walkthrough: [
+      { step: "Dataverse Table Design", desc: "Created three tables in Dataverse — Vehicles (with make, model, owner email, and vehicle image), Parking Requests (with request name, vehicle lookup, and request datetime), and Parking Inspections (with inspection name, vehicle lookup, parking request lookup, and inspection datetime). Configured forms, views, and subgrids to link related records.", screenshot: "Dataverse Table Structure", image: "Dataverse Table Structure.png" },
+      { step: "Model-Driven App Development", desc: "Built an administrative model-driven app with site map navigation across all three tables. Admins could review vehicle registrations, create parking requests on behalf of staff and visitors, and monitor inspection records — all from a single unified interface.", screenshot: "Model-Driven App Interface", image: "Model-Driven App Interface.png" },
+      { step: "Canvas App for Field Inspections", desc: "Developed a tablet-optimized canvas app with four screens: Home (navigation hub), Review (today's inspections gallery with vehicle details and invalid-parking indicators), New Inspection (form with smart datetime defaults), and New Vehicle (for registering unrecognized vehicles on the spot).", screenshot: "Canvas App Inspection Screen", image: "Canvas App Inspection Screen.png" },
+      { step: "Power Automate Cloud Flow", desc: "Created a cloud flow triggered whenever a new Parking Request was created. The flow automatically sent a confirmation email to the vehicle owner with the request ID and vehicle name, using the school's branded email template.", screenshot: "Power Automate Flow", image: "Power Automate Flow.png" },
+      { step: "Power BI Data Model & DAX", desc: "Connected Power BI to Dataverse, established relationships via GUIDs, and built a calculated date dimension using DAX (CALENDARAUTO with school year logic). Created measures for Total Inspections, Total Valid Requests, and % Valid Requests. Added a calculated isRequested column to identify unauthorized parking.", screenshot: "Power BI Data Model", image: "PowerBI Data Model.png" },
+      { step: "Power BI Report & Dashboards", desc: "Built a 3-page report: a navigation home page, a filters page (Vehicle Make/Model, Calendar, Day of Week), and the main Parking Review dashboard with KPI cards (1,299 inspections, 88.07% compliance, 155 unauthorized), a matrix table by vehicle, a bar chart of authorized vs. unauthorized inspections over time, and a detail table with drill-through links back to the model-driven app.", screenshot: "Parking Review Dashboard", image: "Packing Review Dashboard.png" },
+      { step: "Drill-Through for Vehicle Detail", desc: "Added a drill-through page that activates when a user clicks on a specific vehicle in the matrix. The drill-through displays the vehicle's total inspections, valid request percentage, a full history of every inspection record with timestamps, and a direct link back to the model-driven app record — giving administrators complete visibility into any vehicle's parking compliance at a glance.", screenshot: "Parking Drillthrough", image: "Parking Drillthrough.png" }
+    ],
+    takeaways: [
+      { title: "One calculated column can unlock the entire story", desc: "The isRequested flag was a simple piece of logic, but it transformed raw inspection data into an actionable compliance metric. Without it, the report would have been a list of vehicles — with it, leadership could see exactly where enforcement was failing." },
+      { title: "The Power Platform is greater than the sum of its parts", desc: "This project used Dataverse, Power Apps (both canvas and model-driven), Power Automate, and Power BI as a unified solution. Each component handled what it does best — and the integration between them was seamless because they share the same data layer." },
+      { title: "Design for the person holding the tablet", desc: "The canvas app's success came from smart defaults and minimal required input. The inspector could log a vehicle in seconds because the date, hour, and minute were pre-filled. Reducing friction in field apps directly improves data quality." }
+    ],
+    metricBoxes: [
+      { value: "1,299", label: "Total Inspections" },
+      { value: "88%", label: "Compliance Rate" },
+      { value: "155", label: "Unauthorized Vehicles" },
+      { value: "15", label: "Parking Spaces Managed" }
+    ],
+    powerBiEmbed: "https://app.powerbi.com/view?r=eyJrIjoiMDZjMzc1ODctNzcyMS00ZTQ3LWFhM2ItN2Q2MTRmYmQ0NjA2IiwidCI6IjRkMTYxZjExLTQ2MzAtNDE1Zi1iMWI0LTg5YWM3MmNlYzk5NyJ9"
+  },
+  {
+    id: 5,
+    title: "AI-Powered Operations Platforms",
+    industry: "Education & Public Sector",
+    hook: "Two organizations needed to replace paper and spreadsheets with real operational systems.",
+    metrics: "55% less manual entry · 33% fewer tickets",
+    overview: `Two organizations — one in education and one managing an animal shelter — were running critical operations on paper forms, spreadsheets, and email chains. In education, parking permit management was a nightmare of lost forms and manual data entry. At the animal shelter, intake records were handwritten and support requests overwhelmed a small team. Both needed a real system: something their staff could use on a tablet in the field, with automated workflows, document generation, and eventually AI-assisted data entry. I designed and delivered both as enterprise Power Apps integrated with the Microsoft ecosystem.`,
+    tools: ["Power Apps (Canvas & Model-Driven)", "Power Automate", "Dataverse", "AI Builder", "Copilot Studio", "Microsoft 365", "Salesforce", "DocuSign"],
+    dataContext: "Operational records (parking permits, animal intake forms, inspection records), document attachments, and integration data from Salesforce and DocuSign. Advanced techniques included AI Builder for intelligent document processing (form extraction), Copilot Studio for conversational AI agents, Dataverse role-based security, and Power Automate approval flows with conditional branching.",
+    challenges: [
+      {
+        title: "Replacing deeply embedded manual processes",
+        problem: "Staff had been using paper and email for years. Previous attempts to introduce digital tools failed because they forced completely new workflows.",
+        solution: "I designed the apps around their existing workflows first, then gradually introduced automation — rather than forcing a completely new process on day one.",
+        learning: "The best technology adoption strategy is to make the new way feel like the old way, but faster."
+      },
+      {
+        title: "Document processing bottleneck",
+        problem: "One organization had staff manually re-typing data from scanned forms into spreadsheets — a process that was slow, error-prone, and deeply frustrating.",
+        solution: "I implemented AI Builder's form processing model, cutting manual data entry by 55% and dramatically reducing transcription errors.",
+        learning: "AI doesn't need to be perfect to be transformative — even 80% accuracy saves hours of manual work."
+      },
+      {
+        title: "High support ticket volume",
+        problem: "Staff had questions about processes, policies, and the new system. The small support team was overwhelmed with repetitive queries.",
+        solution: "A Copilot Studio conversational agent handled common queries automatically, reducing support tickets by roughly a third.",
+        learning: "Most support questions are the same 20 questions asked 100 different ways — a well-trained bot handles that perfectly."
+      }
+    ],
+    walkthrough: [
+      { step: "Process Mapping", desc: "Shadowed staff to understand existing paper-based workflows, pain points, and decision logic. Documented every form, approval chain, and exception case before writing a single line of code.", screenshot: "Process Flow Diagram" },
+      { step: "App Architecture", desc: "Designed the data model in Dataverse with proper relationships, security roles, and business rules. Built a schema that could support both organizations' needs with shared components.", screenshot: "Dataverse Schema" },
+      { step: "Canvas App Development", desc: "Built mobile-first Canvas Apps for field staff (parking inspectors, shelter workers) with offline capability and barcode scanning. Optimized for tablet use with large touch targets.", screenshot: "Canvas App Interface" },
+      { step: "Workflow Automation", desc: "Created Power Automate flows for approvals, document generation (DocuSign), notifications, and data sync with Salesforce. Built conditional branching for different approval paths.", screenshot: "Power Automate Flows" },
+      { step: "AI Integration", desc: "Trained AI Builder models on historical forms for automated extraction. Deployed Copilot Studio agents for self-service support with escalation paths for complex queries.", screenshot: "AI Builder Model Results" },
+      { step: "Rollout & Adoption", desc: "Ran pilot programs with small teams, incorporated feedback, then rolled out organization-wide. Both apps are now the primary operational systems used daily by all staff.", screenshot: "Adoption Metrics" }
+    ],
+    takeaways: [
+      { title: "Adopt workflows first, then automate", desc: "The apps succeeded because they mirrored how people already worked, not because they forced a new process. Change management is 80% psychology and 20% technology." },
+      { title: "AI doesn't need to be perfect to be valuable", desc: "The form processing model wasn't 100% accurate, but it still cut manual entry by more than half. Waiting for perfection would have meant waiting forever — and the staff needed relief now." },
+      { title: "Build for the person in the field, not the person in the office", desc: "Mobile-first design with offline support was non-negotiable for these use cases. The best features in the world don't matter if the app doesn't work where the work actually happens." }
+    ],
+    metricBoxes: [
+      { value: "55%", label: "Less Manual Entry" },
+      { value: "33%", label: "Fewer Tickets" },
+      { value: "2", label: "Organizations Served" },
+      { value: "80%+", label: "AI Accuracy" }
+    ]
+  },
+  {
+    id: 6,
+    title: "Enterprise Data Warehouse & ETL Platform",
+    industry: "IT Services",
+    hook: "The nightly batch job ran for 6 hours. Teams couldn't start their day with fresh data.",
+    metrics: "25% faster ETL · 35% faster reports · 40% fewer errors",
+    overview: `Fastwire Tech's reporting ran on a patchwork of direct queries, flat files, and manually maintained spreadsheets. No single source of truth existed — and when two department heads showed up to the same meeting with different revenue numbers, it was clear something had to change. I was tasked with designing the data warehouse architecture and ETL infrastructure that every department would rely on — from scratch. The goal was simple: give every team in the organization one place to get their numbers, and make sure those numbers were always fresh and always right.`,
+    tools: ["SSIS", "SSAS (Tabular)", "SSRS", "SQL Server", "T-SQL"],
+    dataContext: "Operational databases across IT service management, HR, and finance. Mix of structured SQL data and semi-structured exports. Required SCD Type 2 handling for slowly changing dimensions. Advanced techniques included SSIS package orchestration with SQL Server Agent, SSAS tabular cubes with partitioned processing, and SSRS parameterized reports with subscription delivery.",
+    challenges: [
+      {
+        title: "No existing warehouse architecture",
+        problem: "There was no dimensional model, no staging area, and no ETL process — just direct queries hitting production databases during business hours.",
+        solution: "I designed the star schema from scratch — fact tables for service tickets, revenue, and HR metrics with shared dimension tables for time, geography, and department.",
+        learning: "Starting from zero is actually easier than migrating a bad architecture — you can make the right choices without legacy constraints."
+      },
+      {
+        title: "6-hour nightly batch processing",
+        problem: "The initial ETL ran sequentially, processing each source one at a time. Teams couldn't start their day with fresh data because the job was still running.",
+        solution: "I restructured it with parallel execution paths and incremental loads, cutting it to 4.5 hours so teams had fresh data by start of business.",
+        learning: "Parallelism and incremental loading delivered bigger gains than any code-level optimization ever could."
+      },
+      {
+        title: "Inconsistent reporting across departments",
+        problem: "Each team pulled from different sources with different logic, leading to contradictory numbers and endless debate about whose data was correct.",
+        solution: "The SSAS cubes and SSRS reports gave everyone a single version of the truth with consistent calculations and definitions.",
+        learning: "The hardest part wasn't building the warehouse — it was getting four departments to agree on what 'revenue' means."
+      }
+    ],
+    walkthrough: [
+      { step: "Requirements & Source Analysis", desc: "Mapped all departmental reporting needs and profiled source systems for data quality and structure. Built a data dictionary documenting every field, transformation, and business rule.", screenshot: "Source System Map" },
+      { step: "Warehouse Schema Design", desc: "Designed a dimensional model with clearly separated fact and dimension tables. Implemented SCD Type 2 for historical tracking of slowly changing dimensions like employee roles and department structures.", screenshot: "Dimensional Model Diagram" },
+      { step: "ETL Pipeline Development", desc: "Built SSIS packages for extraction, transformation, and loading. Used SQL Server Agent for orchestration with error handling, logging, and automatic retry logic for transient failures.", screenshot: "SSIS Package Flow" },
+      { step: "SSAS Cube Development", desc: "Created tabular models with calculated measures, hierarchies, and KPIs. Partitioned processing for performance so that only changed data gets reprocessed each night.", screenshot: "SSAS Tabular Model" },
+      { step: "SSRS Reporting Layer", desc: "Designed parameterized reports with scheduled subscriptions for automated delivery to department leads. Reports rendered in under 3 seconds thanks to the pre-aggregated cube layer.", screenshot: "SSRS Report Gallery" }
+    ],
+    takeaways: [
+      { title: "Build the warehouse right the first time", desc: "Investing extra time in schema design saved months of rework later. The dimensional model has been extended twice since launch without requiring a redesign — because the foundation was solid." },
+      { title: "ETL performance is an architecture problem", desc: "Parallel execution and incremental loading were the biggest wins, not code-level optimization. Restructuring the job flow cut processing time by 25% with minimal code changes." },
+      { title: "A single source of truth changes the conversation", desc: "Once departments stopped arguing about whose numbers were right, they started talking about what to do about them. That shift — from 'is this data correct?' to 'what should we do?' — was the real win." }
+    ],
+    metricBoxes: [
+      { value: "25%", label: "Faster ETL" },
+      { value: "35%", label: "Faster Reports" },
+      { value: "40%", label: "Fewer Errors" },
+      { value: "4.5h", label: "Batch Runtime" }
+    ]
+  },
+  {
+    id: 7,
+    title: "Finance & Sales Reporting Overhaul",
+    industry: "Financial Services",
+    hook: "Reporting took 3–5 days. I got it down to same-day.",
+    metrics: "40% faster · $20K saved/yr · 30% less DB load",
+    overview: `The Finance and Sales teams at Colaberry were stuck in a painful reporting cycle — every month-end took 3–5 days of manual data pulls, validation, and formatting before leadership could see the numbers. By the time reports landed, decisions were already delayed. The finance team was working weekends just to hit deadlines, and the sales team couldn't tell whether they were on track until it was too late to course-correct. I embedded with both teams to rebuild the entire reporting workflow from the database up.`,
+    tools: ["Power BI", "SQL Server", "T-SQL", "Stored Procedures", "SQL Views", "SQL Server Agent"],
+    dataContext: "Transactional data from ERP and CRM systems. Finance data required multi-currency support and fiscal calendar alignment. Sales pipeline data needed deduplication and stage-mapping logic. Advanced techniques included indexed views for pre-aggregation, parameterized stored procedures, and automated data quality triggers.",
+    challenges: [
+      {
+        title: "Slow, unoptimized queries",
+        problem: "The existing 35+ reporting queries were written ad-hoc over years, with no indexing strategy and redundant joins that consumed excessive database resources.",
+        solution: "I rewrote them with proper indexing, CTEs, and set-based logic — reducing DB resource consumption by 30%.",
+        learning: "A systematic audit of execution plans revealed that 80% of the slowness came from just 5 queries."
+      },
+      {
+        title: "Data quality issues eroding trust",
+        problem: "Finance and Sales had different numbers for the same metrics. Leadership couldn't tell which team's report was correct.",
+        solution: "I built validation triggers and automated checks directly in the database layer, catching errors at the source before they propagated to reports.",
+        learning: "Fixing data quality at the source layer is always more effective than trying to clean it in the presentation layer."
+      },
+      {
+        title: "Leadership wouldn't act on the data",
+        problem: "Even with dashboards, leaders second-guessed the numbers because they'd been burned by inaccurate reports too many times.",
+        solution: "The data cleansing initiative improved accuracy by 20%, which was the tipping point for adoption — leadership started using the dashboards in weekly meetings.",
+        learning: "Trust in data is fragile: it takes months to build and one bad number to destroy."
+      }
+    ],
+    walkthrough: [
+      { step: "Audit & Baseline", desc: "Cataloged all 35+ production queries, documented execution plans, and identified the worst performers. Created a priority matrix based on frequency of use and resource consumption.", screenshot: "Query Audit Spreadsheet" },
+      { step: "SQL Optimization", desc: "Rewrote queries using CTEs, proper indexing, and set-based patterns. Created reusable views and stored procedures that standardized data access patterns across both teams.", screenshot: "Optimized Query Plans" },
+      { step: "Data Quality Framework", desc: "Built SQL triggers and constraints to enforce business rules at the database level. Automated validation checks via SQL Server Agent jobs that ran before every reporting cycle.", screenshot: "Data Quality Dashboard" },
+      { step: "Dashboard Rebuild", desc: "Designed Power BI dashboards connected to the optimized views. Focused on Finance month-end and Sales pipeline reporting with drill-through to transaction-level detail.", screenshot: "Finance Dashboard" },
+      { step: "Validation & Handoff", desc: "Ran parallel reports (old vs. new) for one full cycle to validate accuracy, then trained both teams on the new workflow. Documented everything for maintainability.", screenshot: "Parallel Validation Results" }
+    ],
+    takeaways: [
+      { title: "Fix the query before you fix the dashboard", desc: "Most reporting slowness was a database problem, not a BI problem. The 40% speed improvement came entirely from SQL optimization — the Power BI layer was already fast enough." },
+      { title: "Automated validation beats manual checking every time", desc: "SQL triggers caught issues the team had been missing for months. Once the data quality framework was in place, the team spent zero time on manual reconciliation." },
+      { title: "Trust is earned through accuracy, not aesthetics", desc: "The 20% accuracy improvement changed leadership behavior more than any visual redesign. A plain table with correct numbers beats a beautiful chart with wrong ones." }
+    ],
+    metricBoxes: [
+      { value: "40%", label: "Faster Reporting" },
+      { value: "$20K", label: "Saved Per Year" },
+      { value: "30%", label: "Less DB Load" },
+      { value: "20%", label: "Accuracy Improvement" }
+    ]
   }
-];
+];;
 
 // ── Skills Data ──
 const skillGroups = [
