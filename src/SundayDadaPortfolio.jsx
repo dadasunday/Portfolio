@@ -1045,7 +1045,11 @@ function ProjectPage({ project, navigate }) {
                   </div>
                   <div className={i % 2 === 1 ? "md:order-1" : ""}>
                     {w.image ? (
-                      <img src={`${import.meta.env.BASE_URL}${w.image}`} alt={w.screenshot} className="rounded-lg shadow-md w-full" style={{ aspectRatio: "16/10", objectFit: "cover" }} />
+                      w.image.endsWith('.svg') ? (
+                        <object data={`${import.meta.env.BASE_URL}${w.image}`} type="image/svg+xml" className="rounded-lg shadow-md w-full" style={{ minHeight: "400px" }} aria-label={w.screenshot} />
+                      ) : (
+                        <img src={`${import.meta.env.BASE_URL}${w.image}`} alt={w.screenshot} className="rounded-lg shadow-md w-full" style={{ aspectRatio: "16/10", objectFit: "cover" }} />
+                      )
                     ) : (
                       <Placeholder label={`Screenshot: ${w.screenshot}`} aspect="16/10" />
                     )}

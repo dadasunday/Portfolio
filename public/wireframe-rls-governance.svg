@@ -3,7 +3,7 @@
   <rect width="1200" height="700" fill="#1a1a2e" rx="8"/>
 
   <!-- Title -->
-  <text x="600" y="35" fill="#e0e0e0" font-size="18" font-weight="bold" text-anchor="middle">Row-Level Security & Governance</text>
+  <text x="600" y="35" fill="#e0e0e0" font-size="18" font-weight="bold" text-anchor="middle">Row-Level Security &amp; Governance</text>
   <text x="600" y="55" fill="#8892b0" font-size="12" text-anchor="middle">Dynamic RLS by organizational hierarchy | Workspace governance &amp; deployment pipelines</text>
 
   <!-- RLS Architecture - Left Section -->
@@ -50,7 +50,7 @@
 
   <!-- Workspace Governance - Right Section -->
   <rect x="610" y="80" width="560" height="340" fill="#16213e" rx="8"/>
-  <text x="630" y="108" fill="#e0e0e0" font-size="14" font-weight="bold">Workspace & Deployment Architecture</text>
+  <text x="630" y="108" fill="#e0e0e0" font-size="14" font-weight="bold">Workspace &amp; Deployment Architecture</text>
   <text x="630" y="125" fill="#8892b0" font-size="11">Structured workspaces with deployment pipelines</text>
 
   <!-- Deployment Pipeline -->
