@@ -357,7 +357,7 @@ const projects = [
     thumbnail: "Dashboard Screenshot.png",
     industry: "Travel & Hospitality",
     hook: "Leadership had top-line numbers but no profit visibility, no forecasting, and no drill-down by brand.",
-    metrics: "$35.3M revenue · 6 brands unified · 95% profit growth · Direct Lake",
+    metrics: "$61M revenue tracked · 6 brands unified · 95% profit growth · Direct Lake",
     overview: `Meridian — The Voyager Group operates a portfolio of six travel brands spanning luxury tours, private cruises, villas, jets, and corporate travel. Leadership had basic revenue dashboards, but no way to see profitability, no forecasting capability, and no ability to drill down by brand or compare performance across the portfolio. The existing BI environment ran on fragmented Power BI Desktop files connected directly to SQL Server — no single semantic model, no governance, and no scalability. I was brought in to do two things: first, redesign the executive reporting experience with a consolidated semantic model, 35+ DAX measures covering profitability and forecasting, and a 4-page drill-through dashboard. Second, migrate the entire data platform from SQL Server to Microsoft Fabric — standing up a Bronze/Silver/Gold medallion Lakehouse architecture with Dataflow Gen2, Direct Lake semantic models, deployment pipelines, and full governance. The result was an enterprise-grade analytics environment that gave leadership real-time profit visibility across all six brands for the first time.`,
     tools: ["Power BI (Desktop & Service)", "Microsoft Fabric", "Lakehouse (Bronze/Silver/Gold)", "Dataflow Gen2", "Direct Lake", "DAX (Advanced)", "Star Schema Design", "Row-Level Security", "Tabular Editor", "Deployment Pipelines", "SQL Server", "T-SQL"],
     dataContext: "Nine datasets across three fact tables (Bookings, Operating Expenses, and Forecast Targets), a Financial Assumptions reference table, four dimension tables (Date, Brand, Region, Sales Channel), and a KPI Definitions reference table. Data originated from SQL Server databases and Excel workbooks maintained by the finance team. The migration path ran SQL Server → Fabric Lakehouse (Bronze for raw landing, Silver for cleansed/conformed data, Gold for business-ready tables) → Direct Lake semantic models → Power BI reports.",
@@ -396,7 +396,7 @@ const projects = [
       { title: "The dashboard that executives actually use is the one with a What-If slider", desc: "Historical reporting tells you what happened. Forecasting tells you what might happen. But a What-If parameter that lets leadership adjust growth assumptions and instantly see the profit impact — that's what turns a dashboard into a tool they open every morning." }
     ],
     metricBoxes: [
-      { value: "$35.3M", label: "Revenue Tracked" },
+      { value: "$61M", label: "Revenue Tracked" },
       { value: "6", label: "Brands Unified" },
       { value: "95%", label: "Profit Growth Surfaced" },
       { value: "35+", label: "DAX Measures" },
