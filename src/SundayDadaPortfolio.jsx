@@ -329,7 +329,7 @@ const certifications = [
   { name: "Microsoft Certified: Fabric Analytics Engineer Associate (DP-600)", badge: "Microsoft Certified Associate.png", link: "https://learn.microsoft.com/api/credentials/share/en-us/SundayTemitopeDada-5410/DBCEEEE2BAB4B9CB?sharingId=CE161EE0DA777E04" },
   { name: "Microsoft Certified: Power BI Data Analyst Associate (PL-300)", badge: "Microsoft Certified Associate.png", link: "https://learn.microsoft.com/api/credentials/share/en-us/SundayTemitopeDada-5410/72F5023E441E56D6?sharingId=CE161EE0DA777E04" },
   { name: "Microsoft Certified: Power Platform Functional Consultant Associate (PL-200)", badge: "Microsoft Certified Associate.png", link: "https://learn.microsoft.com/api/credentials/share/en-us/SundayTemitopeDada-5410/96DD8939B1C22699?sharingId=CE161EE0DA777E04" },
-  { name: "Microsoft Applied Skills: Implement a Data Warehouse in Microsoft Fabric", badge: "Microsoft Applied Skills-Implement a data warehouse in Microsoft Fabric.png" }
+  { name: "Microsoft Applied Skills: Implement a Data Warehouse in Microsoft Fabric", badge: "Microsoft Applied Skills-Implement a data warehouse in Microsoft Fabric.png", link: "https://learn.microsoft.com/api/credentials/share/en-us/SundayTemitopeDada-5410/8BE8E92CCBC78811?sharingId=CE161EE0DA777E04" }
 ];
 
 
