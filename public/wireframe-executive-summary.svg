@@ -1,0 +1,198 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" font-family="Segoe UI, Arial, sans-serif">
+  <!-- Background -->
+  <rect width="1200" height="750" fill="#1a1a2e" rx="8"/>
+
+  <!-- Header Bar -->
+  <rect x="0" y="0" width="1200" height="50" fill="#16213e" rx="8"/>
+  <text x="20" y="32" fill="#e0e0e0" font-size="16" font-weight="bold">Executive Analytics Suite</text>
+  <text x="350" y="32" fill="#8892b0" font-size="13">Overview</text>
+  <text x="450" y="32" fill="#8892b0" font-size="13">Revenue</text>
+  <text x="540" y="32" fill="#8892b0" font-size="13">Pipeline</text>
+  <text x="630" y="32" fill="#8892b0" font-size="13">Operations</text>
+  <rect x="340" y="40" width="60" height="3" fill="#64ffda" rx="1"/>
+
+  <!-- Filter Bar -->
+  <rect x="20" y="65" width="1160" height="40" fill="#16213e" rx="6"/>
+  <rect x="30" y="73" width="140" height="24" fill="#0a192f" rx="4" stroke="#2a3a5e" stroke-width="1"/>
+  <text x="45" y="90" fill="#8892b0" font-size="11">Business Unit ▾</text>
+  <rect x="180" y="73" width="140" height="24" fill="#0a192f" rx="4" stroke="#2a3a5e" stroke-width="1"/>
+  <text x="195" y="90" fill="#8892b0" font-size="11">Date Range ▾</text>
+  <rect x="330" y="73" width="140" height="24" fill="#0a192f" rx="4" stroke="#2a3a5e" stroke-width="1"/>
+  <text x="345" y="90" fill="#8892b0" font-size="11">Region ▾</text>
+  <rect x="480" y="73" width="140" height="24" fill="#0a192f" rx="4" stroke="#2a3a5e" stroke-width="1"/>
+  <text x="495" y="90" fill="#8892b0" font-size="11">Department ▾</text>
+
+  <!-- KPI Cards Row -->
+  <!-- Card 1 -->
+  <rect x="20" y="120" width="220" height="95" fill="#16213e" rx="6"/>
+  <text x="35" y="148" fill="#8892b0" font-size="11">TOTAL REVENUE</text>
+  <text x="35" y="180" fill="#64ffda" font-size="28" font-weight="bold">$X.XM</text>
+  <text x="35" y="200" fill="#4caf50" font-size="12">▲ XX% vs LY</text>
+
+  <!-- Card 2 -->
+  <rect x="260" y="120" width="220" height="95" fill="#16213e" rx="6"/>
+  <text x="275" y="148" fill="#8892b0" font-size="11">PIPELINE VALUE</text>
+  <text x="275" y="180" fill="#64ffda" font-size="28" font-weight="bold">$X.XM</text>
+  <text x="275" y="200" fill="#4caf50" font-size="12">▲ XX% vs target</text>
+
+  <!-- Card 3 -->
+  <rect x="500" y="120" width="220" height="95" fill="#16213e" rx="6"/>
+  <text x="515" y="148" fill="#8892b0" font-size="11">ACTIVE USERS</text>
+  <text x="515" y="180" fill="#64ffda" font-size="28" font-weight="bold">300+</text>
+  <text x="515" y="200" fill="#8892b0" font-size="12">across 4 business units</text>
+
+  <!-- Card 4 -->
+  <rect x="740" y="120" width="220" height="95" fill="#16213e" rx="6"/>
+  <text x="755" y="148" fill="#8892b0" font-size="11">QUERY RESPONSE</text>
+  <text x="755" y="180" fill="#64ffda" font-size="28" font-weight="bold">&lt; 2s</text>
+  <text x="755" y="200" fill="#4caf50" font-size="12">50% faster than before</text>
+
+  <!-- Card 5 -->
+  <rect x="980" y="120" width="200" height="95" fill="#16213e" rx="6"/>
+  <text x="995" y="148" fill="#8892b0" font-size="11">DATA FRESHNESS</text>
+  <text x="995" y="180" fill="#64ffda" font-size="28" font-weight="bold">Live</text>
+  <text x="995" y="200" fill="#8892b0" font-size="12">incremental refresh</text>
+
+  <!-- Revenue Trend Chart -->
+  <rect x="20" y="230" width="570" height="250" fill="#16213e" rx="6"/>
+  <text x="35" y="255" fill="#e0e0e0" font-size="14" font-weight="bold">Revenue Trend by Business Unit</text>
+  <text x="35" y="272" fill="#8892b0" font-size="11">Monthly | Drill-through enabled</text>
+  <!-- Chart grid lines -->
+  <line x1="60" y1="290" x2="570" y2="290" stroke="#2a3a5e" stroke-width="0.5"/>
+  <line x1="60" y1="330" x2="570" y2="330" stroke="#2a3a5e" stroke-width="0.5"/>
+  <line x1="60" y1="370" x2="570" y2="370" stroke="#2a3a5e" stroke-width="0.5"/>
+  <line x1="60" y1="410" x2="570" y2="410" stroke="#2a3a5e" stroke-width="0.5"/>
+  <line x1="60" y1="450" x2="570" y2="450" stroke="#2a3a5e" stroke-width="0.5"/>
+  <!-- Trend lines -->
+  <polyline points="60,420 110,400 160,410 210,380 260,360 310,340 360,350 410,320 460,300 510,290 560,295" fill="none" stroke="#64ffda" stroke-width="2.5"/>
+  <polyline points="60,440 110,430 160,435 210,420 260,415 310,400 360,410 410,395 460,385 510,380 560,375" fill="none" stroke="#bb86fc" stroke-width="2.5"/>
+  <polyline points="60,450 110,445 160,448 210,440 260,435 310,430 360,432 410,425 460,418 510,415 560,410" fill="none" stroke="#ff7043" stroke-width="2.5"/>
+  <polyline points="60,455 110,452 160,453 210,448 260,445 310,440 360,442 410,438 460,432 510,428 560,425" fill="none" stroke="#ffd54f" stroke-width="2.5"/>
+  <!-- Legend -->
+  <rect x="380" y="250" width="10" height="10" fill="#64ffda" rx="2"/>
+  <text x="395" y="259" fill="#8892b0" font-size="10">Unit A</text>
+  <rect x="440" y="250" width="10" height="10" fill="#bb86fc" rx="2"/>
+  <text x="455" y="259" fill="#8892b0" font-size="10">Unit B</text>
+  <rect x="500" y="250" width="10" height="10" fill="#ff7043" rx="2"/>
+  <text x="515" y="259" fill="#8892b0" font-size="10">Unit C</text>
+  <rect x="555" y="250" width="10" height="10" fill="#ffd54f" rx="2"/>
+  <text x="570" y="259" fill="#8892b0" font-size="10">Unit D</text>
+
+  <!-- Pipeline Breakdown -->
+  <rect x="610" y="230" width="570" height="250" fill="#16213e" rx="6"/>
+  <text x="625" y="255" fill="#e0e0e0" font-size="14" font-weight="bold">Pipeline by Stage</text>
+  <text x="625" y="272" fill="#8892b0" font-size="11">Click any stage to drill through</text>
+  <!-- Horizontal bar chart -->
+  <text x="625" y="305" fill="#8892b0" font-size="11">Prospect</text>
+  <rect x="720" y="292" width="350" height="20" fill="#0a192f" rx="3"/>
+  <rect x="720" y="292" width="320" height="20" fill="#64ffda" rx="3" opacity="0.8"/>
+
+  <text x="625" y="340" fill="#8892b0" font-size="11">Qualified</text>
+  <rect x="720" y="327" width="350" height="20" fill="#0a192f" rx="3"/>
+  <rect x="720" y="327" width="260" height="20" fill="#64ffda" rx="3" opacity="0.65"/>
+
+  <text x="625" y="375" fill="#8892b0" font-size="11">Proposal</text>
+  <rect x="720" y="362" width="350" height="20" fill="#0a192f" rx="3"/>
+  <rect x="720" y="362" width="180" height="20" fill="#bb86fc" rx="3" opacity="0.7"/>
+
+  <text x="625" y="410" fill="#8892b0" font-size="11">Negotiation</text>
+  <rect x="720" y="397" width="350" height="20" fill="#0a192f" rx="3"/>
+  <rect x="720" y="397" width="120" height="20" fill="#ff7043" rx="3" opacity="0.7"/>
+
+  <text x="625" y="445" fill="#8892b0" font-size="11">Closed Won</text>
+  <rect x="720" y="432" width="350" height="20" fill="#0a192f" rx="3"/>
+  <rect x="720" y="432" width="90" height="20" fill="#4caf50" rx="3" opacity="0.8"/>
+
+  <!-- Department Comparison -->
+  <rect x="20" y="495" width="380" height="240" fill="#16213e" rx="6"/>
+  <text x="35" y="520" fill="#e0e0e0" font-size="14" font-weight="bold">KPI Comparison by Department</text>
+  <text x="35" y="537" fill="#8892b0" font-size="11">Standardized definitions across all units</text>
+  <!-- Table header -->
+  <rect x="35" y="550" width="350" height="25" fill="#0a192f" rx="3"/>
+  <text x="45" y="567" fill="#8892b0" font-size="10" font-weight="bold">DEPARTMENT</text>
+  <text x="170" y="567" fill="#8892b0" font-size="10" font-weight="bold">REVENUE</text>
+  <text x="255" y="567" fill="#8892b0" font-size="10" font-weight="bold">MARGIN</text>
+  <text x="330" y="567" fill="#8892b0" font-size="10" font-weight="bold">TARGET</text>
+  <!-- Table rows -->
+  <text x="45" y="595" fill="#e0e0e0" font-size="11">Sales</text>
+  <rect x="170" y="583" width="60" height="16" fill="#0a192f" rx="2"/>
+  <rect x="255" y="583" width="45" height="16" fill="#0a192f" rx="2"/>
+  <rect x="330" y="583" width="40" height="16" fill="#4caf50" rx="2" opacity="0.3"/>
+  <text x="335" y="595" fill="#4caf50" font-size="10">On Track</text>
+
+  <text x="45" y="620" fill="#e0e0e0" font-size="11">Marketing</text>
+  <rect x="170" y="608" width="60" height="16" fill="#0a192f" rx="2"/>
+  <rect x="255" y="608" width="45" height="16" fill="#0a192f" rx="2"/>
+  <rect x="330" y="608" width="40" height="16" fill="#4caf50" rx="2" opacity="0.3"/>
+  <text x="335" y="620" fill="#4caf50" font-size="10">On Track</text>
+
+  <text x="45" y="645" fill="#e0e0e0" font-size="11">Operations</text>
+  <rect x="170" y="633" width="60" height="16" fill="#0a192f" rx="2"/>
+  <rect x="255" y="633" width="45" height="16" fill="#0a192f" rx="2"/>
+  <rect x="330" y="633" width="40" height="16" fill="#ff7043" rx="2" opacity="0.3"/>
+  <text x="335" y="645" fill="#ff7043" font-size="10">At Risk</text>
+
+  <text x="45" y="670" fill="#e0e0e0" font-size="11">Finance</text>
+  <rect x="170" y="658" width="60" height="16" fill="#0a192f" rx="2"/>
+  <rect x="255" y="658" width="45" height="16" fill="#0a192f" rx="2"/>
+  <rect x="330" y="658" width="40" height="16" fill="#4caf50" rx="2" opacity="0.3"/>
+  <text x="335" y="670" fill="#4caf50" font-size="10">On Track</text>
+
+  <!-- RLS Indicator -->
+  <rect x="420" y="495" width="370" height="240" fill="#16213e" rx="6"/>
+  <text x="435" y="520" fill="#e0e0e0" font-size="14" font-weight="bold">User Access & RLS</text>
+  <text x="435" y="537" fill="#8892b0" font-size="11">Dynamic row-level security by org hierarchy</text>
+  <!-- Hierarchy visual -->
+  <rect x="520" y="560" width="160" height="30" fill="#64ffda" rx="4" opacity="0.2"/>
+  <text x="555" y="580" fill="#64ffda" font-size="11">C-Suite (All Data)</text>
+  <line x1="600" y1="590" x2="530" y2="610" stroke="#2a3a5e" stroke-width="1.5"/>
+  <line x1="600" y1="590" x2="670" y2="610" stroke="#2a3a5e" stroke-width="1.5"/>
+  <rect x="460" y="610" width="140" height="26" fill="#bb86fc" rx="4" opacity="0.2"/>
+  <text x="478" y="628" fill="#bb86fc" font-size="10">VP (Division Data)</text>
+  <rect x="610" y="610" width="140" height="26" fill="#bb86fc" rx="4" opacity="0.2"/>
+  <text x="625" y="628" fill="#bb86fc" font-size="10">VP (Division Data)</text>
+  <line x1="530" y1="636" x2="490" y2="655" stroke="#2a3a5e" stroke-width="1"/>
+  <line x1="530" y1="636" x2="570" y2="655" stroke="#2a3a5e" stroke-width="1"/>
+  <line x1="680" y1="636" x2="640" y2="655" stroke="#2a3a5e" stroke-width="1"/>
+  <line x1="680" y1="636" x2="720" y2="655" stroke="#2a3a5e" stroke-width="1"/>
+  <rect x="455" y="655" width="70" height="22" fill="#ff7043" rx="3" opacity="0.2"/>
+  <text x="463" y="670" fill="#ff7043" font-size="9">Team Lead</text>
+  <rect x="535" y="655" width="70" height="22" fill="#ff7043" rx="3" opacity="0.2"/>
+  <text x="543" y="670" fill="#ff7043" font-size="9">Team Lead</text>
+  <rect x="615" y="655" width="70" height="22" fill="#ff7043" rx="3" opacity="0.2"/>
+  <text x="623" y="670" fill="#ff7043" font-size="9">Team Lead</text>
+  <rect x="695" y="655" width="70" height="22" fill="#ff7043" rx="3" opacity="0.2"/>
+  <text x="703" y="670" fill="#ff7043" font-size="9">Team Lead</text>
+
+  <!-- Performance Box -->
+  <rect x="810" y="495" width="370" height="240" fill="#16213e" rx="6"/>
+  <text x="825" y="520" fill="#e0e0e0" font-size="14" font-weight="bold">Performance Metrics</text>
+  <text x="825" y="537" fill="#8892b0" font-size="11">After DAX &amp; model optimization</text>
+  <!-- Before/After -->
+  <rect x="830" y="555" width="150" height="80" fill="#0a192f" rx="4" stroke="#ff7043" stroke-width="1" opacity="0.8"/>
+  <text x="875" y="575" fill="#ff7043" font-size="10" text-anchor="middle" font-weight="bold">BEFORE</text>
+  <text x="905" y="610" fill="#ff7043" font-size="28" font-weight="bold">10s</text>
+  <text x="875" y="628" fill="#8892b0" font-size="9" text-anchor="middle">load time</text>
+
+  <text x="1000" y="600" fill="#8892b0" font-size="20">→</text>
+
+  <rect x="1020" y="555" width="150" height="80" fill="#0a192f" rx="4" stroke="#4caf50" stroke-width="1" opacity="0.8"/>
+  <text x="1065" y="575" fill="#4caf50" font-size="10" text-anchor="middle" font-weight="bold">AFTER</text>
+  <text x="1085" y="610" fill="#4caf50" font-size="28" font-weight="bold">&lt;2s</text>
+  <text x="1065" y="628" fill="#8892b0" font-size="9" text-anchor="middle">load time</text>
+
+  <!-- Optimization list -->
+  <text x="835" y="660" fill="#64ffda" font-size="10">✓ Iterator → Aggregator refactor</text>
+  <text x="835" y="678" fill="#64ffda" font-size="10">✓ VAR caching (4x redundant calc)</text>
+  <text x="835" y="696" fill="#64ffda" font-size="10">✓ Cardinality reduction (1.4M → 365)</text>
+  <text x="835" y="714" fill="#64ffda" font-size="10">✓ Star schema + model cleanup</text>
+
+  <!-- Annotations -->
+  <!-- Drill-through annotation -->
+  <rect x="280" y="460" width="180" height="24" fill="#64ffda" rx="12" opacity="0.15"/>
+  <text x="300" y="476" fill="#64ffda" font-size="10" font-weight="bold">↕ Drill-through to detail pages</text>
+
+  <!-- Wireframe label -->
+  <rect x="0" y="738" width="1200" height="12" fill="#0a192f"/>
+  <text x="600" y="748" fill="#8892b0" font-size="9" text-anchor="middle">WIREFRAME MOCKUP — Executive Analytics Suite | Layout &amp; interaction design (data redacted under NDA)</text>
+</svg>

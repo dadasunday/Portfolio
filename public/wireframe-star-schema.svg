@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" font-family="Segoe UI, Arial, sans-serif">
+  <!-- Background -->
+  <rect width="1200" height="700" fill="#1a1a2e" rx="8"/>
+
+  <!-- Title -->
+  <text x="600" y="35" fill="#e0e0e0" font-size="18" font-weight="bold" text-anchor="middle">Semantic Model — Star Schema Design</text>
+  <text x="600" y="55" fill="#8892b0" font-size="12" text-anchor="middle">Unified model serving 300+ users across 4 business units</text>
+
+  <!-- FACT TABLE - Center -->
+  <rect x="420" y="230" width="360" height="240" fill="#16213e" rx="8" stroke="#64ffda" stroke-width="2"/>
+  <rect x="420" y="230" width="360" height="35" fill="#64ffda" rx="8" opacity="0.2"/>
+  <rect x="420" y="257" width="360" height="8" fill="#16213e"/>
+  <text x="600" y="253" fill="#64ffda" font-size="14" font-weight="bold" text-anchor="middle">Fact_Transactions</text>
+  <text x="435" y="285" fill="#ffd54f" font-size="11">🔑 TransactionKey</text>
+  <text x="435" y="305" fill="#8892b0" font-size="11">FK DateKey</text>
+  <text x="435" y="325" fill="#8892b0" font-size="11">FK DepartmentKey</text>
+  <text x="435" y="345" fill="#8892b0" font-size="11">FK RegionKey</text>
+  <text x="435" y="365" fill="#8892b0" font-size="11">FK CustomerKey</text>
+  <text x="600" y="285" fill="#e0e0e0" font-size="11">Revenue</text>
+  <text x="600" y="305" fill="#e0e0e0" font-size="11">Cost</text>
+  <text x="600" y="325" fill="#e0e0e0" font-size="11">Margin</text>
+  <text x="600" y="345" fill="#e0e0e0" font-size="11">Pipeline_Value</text>
+  <text x="600" y="365" fill="#e0e0e0" font-size="11">Stage</text>
+  <text x="600" y="395" fill="#8892b0" font-size="10" font-style="italic">~2M rows</text>
+
+  <!-- DIMENSION: Date - Top Left -->
+  <rect x="50" y="80" width="250" height="180" fill="#16213e" rx="8" stroke="#bb86fc" stroke-width="1.5"/>
+  <rect x="50" y="80" width="250" height="30" fill="#bb86fc" rx="8" opacity="0.2"/>
+  <rect x="50" y="103" width="250" height="7" fill="#16213e"/>
+  <text x="175" y="100" fill="#bb86fc" font-size="13" font-weight="bold" text-anchor="middle">Dim_Date</text>
+  <text x="65" y="130" fill="#ffd54f" font-size="11">🔑 DateKey</text>
+  <text x="65" y="150" fill="#e0e0e0" font-size="11">Date</text>
+  <text x="65" y="170" fill="#e0e0e0" font-size="11">Month, Quarter, Year</text>
+  <text x="65" y="190" fill="#e0e0e0" font-size="11">FiscalMonth, FiscalQuarter</text>
+  <text x="65" y="210" fill="#e0e0e0" font-size="11">IsCurrentMonth, IsYTD</text>
+  <text x="65" y="235" fill="#8892b0" font-size="10" font-style="italic">Shared date table</text>
+  <!-- Connection line -->
+  <line x1="300" y1="200" x2="420" y2="280" stroke="#bb86fc" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="350" y="230" fill="#bb86fc" font-size="9">1:*</text>
+
+  <!-- DIMENSION: Department - Top Right -->
+  <rect x="900" y="80" width="250" height="180" fill="#16213e" rx="8" stroke="#bb86fc" stroke-width="1.5"/>
+  <rect x="900" y="80" width="250" height="30" fill="#bb86fc" rx="8" opacity="0.2"/>
+  <rect x="900" y="103" width="250" height="7" fill="#16213e"/>
+  <text x="1025" y="100" fill="#bb86fc" font-size="13" font-weight="bold" text-anchor="middle">Dim_Department</text>
+  <text x="915" y="130" fill="#ffd54f" font-size="11">🔑 DepartmentKey</text>
+  <text x="915" y="150" fill="#e0e0e0" font-size="11">DepartmentName</text>
+  <text x="915" y="170" fill="#e0e0e0" font-size="11">BusinessUnit</text>
+  <text x="915" y="190" fill="#e0e0e0" font-size="11">Division</text>
+  <text x="915" y="210" fill="#e0e0e0" font-size="11">CostCenter</text>
+  <text x="915" y="235" fill="#8892b0" font-size="10" font-style="italic">RLS applied here</text>
+  <!-- Connection line -->
+  <line x1="900" y1="200" x2="780" y2="300" stroke="#bb86fc" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="850" y="240" fill="#bb86fc" font-size="9">1:*</text>
+
+  <!-- DIMENSION: Region - Bottom Left -->
+  <rect x="50" y="440" width="250" height="170" fill="#16213e" rx="8" stroke="#bb86fc" stroke-width="1.5"/>
+  <rect x="50" y="440" width="250" height="30" fill="#bb86fc" rx="8" opacity="0.2"/>
+  <rect x="50" y="463" width="250" height="7" fill="#16213e"/>
+  <text x="175" y="460" fill="#bb86fc" font-size="13" font-weight="bold" text-anchor="middle">Dim_Region</text>
+  <text x="65" y="490" fill="#ffd54f" font-size="11">🔑 RegionKey</text>
+  <text x="65" y="510" fill="#e0e0e0" font-size="11">RegionName</text>
+  <text x="65" y="530" fill="#e0e0e0" font-size="11">Country</text>
+  <text x="65" y="550" fill="#e0e0e0" font-size="11">State</text>
+  <text x="65" y="570" fill="#e0e0e0" font-size="11">City</text>
+  <!-- Connection line -->
+  <line x1="300" y1="490" x2="420" y2="380" stroke="#bb86fc" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="350" y="445" fill="#bb86fc" font-size="9">1:*</text>
+
+  <!-- DIMENSION: Customer - Bottom Right -->
+  <rect x="900" y="440" width="250" height="170" fill="#16213e" rx="8" stroke="#bb86fc" stroke-width="1.5"/>
+  <rect x="900" y="440" width="250" height="30" fill="#bb86fc" rx="8" opacity="0.2"/>
+  <rect x="900" y="463" width="250" height="7" fill="#16213e"/>
+  <text x="1025" y="460" fill="#bb86fc" font-size="13" font-weight="bold" text-anchor="middle">Dim_Customer</text>
+  <text x="915" y="490" fill="#ffd54f" font-size="11">🔑 CustomerKey</text>
+  <text x="915" y="510" fill="#e0e0e0" font-size="11">CustomerName</text>
+  <text x="915" y="530" fill="#e0e0e0" font-size="11">Segment</text>
+  <text x="915" y="550" fill="#e0e0e0" font-size="11">Industry</text>
+  <text x="915" y="570" fill="#e0e0e0" font-size="11">AccountManager</text>
+  <!-- Connection line -->
+  <line x1="900" y1="490" x2="780" y2="380" stroke="#bb86fc" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="850" y="445" fill="#bb86fc" font-size="9">1:*</text>
+
+  <!-- Measures Table -->
+  <rect x="440" y="510" width="320" height="140" fill="#16213e" rx="8" stroke="#ffd54f" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <rect x="440" y="510" width="320" height="30" fill="#ffd54f" rx="8" opacity="0.15"/>
+  <rect x="440" y="533" width="320" height="7" fill="#16213e"/>
+  <text x="600" y="530" fill="#ffd54f" font-size="13" font-weight="bold" text-anchor="middle">_Measures (DAX Library)</text>
+  <text x="455" y="560" fill="#64ffda" font-size="10">📁 Core KPIs</text>
+  <text x="455" y="578" fill="#64ffda" font-size="10">📁 Time Intelligence</text>
+  <text x="455" y="596" fill="#64ffda" font-size="10">📁 Pipeline Analytics</text>
+  <text x="600" y="560" fill="#64ffda" font-size="10">📁 Profitability</text>
+  <text x="600" y="578" fill="#64ffda" font-size="10">📁 Forecasting</text>
+  <text x="600" y="596" fill="#64ffda" font-size="10">📁 Variance Analysis</text>
+  <text x="600" y="630" fill="#8892b0" font-size="10" text-anchor="middle" font-style="italic">35+ measures organized in display folders</text>
+
+  <!-- Annotations -->
+  <!-- Key design decisions -->
+  <rect x="370" y="135" width="200" height="55" fill="#64ffda" rx="6" opacity="0.08"/>
+  <text x="385" y="155" fill="#64ffda" font-size="10" font-weight="bold">Design Decisions:</text>
+  <text x="385" y="170" fill="#64ffda" font-size="9">• Single-direction relationships only</text>
+  <text x="385" y="183" fill="#64ffda" font-size="9">• No bidirectional filtering</text>
+
+  <!-- Wireframe label -->
+  <rect x="0" y="688" width="1200" height="12" fill="#0a192f"/>
+  <text x="600" y="698" fill="#8892b0" font-size="9" text-anchor="middle">WIREFRAME MOCKUP — Star Schema Design | Semantic model architecture (data redacted under NDA)</text>
+</svg>
