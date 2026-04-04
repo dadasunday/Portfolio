@@ -628,7 +628,7 @@ function HomePage({ navigate, scrollToSection, sectionRefs }) {
               <StatCard value="7+" label="Years of Experience" />
               <StatCard value="6" label="Industries Served" />
               <StatCard value="$70M+" label="Data Modeled & Analyzed" />
-              <StatCard value="4" label="Microsoft Credentials" />
+              <StatCard value="300+" label="Dashboard Users Served" />
             </div>
           </Reveal>
         </div>
