@@ -108,6 +108,7 @@ const projects = [
   {
     id: 1,
     title: "Executive Analytics Suite",
+    thumbnail: "wireframe-executive-summary.svg",
     industry: "Cross-Industry",
     hook: "How I built a BI environment that 300+ users — including C-suite — actually trust.",
     metrics: "Sub-2s queries · 50% faster · $8M+ impact",
@@ -791,7 +792,11 @@ function HomePage({ navigate, scrollToSection, sectionRefs }) {
                   aria-label={`Read case study: ${p.title}`}
                 >
                   {p.thumbnail ? (
-                    <img src={`${import.meta.env.BASE_URL}${p.thumbnail}`} alt={`${p.title} screenshot`} className="w-full card-img" style={{ aspectRatio: "16/10", objectFit: "cover" }} />
+                    p.thumbnail.endsWith('.svg') ? (
+                      <object data={`${import.meta.env.BASE_URL}${p.thumbnail}`} type="image/svg+xml" className="w-full card-img" style={{ aspectRatio: "16/10", pointerEvents: "none" }} aria-label={`${p.title} screenshot`} />
+                    ) : (
+                      <img src={`${import.meta.env.BASE_URL}${p.thumbnail}`} alt={`${p.title} screenshot`} className="w-full card-img" style={{ aspectRatio: "16/10", objectFit: "cover" }} />
+                    )
                   ) : (
                     <Placeholder label="Dashboard Screenshot" aspect="16/10" />
                   )}
