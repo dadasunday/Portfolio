@@ -122,10 +122,10 @@ const projects = [
         learning: "Getting stakeholders to agree on definitions upfront saved weeks of rework downstream."
       },
       {
-        title: "Query performance at scale",
-        problem: "Initial models had 8–10 second load times, making dashboards unusable for the 300+ users who needed them daily.",
-        solution: "By refactoring from snowflake to optimized star schemas, removing unnecessary columns, and implementing aggregation tables, I brought response times under 2 seconds for 300+ concurrent users.",
-        learning: "The biggest performance gains came from model architecture changes, not DAX optimization."
+        title: "Dashboard took 10 seconds to load — leadership stopped using it",
+        problem: "A critical dashboard was taking 10 seconds to load. Leadership abandoned it entirely, and an $8M pipeline started being managed on gut feeling instead of data. The root cause wasn't the data or the visuals — it was a single DAX measure doing a full table scan on 2 million rows every refresh, using FILTER() + EARLIER() which forced row-by-row evaluation on the slow, single-threaded Formula Engine instead of the fast, parallel Storage Engine.",
+        solution: "I used DAX Studio + Performance Analyzer to pinpoint the bottleneck, then ran VertiPaq Analyzer and found a Notes column with 500K unique values eating 200MB of memory — removed it. Replaced iterators with aggregators (SUMX loops to simple SUM where row context wasn't needed). Used VAR caching to eliminate a measure calculating the same value 4 times. Reduced cardinality by rounding a datetime column from 1.4M unique timestamps to 365 date-only values, improving compression by 80%. Finally, cleaned the model — removed bidirectional relationships, collapsed snowflake to star schema, and hid 30+ unused columns. Result: 10 seconds down to 1.5 seconds.",
+        learning: "Anyone can build a dashboard, but if it takes more than 3 seconds to load, nobody will use it. Performance isn't a nice-to-have — it's the difference between a dashboard that drives decisions and one that collects dust. The key insight: understand which DAX engine your measures run on. The moment you force everything into the Formula Engine, you've lost."
       },
       {
         title: "Self-service adoption was low",
@@ -140,10 +140,10 @@ const projects = [
       { step: "DAX Development & Optimization", desc: "Wrote measures for all core KPIs using best practices (variables, CALCULATE patterns, avoiding nested iterators). Tested with DAX Studio and Performance Analyzer.", screenshot: "DAX Measures in Power BI" },
       { step: "Row-Level Security & Governance", desc: "Implemented dynamic RLS tied to organizational hierarchy so each user sees only their scope. Set up deployment pipelines and workspace governance.", screenshot: "RLS Configuration" },
       { step: "Dashboard Design & User Enablement", desc: "Built executive summary pages with drill-through to departmental detail. Created reusable templates and documentation to enable self-service.", screenshot: "Executive Dashboard" },
-      { step: "Performance Tuning & Deployment", desc: "Used Performance Analyzer and DAX Studio to identify bottlenecks. Implemented incremental refresh, reduced model size by 40%, and achieved sub-2-second response times.", screenshot: "Performance Analyzer Results" }
+      { step: "Performance Tuning & Deployment", desc: "Used DAX Studio, Performance Analyzer, and VertiPaq Analyzer to diagnose a 10-second load time. Removed high-cardinality columns, replaced iterators with aggregators, applied VAR caching, reduced datetime cardinality by 99.97%, collapsed snowflake to star schema, and achieved 1.5-second response times — an 85% improvement.", screenshot: "Performance Analyzer Results" }
     ],
     takeaways: [
-      { title: "Model design is everything", desc: "80% of the performance gains came from getting the schema right, not from fancy DAX. Investing an extra week in model design saved months of optimization work and delivered a system that scaled effortlessly." },
+      { title: "Know which engine your DAX runs on", desc: "The biggest win came from understanding that DAX runs on two engines — the fast, parallel Storage Engine and the slow, single-threaded Formula Engine. One FILTER() + EARLIER() pattern forced 2 million rows through the slow engine. Replacing it, combined with cardinality reduction and model cleanup, took load times from 10 seconds to 1.5 seconds." },
       { title: "Governance enables trust", desc: "RLS and consistent definitions gave leadership the confidence to act on the data. When executives know the numbers are real, decisions happen faster — and that's the whole point of BI." },
       { title: "Self-service requires design, not just access", desc: "Intuitive navigation and documentation mattered more than raw features. The teams that adopted self-service fastest were the ones with the clearest drill-through paths and the best tooltips." }
     ],
