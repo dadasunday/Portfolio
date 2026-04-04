@@ -20,7 +20,10 @@
       "Bash(ls \"c:/Users/Dell/AppData/Local/Programs/Python/\"*)",
       "Bash(\"c:/Users/Dell/AppData/Local/Programs/Python/Python313/python.exe\" -c \"import docx; print\\('python-docx available'\\)\")",
       "Bash(\"c:/Users/Dell/AppData/Local/Programs/Python/Python313/python.exe\" -m pip install python-docx)",
-      "Bash(\"c:/Users/Dell/AppData/Local/Programs/Python/Python313/python.exe\")"
+      "Bash(\"c:/Users/Dell/AppData/Local/Programs/Python/Python313/python.exe\")",
+      "Bash(timeout 5 cat \"C:\\\\Users\\\\Dell\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-Dell-OneDrive--CV-Portfolio-Website\\\\54be6c11-10b2-4491-a7d0-cb06b150ead3\\\\tasks\\\\b2k3a5j5t.output\")",
+      "Bash(npx vite:*)",
+      "Bash(grep -n '&' wireframe-*.svg)"
     ],
     "additionalDirectories": [
       "c:\\Users\\Dell\\OneDrive\\_CV\\Portfolio Website\\.github"

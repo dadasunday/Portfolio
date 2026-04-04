@@ -3,7 +3,7 @@
   <rect width="1200" height="700" fill="#1a1a2e" rx="8"/>
 
   <!-- Title -->
-  <text x="600" y="35" fill="#e0e0e0" font-size="18" font-weight="bold" text-anchor="middle">DAX Development & Optimization</text>
+  <text x="600" y="35" fill="#e0e0e0" font-size="18" font-weight="bold" text-anchor="middle">DAX Development &amp; Optimization</text>
   <text x="600" y="55" fill="#8892b0" font-size="12" text-anchor="middle">35+ measures organized in display folders | Best practices applied</text>
 
   <!-- Measure Library - Left Panel (Folder Tree) -->

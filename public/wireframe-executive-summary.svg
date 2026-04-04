@@ -140,7 +140,7 @@
 
   <!-- RLS Indicator -->
   <rect x="420" y="495" width="370" height="240" fill="#16213e" rx="6"/>
-  <text x="435" y="520" fill="#e0e0e0" font-size="14" font-weight="bold">User Access & RLS</text>
+  <text x="435" y="520" fill="#e0e0e0" font-size="14" font-weight="bold">User Access &amp; RLS</text>
   <text x="435" y="537" fill="#8892b0" font-size="11">Dynamic row-level security by org hierarchy</text>
   <!-- Hierarchy visual -->
   <rect x="520" y="560" width="160" height="30" fill="#64ffda" rx="4" opacity="0.2"/>
