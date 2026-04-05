@@ -683,9 +683,17 @@ function HomePage({ navigate, scrollToSection, sectionRefs }) {
                     <h3 className="text-xl mb-2" style={{ fontFamily: "'DM Serif Display', serif" }}>{p.title}</h3>
                     <p className="text-sm mb-3" style={{ color: "var(--text-secondary)" }}>{p.hook}</p>
                     <p className="text-xs font-semibold mb-4" style={{ color: "var(--text-primary)" }}>{p.metrics}</p>
-                    <span className="text-sm font-semibold inline-flex items-center gap-1" style={{ color: "var(--accent)" }}>
-                      Read Case Study {Icons.arrowRight}
-                    </span>
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm font-semibold inline-flex items-center gap-1" style={{ color: "var(--accent)" }}>
+                        Read Case Study {Icons.arrowRight}
+                      </span>
+                      {p.powerBiEmbed && (
+                        <span className="text-xs font-semibold px-3 py-1 rounded-full inline-flex items-center gap-1.5 animate-pulse" style={{ background: "rgba(76,175,80,0.15)", color: "#4caf50" }}>
+                          <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#4caf50", display: "inline-block" }} />
+                          Live Dashboard
+                        </span>
+                      )}
+                    </div>
                   </div>
                 </div>
               </Reveal>
@@ -846,6 +854,20 @@ function ProjectPage({ project, navigate }) {
               </p>
             )}
           </Reveal>
+          {project.powerBiEmbed && (
+            <Reveal delay={2.5}>
+              <a
+                href="#live-dashboard"
+                className="mt-6 inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all hover:brightness-110"
+                style={{ background: "rgba(76,175,80,0.15)", color: "#4caf50", border: "1px solid rgba(76,175,80,0.3)" }}
+                onClick={(e) => { e.preventDefault(); document.getElementById("live-dashboard")?.scrollIntoView({ behavior: "smooth" }); }}
+              >
+                <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#4caf50", display: "inline-block", animation: "pulse 2s infinite" }} />
+                Interactive Dashboard Below — Try It Live
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+              </a>
+            </Reveal>
+          )}
           <Reveal delay={3}>
             <div className={`grid grid-cols-2 gap-4 mt-10 ${project.metricBoxes.length === 5 ? "md:grid-cols-5" : "md:grid-cols-4"}`}>
               {project.metricBoxes.map((m) => (
@@ -977,8 +999,8 @@ function ProjectPage({ project, navigate }) {
           </div>
           {project.powerBiEmbed && (
             <Reveal delay={4}>
-              <div className="mt-10">
-                <h3 className="text-lg font-bold mb-4 text-center" style={{ fontFamily: "'DM Serif Display', serif" }}>Live Report</h3>
+              <div id="live-dashboard" className="mt-10 scroll-mt-8">
+                <h3 className="text-lg font-bold mb-4 text-center" style={{ fontFamily: "'DM Serif Display', serif" }}>Interactive Dashboard — Try It Live</h3>
                 <div className="rounded-lg overflow-hidden shadow-md border" style={{ borderColor: "var(--border)" }}>
                   <iframe
                     title="Power BI Report"
