@@ -1,6 +1,6 @@
 # Portfolio Website Build Guidelines — Sunday Dada
 
-> **Instructions for Claude:** Use these guidelines to build a multi-page React portfolio website (.jsx artifact) for Sunday Dada, a Senior Power BI Developer seeking data roles. The site must feel corporate, polished, and story-driven — designed to convince a hiring manager within minutes that Sunday solves real problems with data. Follow every section precisely.
+> **Instructions:** Use these guidelines to build a multi-page React portfolio website (.jsx artifact) for Sunday Dada, a Senior Power BI Developer seeking data roles. The site must feel corporate, polished, and story-driven — designed to convince a hiring manager within minutes that Sunday solves real problems with data. Follow every section precisely.
 
 
 ---
@@ -385,9 +385,7 @@ These are placeholders — user will swap in real assets after build:
 
 ---
 
-## 12. PROMPT TO GIVE CLAUDE
-
-Copy everything above into a new Claude conversation, then add:
+## 12. BUILD PROMPT
 
 > **"Build this entire portfolio website as a single React (.jsx) artifact. Follow the guidelines exactly — all pages, all project case studies, all copy, all animations. Use Tailwind CSS only. Make it polished, corporate, and visually impressive. Include placeholder images where noted. Ensure page navigation works between Home and all 4 project detail pages."**
 
