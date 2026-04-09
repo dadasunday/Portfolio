@@ -2,4 +2,7 @@ node_modules
 dist
 .DS_Store
 *.local
+# Editor/IDE config
+.vscode/
+.idea/
 .claude/
