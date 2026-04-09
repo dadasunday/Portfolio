@@ -493,9 +493,6 @@ function Footer({ navigate, scrollToSection, currentPage }) {
             <a href="mailto:sundaydadag@gmail.com" className="flex items-center gap-2 text-sm text-white/70 hover:text-white transition-colors">
               <span style={{ color: "var(--accent)" }}>{Icons.mail}</span> sundaydadag@gmail.com
             </a>
-            <a href="tel:+14698385748" className="flex items-center gap-2 text-sm text-white/70 hover:text-white transition-colors">
-              <span style={{ color: "var(--accent)" }}>{Icons.phone}</span> +1 (469) 838-5748
-            </a>
             <a href="https://linkedin.com/in/sundaydada" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-white/70 hover:text-white transition-colors">
               <span style={{ color: "var(--accent)" }}>{Icons.linkedin}</span> LinkedIn Profile
             </a>
@@ -766,10 +763,6 @@ function HomePage({ navigate, scrollToSection, sectionRefs }) {
                 <a href="mailto:sundaydadag@gmail.com" className="flex items-center gap-3 text-white/80 hover:text-white transition-colors">
                   <span style={{ color: "var(--accent)" }}>{Icons.mail}</span>
                   <span>sundaydadag@gmail.com</span>
-                </a>
-                <a href="tel:+14698385748" className="flex items-center gap-3 text-white/80 hover:text-white transition-colors">
-                  <span style={{ color: "var(--accent)" }}>{Icons.phone}</span>
-                  <span>+1 (469) 838-5748</span>
                 </a>
                 <a href="https://linkedin.com/in/sundaydada" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-white/80 hover:text-white transition-colors">
                   <span style={{ color: "var(--accent)" }}>{Icons.linkedin}</span>
